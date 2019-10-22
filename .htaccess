@@ -1,0 +1,8 @@
+RewriteEngine On
+
+DirectoryIndex home.php
+RewriteCond %{REQUEST_FILENAME} !-f
+
+RewriteRule ^([^\.]+)$ $1.php [NC,L]
+
+RewriteRule ^eshipping home.php [L,QSA]

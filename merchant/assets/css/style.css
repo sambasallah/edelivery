@@ -1,0 +1,272 @@
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0px;
+  padding: 0px;
+}
+
+body a {
+  padding: 0px;
+  text-decoration: none;
+  color: #000;
+}
+
+body a:hover {
+  -webkit-transition: 0.3s all;
+  -moz-transition: 0.3s all;
+  transition: 0.3s all;
+  text-decoration: none;
+  color: #f57f20;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0px;
+  padding: 0px;
+}
+
+p {
+  padding: 0px;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+}
+
+/** reset code **/
+/** navbar **/
+.main_nav {
+  height: 50px;
+}
+
+.main_nav .container {
+  max-width: 90% !important;
+}
+
+.navbar {
+  color: #fff !important;
+}
+
+.navbar .nav-link, .navbar-brand {
+  color: #fff;
+}
+
+.navbar-bg-color {
+  background-color: #1b7fc3 !important;
+}
+
+/** dashboard **/
+.dashboard {
+  position: relative;
+  width: 100%;
+  background-color: #f5f5f5;
+  height: auto;
+}
+
+.dashboard .dashboard_container {
+  width: 97%;
+  margin: auto;
+}
+
+.dashboard_menu {
+  background-color: #fff;
+  margin: auto;
+  padding: 20px 5px;
+}
+
+.dashboard_menu ul {
+  margin-bottom: 20px;
+}
+
+.dashboard_menu ul li {
+  list-style: none;
+  display: inline-block;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.dashboard_menu ul li i.fa.fa-tachometer-alt, i.fa.fa-key, i.fa.fa-user, i.fa.fa-chart-pie, i.fa.fa-book, i.fa.fa-edit {
+  color: #33b27b;
+}
+
+.dashboard_menu ul li:nth-child(1) {
+  width: 86%;
+}
+
+.dashboard .dashboard_summary {
+  width: 90%;
+  margin: 50px auto;
+  text-align: center;
+}
+
+.dashboard_summary .deliveries, .spendings, .balance {
+  width: 200px;
+  height: 100px;
+  border-radius: 5px;
+  margin: 10px auto;
+}
+
+.dashboard_summary .deliveries {
+  background-color: #1b7fc3;
+}
+
+.dashboard_summary .spendings {
+  background-color: #33b27b;
+}
+
+.deliveries, .spendings, .balance {
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.deliveries .deliveries_container {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.spendings .spendings_container {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.balance .balance_container {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.dashboard_summary .balance {
+  background-color: #f57f20;
+}
+
+.deliveries h6, .spendings h6, .balance h6 {
+  font-size: 12px;
+  color: #fff;
+}
+
+.deliveries i.fa.fa-truck, .spendings i.fa.fa-money-bill-wave, .balance i.fa.fa-money-bill-alt {
+  color: #f5f5f5;
+}
+
+.chart {
+  margin: 20px auto;
+}
+
+/** Generate API **/
+.generate_api {
+  position: relative;
+  width: 100%;
+  background-color: #f5f5f5;
+  height: 100vh;
+}
+
+.generate_api .generate_api_container {
+  width: 97%;
+  margin: auto;
+}
+
+.generate_api .right_api {
+  width: 90%;
+  margin: 40px auto;
+}
+
+.right_api h2 {
+  padding-bottom: 15px;
+}
+
+.right_api input[type=text] {
+  width: 500px;
+  height: 49px;
+  border-radius: 5px;
+  padding: 10px 5px;
+  margin-right: 5px;
+  border: none;
+  border: 1px solid #000;
+}
+
+.right_api .btn-success {
+  background-color: #1b7fc3 !important;
+}
+
+/** Profile **/
+.profile {
+  position: relative;
+  width: 100%;
+  background-color: #f5f5f5;
+  height: auto;
+}
+
+.profile .profile_container {
+  width: 97%;
+  margin: auto;
+}
+
+.profile_container .profile_right {
+  width: 80%;
+  margin: 30px auto;
+}
+
+.profile_right h2 {
+  padding-bottom: 15px;
+}
+
+.profile_right .btn-success {
+  background-color: #1b7fc3 !important;
+}
+
+/** Summary **/
+.summary {
+  position: relative;
+  width: 100%;
+  background-color: #f5f5f5;
+  height: auto;
+}
+
+.summary .summary_container {
+  width: 97%;
+  margin: auto;
+}
+
+.summary_container .right_summary {
+  width: 95%;
+  margin: 30px auto;
+}
+
+.right_summary h2 {
+  padding-bottom: 15px;
+}
+
+/** Requests **/
+.request {
+  position: relative;
+  width: 100%;
+  background-color: #f5f5f5;
+  height: 100vh;
+}
+
+.request .request_container {
+  width: 97%;
+  margin: auto;
+}
+
+.request_container .right_request {
+  width: 80%;
+  margin: 30px auto;
+}
+
+.right_request h2 {
+  padding-bottom: 15px;
+}
+
+.right_request .btn-success {
+  background-color: #1b7fc3 !important;
+}
+
+/*# sourceMappingURL=style.css.map */

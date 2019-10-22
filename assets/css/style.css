@@ -1,0 +1,1002 @@
+/**
+*
+*@author Samba Sallah
+*@project eDelivery
+*
+**/
+.page_setup_container, .frequently_asked .frequently_asked_container, .testimonial .testimonial_container, .potential_earnings .potential_earnings_container, .earnings .earnings_container, .about_edelivery .about_edelivery_container, .header_become_a_partner .header_become_a_partner_container, .automate_deliveries .automate_deliveries_container, .ready_to_use .ready_to_use_container, .ecommerce_grow_business .ecommerce_grow_business_container, .header_ecommerce .header_ecommerce_container, .how_it_works .how_it_works_container, .features .features_container, .grow_business .grow_business_container {
+  width: 90%;
+  margin: auto;
+}
+
+.grey {
+  color: grey;
+}
+
+.separator {
+  height: 10px;
+  background-color: #f57f20;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0px;
+  padding: 0px;
+}
+
+body a {
+  padding: 0px;
+  text-decoration: none;
+}
+
+body a:hover {
+  -webkit-transition: 0.3s all;
+  -moz-transition: 0.3s all;
+  transition: 0.3s all;
+  text-decoration: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0px;
+  padding: 0px;
+}
+
+p {
+  padding: 0px;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+}
+
+/** reset code **/
+/** navbar css **/
+.navbar-bg-color {
+  background-color: #1b7fc3;
+}
+
+.navbar {
+  box-shadow: -1px 2px 3px rgba(0, 0, 0, 0.5);
+}
+
+.navbar .nav-item {
+  padding-right: 20px;
+}
+
+.navbar a.nav-link {
+  color: #fff;
+  font-size: 14px;
+  padding-right: 20px;
+  text-transform: uppercase;
+}
+
+.navbar .navbar-brand {
+  color: #fff;
+}
+
+.main_nav {
+  height: 55px;
+}
+
+/** carousel **/
+.text-content {
+  position: absolute;
+  margin: 0;
+  color: #fff;
+  left: 35%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  box-sizing: border-box;
+}
+
+.text-content h1 {
+  margin-bottom: 25px;
+  font-size: 50px;
+  text-shadow: -1px 2px 5px rgba(0, 0, 0, 0.5);
+  text-align: left;
+  color: #fff;
+}
+
+.text-content .btn_custom {
+  padding: 20px 30px;
+  background-color: #f57f20;
+  color: #fff;
+  border-radius: 5px;
+  text-transform: uppercase;
+  font-family: sans-serif;
+  position: relative;
+  left: -32%;
+}
+
+.text-content .btn_custom:hover {
+  opacity: 0.9;
+}
+
+.carousel-indicators li {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  margin: 10px;
+  text-indent: 0;
+  cursor: pointer;
+  border: none;
+  border-radius: 50%;
+  background-color: #000;
+}
+
+.carousel-indicators .active {
+  width: 15px;
+  height: 15px;
+  margin: 10px;
+  background-color: #1b7fc3;
+}
+
+.carousel-control-next, .carousel-control-prev {
+  filter: invert(100%);
+}
+
+/** become a partner **/
+.become_a_partner {
+  width: 100%;
+  height: 200px;
+  background-color: #f57f20;
+  overflow: hidden;
+}
+
+.become_a_partner .become_a_partner_container {
+  width: 90%;
+  margin: auto;
+  padding-top: 20px;
+}
+
+.become_a_partner .left_become_partner {
+  text-align: center;
+  padding-top: 20px;
+}
+
+.become_a_partner .left_become_partner h2 {
+  font-size: 50px;
+  color: #fff;
+  padding-bottom: 30px;
+  font-weight: lighter;
+}
+
+.become_a_partner .left_become_partner a.btn_custom {
+  padding: 10px 30px;
+  background-color: #1b7fc3;
+  color: #fff;
+  border-radius: 5px;
+  text-transform: uppercase;
+  font-family: sans-serif;
+}
+
+/** grow your business **/
+.grow_business .grow_business_container {
+  width: 90%;
+  margin: auto;
+}
+
+.grow_business .card {
+  width: 285px;
+  height: auto;
+  margin: 15px auto;
+  border: 1px solid #1b7fc3;
+  border-radius: 5px !important;
+  box-shadow: -1px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.grow_business .card:hover {
+  cursor: pointer;
+}
+
+.grow_business a.btn_custom {
+  padding: 10px 30px;
+  background-color: #f57f20;
+  color: #fff;
+  border-radius: 5px;
+  text-transform: uppercase;
+  font-family: sans-serif;
+}
+
+.grow_business h2.grow_business_title {
+  font-size: 30px;
+  padding-top: 100px;
+  padding-bottom: 20px;
+}
+
+.grow_business .right_grow a {
+  color: #000;
+}
+
+/** features **/
+.features .features_container {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.features i.fa.fa-thumbs-up {
+  font-size: 120px;
+  padding: 50px 0px 30px 0px;
+  color: #1b7fc3;
+}
+
+.badge {
+  border-radius: 25px;
+  margin-top: 40px;
+}
+
+#lblCartCount {
+  font-size: 12px;
+  background: #f57f20;
+  color: #fff;
+  padding: 20px 9px;
+  vertical-align: top;
+}
+
+/** calculate price **/
+.calc_price {
+  width: 100%;
+  height: 200px;
+  background-color: #1b7fc3;
+  margin-bottom: 30px;
+}
+
+.calc_price .calc_price_container {
+  width: 70%;
+  margin: auto;
+  padding-top: 10px;
+}
+
+.calc_price h2.price_estimate {
+  text-align: center;
+  padding: 20px 0px;
+  color: #fff;
+  font-size: 34px;
+}
+
+.calc_price select {
+  width: 403px;
+  height: 50px;
+  border-radius: 5px;
+  padding: 0px 9px;
+  font-family: sans-serif;
+  border: 1px solid #f57f20;
+  margin-right: 10px;
+}
+
+.calc_price input[type=submit] {
+  padding: 10px 20px;
+  background-color: #f57f20;
+  border: 1px solid #f57f20;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+}
+
+/** how it works **/
+.how_it_works .how_it_works_container {
+  text-align: center;
+  padding-bottom: 40px;
+}
+
+.how_it_works h2 i.fa.fa-map-marker, h2 i.fa.fa-calendar-plus, h2 i.fa.fa-tachometer-alt {
+  font-size: 40px;
+  color: #1b7fc3;
+  padding-bottom: 15px;
+}
+
+.how_it_works_container h2.how_title {
+  text-align: center;
+  font-size: 40px;
+  padding-bottom: 20px;
+}
+
+/** footer section **/
+.footer_section {
+  background-color: #f57f20;
+  color: #fff;
+}
+
+.footer_section .footer_section_container {
+  width: 70%;
+  margin: auto;
+  padding: 10px 0px;
+}
+
+.footer_section_container ul {
+  list-style-type: none;
+}
+
+footer {
+  text-align: center;
+  padding: 10px;
+  background-color: #f57f20;
+  color: #fff;
+  box-shadow: -1px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+/** Ecommerce Solution Page **/
+.header_ecommerce {
+  background-color: #1b7fc3;
+  margin-bottom: 60px;
+}
+
+.header_ecommerce .left_ecommerce {
+  padding: 80px;
+}
+
+.header_ecommerce h2 {
+  font-size: 40px;
+  color: #fff;
+  padding-bottom: 20px;
+}
+
+.header_ecommerce p {
+  font-size: 14px;
+  color: #fff;
+}
+
+.separate {
+  height: 5px;
+  background-color: #f57f20;
+  box-shadow: -1px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.ecommerce_grow_business .ecommerce_grow_business_container {
+  width: 60% !important;
+}
+
+.ecommerce_grow_business h2 {
+  text-align: center;
+  font-size: 40px;
+  padding-bottom: 25px;
+}
+
+.ecommerce_grow_business p {
+  text-align: center;
+  padding-bottom: 50px;
+}
+
+.ecommerce_grow_business .fixed_delivery_fee {
+  margin: 30px auto;
+  margin-bottom: 30px;
+  border: 1px solid #fff;
+  text-align: center;
+  height: 135px;
+  width: 225px;
+  padding-top: 38px;
+  box-shadow: -1px 2px 5px #1b7fc3;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.fixed_delivery_fee h4 {
+  font-size: 50px;
+  color: #1b7fc3;
+}
+
+.fixed_delivery_fee .currency_denomination {
+  color: #f57f20;
+}
+
+.ecommerce_grow_business h5 {
+  text-align: center;
+  padding-bottom: 10px;
+}
+
+.ready_to_use {
+  background-color: #1b7fc3;
+  margin-bottom: 20px;
+}
+
+.ready_to_use .ready_to_use_container {
+  text-align: center;
+}
+
+.ready_to_use h2 {
+  font-size: 35px;
+  padding-bottom: 40px;
+  padding-top: 10px;
+  color: #fff;
+}
+
+.ready_to_use p {
+  padding: 20px 0px 0px 0px;
+  color: #fff;
+}
+
+.ready_to_use p a {
+  color: #f57f20;
+}
+
+.ready_to_use p a:hover {
+  text-decoration: underline;
+}
+
+.ready_to_use .get_started {
+  padding: 10px 15px;
+  color: #fff;
+  background-color: #f57f20;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.automate_deliveries h2 {
+  font-size: 40px;
+  color: #000;
+  padding-bottom: 20px;
+}
+
+.automate_deliveries p {
+  font-size: 14px;
+  color: #000;
+}
+
+.automate_deliveries .left_automate {
+  padding: 80px;
+}
+
+.automate_deliveries .learn_more {
+  padding: 10px 30px;
+  border-radius: 5px;
+  background-color: #f57f20;
+  color: #fff;
+}
+
+/** Become A Partner **/
+.header_become_a_partner {
+  background-color: #1b7fc3;
+  margin-bottom: 20px;
+}
+
+.header_become_a_partner .apply_now {
+  padding: 10px 30px;
+  border-radius: 5px;
+  background-color: #f57f20;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.header_become_a_partner h2 {
+  font-size: 40px;
+  color: #fff;
+  padding-bottom: 20px;
+}
+
+.header_become_a_partner p {
+  font-size: 14px;
+  color: #fff;
+}
+
+.header_become_a_partner .left_partner {
+  padding: 80px;
+}
+
+.about_edelivery {
+  margin-bottom: 20px;
+}
+
+.about_edelivery h2 {
+  font-size: 40px;
+  padding-bottom: 20px;
+  text-align: center;
+}
+
+.about_edelivery p {
+  font-size: 16px;
+  text-align: center;
+}
+
+.earnings {
+  background-color: #1b7fc3;
+  margin-bottom: 20px;
+}
+
+.earnings .earnings_container {
+  padding: 30px 0px;
+}
+
+.earnings h2 {
+  color: #fff;
+  font-size: 40px;
+  text-align: center;
+}
+
+.potential_earnings {
+  margin-bottom: 20px;
+}
+
+.potential_earnings .potential_earnings_container {
+  text-align: center;
+}
+
+.potential_earnings select {
+  width: 200px;
+  height: 50px;
+  border-radius: 5px;
+  padding: 0px 9px;
+  font-family: sans-serif;
+  border: 1px solid #f57f20;
+  margin-right: 10px;
+}
+
+.potential_earnings .estimate_earnings {
+  padding: 15px 40px;
+  border-radius: 5px;
+  background-color: #f57f20;
+  color: #fff;
+}
+
+.testimonial {
+  background-color: #f57f20;
+  padding: 20px;
+  margin-bottom: 10px;
+}
+
+.testimonial h2 {
+  text-align: center;
+  font-size: 40px;
+  color: #fff;
+  padding-bottom: 20px;
+}
+
+.testimonial .card {
+  width: 300px;
+  margin: 10px auto;
+  text-align: center;
+}
+
+.testimonial .card h6 {
+  color: #1b7fc3;
+}
+
+.frequently_asked h2 {
+  text-align: center;
+  padding: 30px 0px 50px 0px;
+}
+
+.frequently_asked h5 {
+  color: #1b7fc3;
+  padding-bottom: 10px;
+}
+
+.frequently_asked ul {
+  padding-left: 30px;
+}
+
+.frequently_asked h6 {
+  text-align: center;
+  padding: 20px 0px;
+}
+
+.frequently_asked h6 a.apply_now {
+  text-align: center;
+  padding: 10px 30px;
+  background-color: #f57f20;
+  border-radius: 5px;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.frequently_asked .frequently_asked_container {
+  width: 60%;
+  margin: auto;
+}
+
+/** login page **/
+.login .login_container {
+  width: 100%;
+  height: 600px;
+}
+
+.login_container .login_form {
+  position: absolute;
+  width: 400px;
+  height: auto;
+  padding: 50px;
+  box-sizing: border-box;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid #f5f5f5;
+  border-radius: 5px;
+}
+
+.login_form input[type=text], input[type=password] {
+  margin-bottom: 10px;
+}
+
+.login_form h5 {
+  padding-bottom: 20px;
+  text-align: center;
+}
+
+.login_form p {
+  text-align: center;
+}
+
+.login_form .btn-success {
+  background-color: #1b7fc3 !important;
+}
+
+/** register page **/
+.register .register_container {
+  width: 100%;
+  height: 700px;
+}
+
+.register .register_form {
+  position: absolute;
+  width: 400px;
+  height: auto;
+  padding: 50px;
+  box-sizing: border-box;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid #f5f5f5;
+  border-radius: 5px;
+}
+
+.register_form .btn-success {
+  background-color: #1b7fc3 !important;
+}
+
+.register_form h4 {
+  padding-bottom: 10px;
+  text-align: center;
+}
+
+.register_form p {
+  text-align: center;
+  padding-top: 10px;
+}
+
+/** Register Partner **/
+.register_partner .register_partner_container {
+  width: 70%;
+  margin: auto;
+}
+
+.register_partner #regForm {
+  background-color: #ffffff;
+  margin: 100px auto;
+  padding: 40px;
+  width: 70%;
+  min-width: 300px;
+}
+
+/* Style the input fields */
+.register_partner input {
+  padding: 10px;
+  width: 100%;
+  font-size: 17px;
+  font-family: Raleway;
+  border: 1px solid #aaaaaa;
+  border-radius: 5px;
+}
+
+.register_partner h1 {
+  padding-bottom: 20px;
+  text-align: center;
+  color: #1b7fc3;
+}
+
+/* Mark input boxes that gets an error on validation: */
+.register_partner input.invalid {
+  background-color: #f57f20;
+}
+
+/* Hide all steps by default: */
+.register_partner .tab {
+  display: none;
+}
+
+/* Make circles that indicate the steps of the form: */
+.register_partner .step {
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #1b7fc3;
+  border: none;
+  border-radius: 50%;
+  display: inline-block;
+  opacity: 0.5;
+}
+
+/* Mark the active step: */
+.register_partner .step.active {
+  opacity: 1;
+}
+
+/* Mark the steps that are finished and valid: */
+.register_partner .step.finish {
+  background-color: #1b7fc3;
+}
+
+.register_partner .previous, .next {
+  background-color: #f57f20 !important;
+  color: #fff;
+}
+
+/** media query **/
+@media screen and (min-width: 320px) and (max-width: 480px) {
+  .text-content h1 {
+    font-size: 14px;
+    position: relative;
+    left: 15px;
+  }
+
+  .text-content .btn_custom {
+    padding: 10px;
+    position: relative;
+  }
+
+  .become_a_partner {
+    height: auto;
+  }
+
+  .become_a_partner h2.partner_title {
+    font-size: 20px;
+  }
+
+  .grow_business h2.grow_business_title {
+    font-size: 30px;
+    padding: 20px 0px 5px 0px;
+  }
+
+  .grow_business .card {
+    width: 100%;
+  }
+
+  .grow_business .left_grow_business {
+    margin-bottom: 20px;
+  }
+
+  .calc_price {
+    width: 100%;
+    height: auto;
+  }
+
+  .calc_price .calc_price_container {
+    width: fit;
+    margin: auto;
+  }
+
+  .calc_price select {
+    width: 100%;
+    margin: auto;
+    margin-bottom: 8px;
+  }
+
+  .footer_section .footer_section_container {
+    width: 95%;
+    margin: auto;
+    padding: 10px 0px;
+  }
+
+  .footer_section ul {
+    padding-bottom: 10px;
+  }
+}
+@media screen and (min-width: 320px) and (max-width: 568px) {
+  .text-content h1 {
+    font-size: 18px;
+    position: relative;
+    left: -25px;
+  }
+
+  .text-content .btn_custom {
+    padding: 10px;
+  }
+
+  .become_a_partner {
+    height: auto;
+  }
+
+  .grow_business h2.grow_business_title {
+    font-size: 30px;
+    padding: 20px 0px 5px 0px;
+  }
+
+  .grow_business .card {
+    width: 100%;
+  }
+
+  .grow_business .left_grow_business {
+    margin-bottom: 20px;
+  }
+
+  .calc_price {
+    width: 100%;
+    height: auto;
+  }
+
+  .calc_price .calc_price_container {
+    width: 85%;
+    margin: auto;
+  }
+
+  .calc_price input[type=submit], select {
+    margin-bottom: 8px;
+  }
+
+  .footer_section .footer_section_container {
+    width: 95%;
+    margin: auto;
+    padding: 10px 0px;
+  }
+
+  .footer_section ul {
+    padding-bottom: 10px;
+  }
+}
+@media screen and (min-width: 360px) and (max-width: 640px) {
+  .calc_price .calc_price_container {
+    width: 100%;
+    margin: auto;
+    box-sizing: border-box;
+    padding: 10px 0px;
+    overflow: contain;
+  }
+
+  .calc_price input[type=submit], select {
+    margin-bottom: 8px;
+  }
+
+  .footer_section .footer_section_container {
+    width: 95%;
+    margin: auto;
+    padding: 10px 0px;
+  }
+
+  .footer_section ul {
+    padding-bottom: 10px;
+  }
+}
+@media screen and (min-width: 411px) and (max-width: 731px) {
+  .calc_price .calc_price_container {
+    width: 85%;
+    margin: auto;
+  }
+
+  .calc_price input[type=submit], select {
+    margin-bottom: 8px;
+  }
+
+  .footer_section .footer_section_container {
+    width: 95%;
+    margin: auto;
+    padding: 10px 0px;
+  }
+
+  .footer_section ul {
+    padding-bottom: 10px;
+  }
+}
+@media screen and (min-width: 411px) and (max-width: 823px) {
+  .calc_price .calc_price_container {
+    width: 100%;
+    margin: auto;
+    box-sizing: border-box;
+    padding: 10px 0px;
+  }
+
+  .calc_price input[type=submit], select {
+    margin-bottom: 8px;
+  }
+
+  .footer_section .footer_section_container {
+    width: 95%;
+    margin: auto;
+    padding: 10px 0px;
+  }
+
+  .footer_section ul {
+    padding-bottom: 10px;
+  }
+}
+@media screen and (min-width: 600px) and (max-width: 960px) {
+  .text-content h1 {
+    font-size: 25px;
+    position: relative;
+    left: -25px;
+  }
+
+  .text-content .btn_custom {
+    padding: 10px;
+  }
+
+  .become_a_partner {
+    height: auto;
+  }
+
+  .grow_business h2.grow_business_title {
+    font-size: 30px;
+    padding: 20px 0px 5px 0px;
+  }
+
+  .grow_business .card {
+    width: 258px;
+  }
+
+  .grow_business .left_grow_business {
+    margin-bottom: 20px;
+  }
+
+  .calc_price .calc_price_container {
+    width: 95%;
+    margin: auto;
+    box-sizing: border-box;
+  }
+
+  .calc_price select {
+    width: 200px;
+  }
+
+  .calc_price input[type=submit], select {
+    margin-bottom: 8px;
+  }
+
+  .footer_section .footer_section_container {
+    width: 95%;
+    margin: auto;
+    padding: 10px 0px;
+  }
+
+  .footer_section ul {
+    padding-bottom: 10px;
+  }
+}
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .calc_price .calc_price_container {
+    width: 90%;
+    margin: auto;
+  }
+
+  .calc_price select {
+    width: auto;
+    margin: auto;
+    margin-bottom: 8px;
+  }
+
+  .grow_business .card {
+    width: 45%;
+    font-size: 12px;
+  }
+
+  .grow_business .card h2 {
+    font-size: 18px;
+  }
+}
+@media screen and (min-width: 1024px) and (max-width: 1366px) {
+  .calc_price .calc_price_container {
+    width: 85%;
+    margin: auto;
+  }
+
+  .card {
+    width: 120px;
+  }
+
+  .calc_price select {
+    width: 403px;
+    margin: auto;
+    margin-bottom: 8px;
+  }
+
+  .grow_business .card {
+    width: 47%;
+    font-size: 14px;
+  }
+
+  .grow_business .card h2 {
+    font-size: 20px;
+  }
+}
+
+/*# sourceMappingURL=style.css.map */

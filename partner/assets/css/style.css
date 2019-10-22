@@ -1,0 +1,179 @@
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0px;
+  padding: 0px;
+}
+
+body a {
+  padding: 0px;
+  text-decoration: none;
+  color: #000;
+}
+
+body a:hover {
+  -webkit-transition: 0.3s all;
+  -moz-transition: 0.3s all;
+  transition: 0.3s all;
+  text-decoration: none;
+  color: #f57f20;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0px;
+  padding: 0px;
+}
+
+p {
+  padding: 0px;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+}
+
+/** reset code **/
+/** navbar **/
+.main_nav {
+  height: 50px;
+}
+
+.main_nav .container {
+  max-width: 90% !important;
+}
+
+.navbar {
+  color: #000 !important;
+}
+
+.navbar .nav-link, .navbar-brand {
+  color: #fff;
+}
+
+.navbar-bg-color {
+  background-color: #1b7fc3 !important;
+}
+
+/** dashboard **/
+.dashboard {
+  position: relative;
+  width: 100%;
+  background-color: #f5f5f5;
+  height: auto;
+}
+
+.dashboard .dashboard_container {
+  width: 97%;
+  margin: auto;
+}
+
+.dashboard_menu {
+  background-color: #fff;
+  margin: auto;
+  padding: 5px 5px;
+}
+
+.dashboard_menu ul {
+  margin: 20px 0px;
+}
+
+.dashboard_menu ul li {
+  list-style: none;
+  display: inline-block;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.dashboard_menu ul li i.fa.fa-tachometer-alt, i.fa.fa-truck, i.fa.fa-money-bill-alt, i.fa.fa-user, i.fa.fa-book, i.fa.fa-edit {
+  color: #33b27b;
+}
+
+.dashboard_menu ul li:nth-child(1) {
+  width: 86%;
+}
+
+.dashboard_container .analytics {
+  width: 90%;
+  margin: 50px auto;
+}
+
+.analytics .earnings {
+  width: 200px;
+  height: 75px;
+  background-color: #1b7fc3;
+  border-radius: 5px;
+  margin: auto;
+  margin-bottom: 10px;
+}
+
+.earnings h3 {
+  color: #fff;
+  padding: 8px 0px 5px 8px;
+}
+
+.earnings p {
+  text-align: right;
+  padding-right: 8px;
+  color: #fff;
+}
+
+.earnings i.fa.fa-money-bill-alt {
+  color: #000;
+}
+
+.analytics .weekly_earnings {
+  width: 200px;
+  height: 75px;
+  background-color: #33b27b;
+  border-radius: 5px;
+  margin: auto;
+  margin-bottom: 10px;
+}
+
+.analytics .available_deliveries {
+  width: 200px;
+  height: 75px;
+  background-color: #f57f20;
+  border-radius: 5px;
+  margin: auto;
+  margin-bottom: 10px;
+}
+
+.weekly_earnings h3 {
+  color: #fff;
+  padding: 8px 0px 5px 8px;
+}
+
+.weekly_earnings p {
+  text-align: right;
+  padding-right: 8px;
+  color: #fff;
+}
+
+.weekly_earnings i.fa.fa-money-bill {
+  color: #000;
+}
+
+.available_deliveries h3 {
+  color: #fff;
+  padding: 8px 0px 5px 8px;
+}
+
+.available_deliveries p {
+  text-align: right;
+  padding-right: 8px;
+  color: #fff;
+}
+
+.available_deliveries i.fa.fa-truck {
+  color: #000;
+}
+
+.analytics .graph {
+  margin-top: 20px;
+}
+
+/*# sourceMappingURL=style.css.map */
