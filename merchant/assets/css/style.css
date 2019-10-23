@@ -97,13 +97,12 @@ ul {
 
 .dashboard .dashboard_summary {
   width: 90%;
-  margin: 50px auto;
-  text-align: center;
+  margin: 40px auto;
 }
 
 .dashboard_summary .deliveries, .spendings, .balance {
   width: 200px;
-  height: 100px;
+  height: 75px;
   border-radius: 5px;
   margin: 10px auto;
 }
@@ -116,45 +115,31 @@ ul {
   background-color: #33b27b;
 }
 
+.dashboard_summary .balance {
+  background-color: #f57f20;
+}
+
 .deliveries, .spendings, .balance {
   box-sizing: border-box;
   cursor: pointer;
 }
 
-.deliveries .deliveries_container {
-  position: relative;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.spendings .spendings_container {
-  position: relative;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.balance .balance_container {
-  position: relative;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.dashboard_summary .balance {
-  background-color: #f57f20;
-}
-
-.deliveries h6, .spendings h6, .balance h6 {
-  font-size: 12px;
+.deliveries h3, .spendings h3, .balance h3 {
+  padding: 8px 0px 5px 5px;
   color: #fff;
 }
 
-.deliveries i.fa.fa-truck, .spendings i.fa.fa-money-bill-wave, .balance i.fa.fa-money-bill-alt {
-  color: #f5f5f5;
+.deliveries p, .spendings p, .balance p {
+  color: #fff;
+  text-align: right;
+  padding: 0px 8px 5px 0px;
 }
 
+.deliveries i.fa.fa-truck, .spendings i.fa.fa-money-bill-wave, .balance i.fa.fa-money-bill-alt {
+  color: #000;
+}
+
+/** Graph **/
 .chart {
   margin: 20px auto;
 }

@@ -10,32 +10,22 @@
                 <div class="dashboard_summary">
                     <div class="row">
                         <div class="col-md-4">
-                             <h4>Deliveries</h4>
                             <div class="deliveries">
-                                <div class="deliveries_container">
-                                    <h6>Ongoing Deliveries</h6>
-                                <h4><i class="fa fa-truck"></i></h4>
-                                <h6><strong>2</strong></h6>
-                                </div>
+                                <h3>Ongoing Delv</h3>
+                                <p><i class="fa fa-truck"></i> 2</p>
                             </div>
                         </div>
                         <div class="col-md-4">
-                        <h4>Spendings</h4>
                             <div class="spendings">
-                            <div class="spendings_container">
-                                <h6>Amount Spent</h6>
-                                <h4><i class="fa fa-money-bill-wave"></i></h4>
-                                <h6><strong>GMD 3000</strong></h6>
-                                </div>
+                                <h3>Total Spent</h3>
+                                <p><i class="fa fa-money-bill-wave"></i> GMD40,000</p>
                             </div>
                         </div>
                         <div class="col-md-4">
-                        <h4>Balance</h4>
                             <div class="balance">
                             <div class="balance_container">
-                                <h6>Remaining</h6>
-                                <h4><i class="fa fa-money-bill-alt"></i></h4>
-                                <h6><strong>GMD 6000</strong></h6>
+                                <h3>Balance</h3>
+                                <p><i class="fa fa-money-bill-alt"></i> GMD20,000</p>
                             </div>
                             </div>
                         </div>
