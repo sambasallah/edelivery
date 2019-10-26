@@ -5,40 +5,34 @@
 		 <ol class="carousel-indicators">
 		    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
             <li data-target="#myCarousel" data-slide-to="1"></li>
-            <li data-target="#myCarousel" data-slide-to="2"></li>
+            
   		</ol>
 		  <div class="carousel-inner text-center">
 		    <div class="carousel-item active">
 		      <img class="d-block w-100 img-responsive" src="media/images/banner1.png" alt="First slide">
 		      <div class="text-content responsive">
                 <h1>The Delivery Solution <br> For Your <br> Business</h1>
-                <a href="shop" class="btn_custom">GET STARTED</a>
+                <a href="register" class="btn_custom">GET STARTED</a>
             </div>
 		    </div>
 		    <div class="carousel-item">
 		      <img class="d-block w-100" src="media/images/banner2.jpg" alt="Second slide">
 		       <div class="text-content">
                 <h1>Get All Your Packages <br> Safely Delivered </h1>
-                <a href="shop" class="btn_custom">GET STARTED</a>
+                <a href="register" class="btn_custom">GET STARTED</a>
             </div>
-            </div>
-            <div class="carousel-item">
-		      <img class="d-block w-100" src="media/images/banner3.png" alt="Third slide">
-		       <div class="text-content">
-                <h1>Let Us Handle All <br> Your Restaurant Deliveries </h1>
-                <a href="shop" class="btn_custom">GET STARTED</a>
             </div>
 		    </div>
 		    </div>
 		  </div>
-		  <!-- <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+		  <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
 		    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
 		    <span class="sr-only">Previous</span>
 		  </a>
 		  <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
 		    <span class="carousel-control-next-icon" aria-hidden="true"></span>
 		    <span class="sr-only">Next</span>
-		  </a> -->
+		  </a>
     </div>
     
     <!-- become a partner -->
@@ -47,7 +41,7 @@
             <div class="row">
                 <div class="col-md-6 left_become_partner">
                     <h2 class="partner_title">Got A Vehicle?</h2>
-                    <a href="#" class="btn_custom">Become A Partner</a>
+                    <a href="become-a-partner" class="btn_custom">Become A Partner</a>
                 </div>
                 <div class="col-md-6 right_become_partner">
                     <img src="media/images/become-a-partner.png" alt="Become A Partner">
@@ -63,7 +57,7 @@
                 <div class="col-md-6 left_grow_business">
                     <h2 class="grow_business_title">Grow Your Business With eDelivery</h2>
                     <p>Logistics is fundamental to the success of a business. Whether you run an online shop or a manufacturing business, eDelivery is the preferred logistics platform for helping you grow your business.</p>
-                    <a href="#" class="btn_custom">Learn More</a>
+                    <a href="ecommerce" class="btn_custom">Learn More</a>
                 </div>
                 <div class="col-md-6 right_grow">
                     <a href="ecommerce">
@@ -115,24 +109,18 @@
                 <div class="col-md-12">
                 <h2 class="price_estimate">Get A Price Estimate</h2>
                     <div class="calc_price_container">
-                    <form action="" method="post">
-                        
-                        <select name="pick_up_location" id="">
+                        <select name="pick_up_location" id="pick_up_location">
                             <option value="Enter Pick Up Location">Select Pick Up Location</option>
                             <option value="Serrekunda">Serrekunda</option>
-                            <option value="Bakau">Bakau</option>
-                            <option value="Brikama">Brikama</option>
                             <option value="Banjul">Banjul</option>
                         </select>
-                        <select name="pick_up_location" id="">
+                        <select name="delivery_location" id="delivery_location">
                             <option value="Enter Delivery Location">Select Delivery Location</option>
                             <option value="Serrekunda">Serrekunda</option>
-                            <option value="Bakau">Bakau</option>
-                            <option value="Brikama">Brikama</option>
                             <option value="Banjul">Banjul</option>
                         </select>
-                        <input type="submit" value="Calculate">
-                    </form>
+                        <span class="estimate">Estimate</span>
+                        <span id="delivery_cost" style="color:#fff;"></span>
                     </div>
                 </div>
             </div>

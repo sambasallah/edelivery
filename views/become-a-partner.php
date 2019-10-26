@@ -44,31 +44,26 @@
     <div class="potential_earnings_container">
         <div class="row">
             <div class="col-md-12 col-sm">
-                <select name="Location" id="">
+                <select name="Location" id="location">
                     <option value="City">City</option>
-                    <option value="Serrekudna">Serrekunda</option>
+                    <option value="Serrekunda">Serrekunda</option>
                     <option value="Banjul">Banjul</option>
-                    <option value="Brikama">Brikama</option>
-                    <option value="Brufut">Brufut</option>
-                    <option value="Tujereng">Tujereng</option>
                 </select>
-                <select name="Vehicle" id="">
+                <select name="Vehicle" id="vehicle_type">
                     <option value="Vehicle">Vehicle</option>
                     <option value="Motorcycle">Motorcycle</option>
                     <option value="Pickup">Pickup</option>
-                    <option value="Van">Van</option>
-                    <option value="6 Wheel Truck">6 Wheel Truck</option>
-                    <option value="10 Wheel Truck">10 Wheel Truck</option>
                 </select>
-                <select name="Time" id="">
-                    <option value="Time">Time</option>
-                    <option value="One Week">1 Week</option>
-                    <option value="One Month">1 Month</option>
-                    <option value="Three Months">3 Months</option>
-                    <option value="Six Months">Six Months</option>
-                    <option value="One Year">1 Year</option>
+                <select name="Days" id="days">
+                    <option value="Time">Days</option>
+                    <option value="1 Week">1 Week</option>
+                    <option value="1 Month">1 Month</option>
+                    <option value="3 Months">3 Months</option>
+                    <option value="6 Months">6 Months</option>
+                    <option value="1 Year">1 Year</option>
                 </select>
-                <a href="#" class="estimate_earnings">Estimate Earnings</a>
+                <span class="estimate_earnings">Estimate Earnings</span>
+                <span id="earnings_amount"></span>
             </div>
         </div>
     </div>
@@ -83,8 +78,8 @@
                     <img src="media/images/testimonial1.png" alt="" width="200px" style="margin: 5px auto"> 
                     <div class="card-body">
                         <h5>Mariama</h5>
-                        <h6>Van Owner</h6>
-                        <p><q>I’m doing very well with Sendy! I did a great delivery to Lamu and back just yesterday!</q></p>
+                        <h6>Pickup Owner</h6>
+                        <p><q>I’m doing very well with eDelivery! I did a great delivery to Lamu and back just yesterday!</q></p>
                     </div>
                 </div>
             </div>
@@ -93,8 +88,8 @@
                     <img src="media/images/testimonial2.png" alt="" width="200px" style="margin: 5px auto">
                     <div class="card-body">
                         <h5>Omar</h5>
-                        <h6>Truck Owner</h6>
-                        <p><q>Because of Sendy, things are not as hard. My income has increased from 1 to 2 and life is much simpler.</q></p>
+                        <h6>Pickup Owner</h6>
+                        <p><q>Because of eDelivery, My income has increased from 1 to 2 and life is much simpler.</q></p>
                     </div>
                 </div>
             </div>
@@ -104,7 +99,7 @@
                     <div class="card-body">
                         <h5>Fanding</h5>
                         <h6>Motorcycle Owner</h6>
-                        <p><q>I have saved enough to buy another bike because of Sendy and I’m finally free from my debts!</q></p>
+                        <p><q>I have saved enough to buy another bike because of eDelivery and I’m finally free from my debts!</q></p>
                     </div>
                 </div>
             </div>

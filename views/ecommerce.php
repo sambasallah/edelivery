@@ -23,7 +23,7 @@
                 <div class="row">
                     <div class="col-md-4">
                         <div class="fixed_delivery_fee">
-                            <h4>500 <span class="currency_denomination">GMD</span></h4>
+                            <h4><span class="currency_denomination"><i class="fa fa-money-bill-alt"></i></span></h4>
                         </div>
                         <h5>One fixed price across the city</h5>
                         <p>eDelivery offers you one price for all your Serrekunda deliveries. No zones or maximum distance. Know exactly what it's going to cost.</p>

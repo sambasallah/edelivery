@@ -97,7 +97,7 @@ ul {
 
 .dashboard_container .analytics {
   width: 90%;
-  margin: 50px auto;
+  margin: 40px auto;
 }
 
 .analytics .earnings {
@@ -174,6 +174,72 @@ ul {
 
 .analytics .graph {
   margin-top: 20px;
+}
+
+/** delivery requests **/
+.delivery_requests {
+  position: relative;
+  width: 100%;
+  background-color: #f5f5f5;
+  height: 100vh;
+}
+
+.delivery_requests .delivery_requests_container {
+  width: 97%;
+  margin: auto;
+}
+
+.delivery_requests_container .right {
+  width: 90%;
+  margin: 40px auto;
+}
+
+.delivery_requests_container .right h3 {
+  padding-bottom: 10px;
+}
+
+/** Earnings **/
+.earnings_summary {
+  position: relative;
+  width: 100%;
+  background-color: #f5f5f5;
+  height: 100vh;
+}
+
+.earnings_summary .earnings_summary_container {
+  width: 97%;
+  margin: auto;
+}
+
+.earnings_summary .right_earnings {
+  width: 90%;
+  margin: 40px auto;
+}
+
+.earnings_summary_container .right_earnings h3 {
+  padding-bottom: 10px;
+}
+
+/** Partner Profile **/
+.profile_partner {
+  position: relative;
+  width: 100%;
+  background-color: #f5f5f5;
+  height: 100vh;
+}
+
+.profile_partner .profile_partner_container {
+  width: 97%;
+  margin: auto;
+}
+
+.profile_partner_container .right {
+  width: 90%;
+  margin: 40px auto;
+}
+
+.profile_partner_container .right .btn .btn-success {
+  background-color: #1b7fc3 !important;
 }
 
 /*# sourceMappingURL=style.css.map */

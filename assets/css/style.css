@@ -258,8 +258,8 @@ ul {
   font-size: 34px;
 }
 
-.calc_price select {
-  width: 403px;
+.calc_price .calc_price_container select {
+  width: 350px;
   height: 50px;
   border-radius: 5px;
   padding: 0px 9px;
@@ -268,8 +268,8 @@ ul {
   margin-right: 10px;
 }
 
-.calc_price input[type=submit] {
-  padding: 10px 20px;
+.calc_price .estimate {
+  padding: 15px 20px;
   background-color: #f57f20;
   border: 1px solid #f57f20;
   border-radius: 5px;
@@ -374,12 +374,8 @@ footer {
   box-sizing: border-box;
 }
 
-.fixed_delivery_fee h4 {
-  font-size: 50px;
-  color: #1b7fc3;
-}
-
-.fixed_delivery_fee .currency_denomination {
+.fixed_delivery_fee i.fa.fa-money-bill-alt {
+  font-size: 60px;
   color: #f57f20;
 }
 
@@ -529,6 +525,7 @@ footer {
   border-radius: 5px;
   background-color: #f57f20;
   color: #fff;
+  cursor: pointer;
 }
 
 .testimonial {

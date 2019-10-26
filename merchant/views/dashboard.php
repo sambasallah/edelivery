@@ -11,7 +11,7 @@
                     <div class="row">
                         <div class="col-md-4">
                             <div class="deliveries">
-                                <h3>Ongoing Delv</h3>
+                                <h3>Ongoing Delvs</h3>
                                 <p><i class="fa fa-truck"></i> 2</p>
                             </div>
                         </div>
