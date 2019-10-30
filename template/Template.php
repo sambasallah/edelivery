@@ -1,13 +1,13 @@
 <?php
 
-namespace eshipping\template;
+namespace edelivery\template;
 
 class Template
 {
-    // template path
+    // Template path
     protected $template_path;
 
-    // to store variables
+    // To store variables
     protected $vars = array();
 
     public function __construct($path)
@@ -15,19 +15,19 @@ class Template
         $this->template_path = $path;
     }
 
-    // get variables
+    // Get variables
     public function __get($key)
     {
         return $this->vars[$key];
     }
 
-    // set variables
+    // Set variables
     public function __set($key,$value)
     {
         $this->vars[$key] = $value;
     }
 
-    // print template
+    // Print template
     public function __toString()
     {
         extract($this->vars);

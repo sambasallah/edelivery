@@ -594,13 +594,13 @@ footer {
   position: absolute;
   width: 400px;
   height: auto;
-  padding: 50px;
   box-sizing: border-box;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   border: 1px solid #f5f5f5;
   border-radius: 5px;
+  padding: 20px;
 }
 
 .login_form input[type=text], input[type=password] {
@@ -608,7 +608,7 @@ footer {
 }
 
 .login_form h5 {
-  padding-bottom: 20px;
+  padding: 10px 0px;
   text-align: center;
 }
 

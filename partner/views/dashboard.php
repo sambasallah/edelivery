@@ -16,15 +16,15 @@
                             </div> 
                         </div>
                         <div class="col-md-4">
-                            <div class="weekly_earnings">
-                                <h3>Weekly</h3>
+                            <div class="withdrawn_earnings">
+                                <h3>Withdrawn</h3>
                                 <p><i class="fa fa-money-bill"></i> GMD5,000</p>
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <div class="available_deliveries">
-                                <h3>Delivery Reqs</h3>
-                                <p><i class="fa fa-truck"></i> 3 Requests</p>
+                            <div class="balance">
+                                <h3>Balance</h3>
+                                <p><i class="fa fa-money-bill"></i> 25,000</p>
                             </div>
                         </div>
                     </div>

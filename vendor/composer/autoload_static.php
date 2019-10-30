@@ -18,7 +18,7 @@ class ComposerStaticInit9621d9357d31dd04dbc27eeb5dc0cbd9
         ),
         'e' => 
         array (
-            'eshipping\\' => 10,
+            'edelivery\\' => 10,
         ),
         'W' => 
         array (
@@ -46,7 +46,7 @@ class ComposerStaticInit9621d9357d31dd04dbc27eeb5dc0cbd9
             1 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
             2 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
         ),
-        'eshipping\\' => 
+        'edelivery\\' => 
         array (
             0 => __DIR__ . '/../..' . '/',
         ),

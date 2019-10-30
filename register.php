@@ -2,8 +2,9 @@
 
 require_once('config/init.php');
 
-use eshipping\template\Template;
+use edelivery\template\Template;
 
 $template = new Template('views/register.php');
 
 echo $template;
+

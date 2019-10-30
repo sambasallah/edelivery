@@ -80,7 +80,7 @@ $grey : grey;
 }
 
 .dashboard_summary .deliveries,.spendings,.balance {
-    width: 200px;
+    width: 250px;
     height: 75px;
     border-radius: 5px;
     margin: 10px auto;
@@ -88,14 +88,17 @@ $grey : grey;
 
 .dashboard_summary .deliveries {
     background-color: $primary_color;
+    box-shadow: -1px 2px 3px rgba(0,0,0,0.2);
 }
 
 .dashboard_summary .spendings {
     background-color: $secondary_color;
+    box-shadow: -1px 2px 3px rgba(0,0,0,0.2);
 }
 
 .dashboard_summary .balance {
     background-color: $yellow;
+    box-shadow: -1px 2px 3px rgba(0,0,0,0.2);
 }
 
 .deliveries,.spendings,.balance {
@@ -140,27 +143,14 @@ $grey : grey;
     margin: auto;
 }
 
-.generate_api .right_api {
-    width: 90%;
-    margin: 40px auto;
-}
 
 .right_api h2 {
-    padding-bottom: 15px;
-}
-
-.right_api input[type=text] {
-    width: 500px;
-    height: 49px;
-    border-radius: 5px;
-    padding: 10px 5px;
-    margin-right: 5px;
-    border: none;
-    border: 1px solid #000;
+    padding: 10px;
 }
 
 .right_api .btn-success {
     background-color: $primary_color !important;
+    margin-left: 10px;
 }
 
 /** Profile **/
@@ -197,7 +187,7 @@ $grey : grey;
     position: relative;
     width: 100%;
     background-color: #f5f5f5;
-    height: auto;
+    height: 100vh;
 }
 
 
@@ -206,13 +196,8 @@ $grey : grey;
     margin: auto;
 }
 
-.summary_container .right_summary {
-    width: 95%;;
-    margin: 30px auto;
-}
-
 .right_summary h2 {
-    padding-bottom: 15px;
+    padding: 10px;
 }
 
 /** Requests **/
@@ -221,7 +206,7 @@ $grey : grey;
     position: relative;
     width: 100%;
     background-color: #f5f5f5;
-    height: 100vh;
+    height: auto;
 }
 
 

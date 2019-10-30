@@ -11,29 +11,42 @@
                         <h2>Make Delivery Request</h2>
                         <form action="" method="post">
                             <div class="form-group">
-                                <input type="text" placeholder="To (Address)" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <input type="text" placeholder="From (Address)" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <input type="text" placeholder="Receipient" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <input type="text" placeholder="Item Name" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <input type="text" placeholder="Item Price" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <input type="text" placeholder="Item Type (eg heavy,light,medium)" class="form-control" required> 
+                                    <select name="" id="" class="custom-select" required>
+                                            <option value="0">To</option>
+                                            <option value="1">Serrekunda</option>
+                                            <option value="2">Banjul</option>
+                                        </select>
                             </div>
                             <div class="form-group">
                                 <select name="" id="" class="custom-select" required>
-                                    <option value="0">Municipality</option>
-                                    <option value="1">Kanifing Municipal Council</option>
-                                    <option value="2">Banjul City Council</option>
-                                </select>
+                                        <option value="0">From</option>
+                                        <option value="1">Serrekunda</option>
+                                        <option value="2">Banjul</option>
+                                    </select>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" placeholder="Receipient Name" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" placeholder="Receipient Mobile Number" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" placeholder="Receipient Address" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" placeholder="Sender Name" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" placeholder="Sender Mobile Number" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" placeholder="Sender Address" class="form-control" required>
+                            </div>
+                             <div class="form-group">
+                                <input type="text" placeholder="Item Name" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" placeholder="Item Type (eg heavy,medium,light)" class="form-control" required> 
                             </div>
                             <input type="submit" value="Make Request" class="btn btn-success">
                         </form>

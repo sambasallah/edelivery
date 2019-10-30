@@ -1,0 +1,272 @@
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0px;
+  padding: 0px;
+}
+
+body a {
+  padding: 0px;
+  text-decoration: none;
+  color: #000;
+}
+
+body a:hover {
+  -webkit-transition: 0.3s all;
+  -moz-transition: 0.3s all;
+  transition: 0.3s all;
+  text-decoration: none;
+  color: #f57f20;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0px;
+  padding: 0px;
+}
+
+p {
+  padding: 0px;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+}
+
+/** reset code **/
+/** navbar **/
+.main_nav {
+  height: 50px;
+}
+
+.main_nav .container {
+  max-width: 90% !important;
+}
+
+.navbar {
+  color: #000 !important;
+}
+
+.navbar .nav-link, .navbar-brand {
+  color: #fff;
+}
+
+.navbar-bg-color {
+  background-color: #1b7fc3 !important;
+}
+
+/** Sidenav **/
+.dashboard_menu {
+  background-color: #fff;
+  margin: auto;
+  padding: 20px 5px;
+}
+
+.dashboard_menu ul {
+  margin-bottom: 20px;
+}
+
+.dashboard_menu ul li {
+  list-style: none;
+  display: inline-block;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.dashboard_menu i.fa.fa-tachometer-alt, i.fa.fa-users, i.fa.fa-user, i.fa.fa-cog, i.fa.fa-truck {
+  color: #33b27b !important;
+}
+
+.dashboard_menu ul li:nth-child(1) {
+  width: 86%;
+}
+
+.dashboard .summary {
+  width: 90%;
+  margin: 40px auto;
+}
+
+/** dashboard **/
+.dashboard {
+  position: relative;
+  width: 100%;
+  background-color: #f5f5f5;
+  height: auto;
+}
+
+.dashboard .dashboard_container {
+  width: 97%;
+  margin: auto;
+}
+
+.summary .total_revenue, .partners, .merchants {
+  width: 250px;
+  height: 100px;
+  border-radius: 5px;
+  padding: 10px;
+  margin: auto;
+}
+
+.summary .total_revenue {
+  background-color: #1b7fc3;
+  box-shadow: -1px 2px 3px rgba(0, 0, 0, 0.4);
+}
+
+.summary .partners {
+  background-color: #33b27b;
+  box-shadow: -1px 2px 3px rgba(0, 0, 0, 0.4);
+}
+
+.summary .merchants {
+  background-color: #f57f20;
+  box-shadow: -1px 2px 3px rgba(0, 0, 0, 0.4);
+}
+
+.summary .total_revenue i.fa.fa-users {
+  color: #000;
+}
+
+.summary .partners i.fa.fa-users {
+  color: #000 !important;
+}
+
+.summary .merchants i.fa.fa-user {
+  color: #000 !important;
+}
+
+.summary h3 {
+  color: #fff;
+  padding-bottom: 10px;
+}
+
+.analytics {
+  margin-top: 20px;
+}
+
+/** Partners **/
+.partner {
+  position: relative;
+  width: 100%;
+  background-color: #f5f5f5;
+  height: 100vh;
+}
+
+.partner .partner_container {
+  width: 97%;
+  margin: auto;
+}
+
+.partner_right h2 {
+  padding: 20px 0px;
+}
+
+/** Merchants **/
+.merchant {
+  position: relative;
+  width: 100%;
+  background-color: #f5f5f5;
+  height: 100vh;
+}
+
+.merchant .merchant_container {
+  width: 97%;
+  margin: auto;
+}
+
+.merchant_right h2 {
+  padding: 20px 0px;
+}
+
+/** Deliveries **/
+.delivery {
+  position: relative;
+  width: 100%;
+  background-color: #f5f5f5;
+  height: 100vh;
+}
+
+.delivery .delivery_container {
+  width: 97%;
+  margin: auto;
+}
+
+.delivery_right h2 {
+  padding: 20px 0px;
+}
+
+/** Users **/
+.users {
+  position: relative;
+  width: 100%;
+  background-color: #f5f5f5;
+  height: 100vh;
+}
+
+.users .users_container {
+  width: 97%;
+  margin: auto;
+}
+
+.users_container .users_right h2 {
+  padding: 10px 0px;
+}
+
+.users_right .users_header {
+  display: flex;
+  align-items: space-between;
+}
+
+.users_header a {
+  padding: 8px 15px;
+  background-color: #1b7fc3;
+  border-radius: 5px;
+}
+
+/** login page **/
+.login .login_container {
+  width: 100%;
+  height: 600px;
+}
+
+.login_container .login_form {
+  position: absolute;
+  width: 400px;
+  height: auto;
+  box-sizing: border-box;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid #f5f5f5;
+  border-radius: 5px;
+  padding: 20px;
+}
+
+.login_form input[type=text], input[type=password] {
+  margin-bottom: 10px;
+}
+
+.login_form h5 {
+  padding: 10px 0px;
+  text-align: center;
+}
+
+.login_form p {
+  text-align: center;
+}
+
+.login_form .btn-success {
+  background-color: #1b7fc3 !important;
+}
+
+/** Admin Navbar **/
+.main_nav .nav_title {
+  height: 50px;
+  background-color: #1b7fc3;
+  text-align: center;
+  color: #fff;
+  line-height: 50px;
+}
+
+/*# sourceMappingURL=style.css.map */

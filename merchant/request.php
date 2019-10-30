@@ -2,7 +2,7 @@
 
 require_once('../config/init_.php');
 
-use eshipping\template\Template;
+use edelivery\template\Template;
 
 $template = new Template('views/request.php');
 

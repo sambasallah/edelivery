@@ -10,69 +10,33 @@
                      
                 <div class="right">
                 <h3>Delivery Requests</h3> 
-                <table class="table table-hover">
+                <table class="table table-responsive table-hover">
                         <thead>
                             <tr>
                                 <th>To</th>
                                 <th>From</th>
+                                <th>Sender Name</th>
+                                <th>Receipt Name</th>
+                                <th>Sender Number</th>
+                                <th>Receipt Number</th>
                                 <th>Item Name</th>
-                                <th>Item Price</th>
-                                <th>Item Weight</th>
-                                <th>Timestamp</th>
-                                <th>Status</th>
-                                <th>Municipality</th>
-                                <th width="15%">Cancel</th>
+                                <th width="15%">A/R</th>
                             </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>Bakau</td>
-                                    <td>Serekunda</td>
-                                    <td>Fridge</td>
-                                    <td>GMD20,000</td>
-                                    <td>150kg</td>
-                                    <td>23:12:02 12/23/2019</td>
-                                    <td>Delivered</td>
-                                    <td>KMC</td>
+                                    <td>Serrekunda</td>
+                                    <td>Banjul</td>
+                                    <td>Lamin Manneh</td>
+                                    <td>Samba Sallah</td>
+                                    <td>+2203911176</td>
+                                    <td>+2203929525</td>
+                                    <td>Bed Set</td>
                                     <td>
-                                        <select name="" id="" class="custom-select">
-                                            <option value="choose">Choose</option>
-                                            <option value="cancel">Accept</option>
-                                        </select>
+                                        <i class="fa fa-check"></i> <i class="fa fa-times"></i>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td>Bakau</td>
-                                    <td>Serekunda</td>
-                                    <td>Fridge</td>
-                                    <td>GMD20,000</td>
-                                    <td>150kg</td>
-                                    <td>23:12:02 12/23/2019</td>
-                                    <td>Delivered</td>
-                                    <td>KMC</td>
-                                    <td>
-                                        <select name="" id="" class="custom-select">
-                                        <option value="choose">Choose</option>
-                                            <option value="cancel">Accept</option>
-                                        </select>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Bakau</td>
-                                    <td>Serekunda</td>
-                                    <td>Fridge</td>
-                                    <td>GMD20,000</td>
-                                    <td>150kg</td>
-                                    <td>23:12:02 12/23/2019</td>
-                                    <td>Delivered</td>
-                                    <td>KMC</td>
-                                    <td>
-                                        <select name="" id="" class="custom-select">
-                                        <option value="choose">Choose</option>
-                                            <option value="cancel">Accept</option>
-                                        </select>
-                                    </td>
-                                </tr>
+
                             </tbody>
                      </table>
                      <ul class="pagination justify-content-center">

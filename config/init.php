@@ -1,5 +1,5 @@
 <?php
 
-namespace eshipping;
+namespace edelivery;
 
 require_once 'vendor/autoload.php';

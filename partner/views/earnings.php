@@ -9,7 +9,7 @@
             <div class="col-md-9"> 
                 <div class="right_earnings">
                 <h3>Earnings Summary</h3> 
-                <table class="table table-hover">
+                <table class="table table-responsive table-hover">
                         <thead>
                             <tr>
                                 <th>To</th>
@@ -17,7 +17,7 @@
                                 <th>Item Name</th>
                                 <th>Item Price</th>
                                 <th>Delivery Fee</th>
-                                <th>Earned (15%)</th>
+                                <th>Earned (70%)</th>
                                 
                             </tr>
                             </thead>
@@ -28,23 +28,7 @@
                                     <td>Fridge</td>
                                     <td>GMD20,000</td>
                                     <td>GMD1000</td>
-                                    <td>GMD150</td>
-                                </tr>
-                                <tr>
-                                    <td>Bakau</td>
-                                    <td>Serekunda</td>
-                                    <td>Fridge</td>
-                                    <td>GMD20,000</td>
-                                    <td>GMD1000</td>
-                                    <td>GMD150</td>
-                                </tr>
-                                <tr>
-                                    <td>Bakau</td>
-                                    <td>Serekunda</td>
-                                    <td>Fridge</td>
-                                    <td>GMD20,000</td>
-                                    <td>GMD1000</td>
-                                    <td>GMD150</td>
+                                    <td>GMD700</td>
                                 </tr>
                             </tbody>
                      </table>

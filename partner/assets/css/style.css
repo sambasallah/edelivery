@@ -101,12 +101,13 @@ ul {
 }
 
 .analytics .earnings {
-  width: 200px;
+  width: 250px;
   height: 75px;
   background-color: #1b7fc3;
   border-radius: 5px;
   margin: auto;
   margin-bottom: 10px;
+  box-shadow: -1px 2px 3px rgba(0, 0, 0, 0.2);
 }
 
 .earnings h3 {
@@ -124,51 +125,53 @@ ul {
   color: #000;
 }
 
-.analytics .weekly_earnings {
-  width: 200px;
+.analytics .withdrawn_earnings {
+  width: 250px;
   height: 75px;
   background-color: #33b27b;
   border-radius: 5px;
   margin: auto;
   margin-bottom: 10px;
+  box-shadow: -1px 2px 3px rgba(0, 0, 0, 0.2);
 }
 
-.analytics .available_deliveries {
-  width: 200px;
+.analytics .balance {
+  width: 250px;
   height: 75px;
   background-color: #f57f20;
   border-radius: 5px;
   margin: auto;
   margin-bottom: 10px;
+  box-shadow: -1px 2px 3px rgba(0, 0, 0, 0.2);
 }
 
-.weekly_earnings h3 {
+.withdrawn_earnings h3 {
   color: #fff;
   padding: 8px 0px 5px 8px;
 }
 
-.weekly_earnings p {
+.withdrawn_earnings p {
   text-align: right;
   padding-right: 8px;
   color: #fff;
 }
 
-.weekly_earnings i.fa.fa-money-bill {
+.withdrawn_earnings i.fa.fa-money-bill {
   color: #000;
 }
 
-.available_deliveries h3 {
+.balance h3 {
   color: #fff;
   padding: 8px 0px 5px 8px;
 }
 
-.available_deliveries p {
+.balance p {
   text-align: right;
   padding-right: 8px;
   color: #fff;
 }
 
-.available_deliveries i.fa.fa-truck {
+.balance i.fa.fa-money-bill {
   color: #000;
 }
 
@@ -189,13 +192,8 @@ ul {
   margin: auto;
 }
 
-.delivery_requests_container .right {
-  width: 90%;
-  margin: 40px auto;
-}
-
 .delivery_requests_container .right h3 {
-  padding-bottom: 10px;
+  padding: 10px 0px;
 }
 
 /** Earnings **/
@@ -211,13 +209,8 @@ ul {
   margin: auto;
 }
 
-.earnings_summary .right_earnings {
-  width: 90%;
-  margin: 40px auto;
-}
-
 .earnings_summary_container .right_earnings h3 {
-  padding-bottom: 10px;
+  padding: 10px;
 }
 
 /** Partner Profile **/
@@ -236,6 +229,10 @@ ul {
 .profile_partner_container .right {
   width: 90%;
   margin: 40px auto;
+}
+
+.profile_partner_container .right h3 {
+  padding-bottom: 10px;
 }
 
 .profile_partner_container .right .btn .btn-success {
