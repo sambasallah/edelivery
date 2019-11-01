@@ -16,21 +16,22 @@
 <!-- Tab panes -->
 <div class="tab-content">
   <div class="tab-pane active container" id="merchant">
+    <?php if(isset($_SESSION['invalid_credentials'])) { echo $_SESSION['invalid_credentials']; } ?>
   <h5>Merchant Login</h5>
-        <form action="#" method="post">
-            <input type="text" class="form-control" placeholder="Username or Email">
-            <input type="password" class="form-control" placeholder="Password">
-            <input type="submit" value="login" class="btn btn-success">
+        <form action="" method="post">
+            <input type="text" class="form-control" name="username_or_email" placeholder="Username or Email" required>
+            <input type="password" class="form-control" name="password" placeholder="Password" required>
+            <input type="submit" value="login" name="login_merchant" class="btn btn-success">
         </form>
         <p><a href="#">Forgot Password?</a></p>
         <p>Don't Have an Account? <a href="register">Sign Up</a></p>
   </div>
   <div class="tab-pane container" id="partner">
   <h5>Partner Login</h5>
-        <form action="#" method="post">
+        <form action="login" method="post">
             <input type="text" class="form-control" placeholder="Username or Email">
             <input type="password" class="form-control" placeholder="Password">
-            <input type="submit" value="login" class="btn btn-success">
+            <input type="submit" value="login" n class="btn btn-success">
         </form>
         <p><a href="#">Forgot Password?</a></p>
         <p>Don't Have an Account? <a href="register-partner">Sign Up</a></p>

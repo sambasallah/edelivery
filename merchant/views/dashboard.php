@@ -8,6 +8,8 @@
             </div>
             <div class="col-md-9 col-sm">
                 <div class="dashboard_summary">
+                    <?php if(isset($_SESSION['fill_profile'])) { echo $_SESSION['fill_profile'];
+                         unset($_SESSION['fill_profile']); } ?>
                     <div class="row">
                         <div class="col-md-4">
                             <div class="deliveries">

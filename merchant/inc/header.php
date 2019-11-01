@@ -36,7 +36,7 @@
 			  <div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
 			    <ul class="navbar-nav">
 			      <li class="nav-item">
-			        <a class="nav-link" href="register">Logout</a>
+			        <a class="nav-link" href="logout?signout=true">Logout</a>
 			      </li>
 			    </ul>
 			  </div> 

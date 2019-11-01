@@ -4,6 +4,11 @@ require_once('../config/init_.php');
 
 use edelivery\template\Template;
 
-$template = new Template('views/dashboard.php');
+if($_SESSION['merchant_logged_in'] === TRUE) {
 
-echo $template;
+    $template = new Template('views/dashboard.php');
+
+    echo $template;
+}else {
+    header("location:../register");
+}

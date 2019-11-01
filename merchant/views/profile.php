@@ -7,46 +7,45 @@
                 </div>
                 <div class="col-md-9">
                     <div class="profile_right">
+                        <?php if(isset($_SESSION['profile_error'])) { echo $_SESSION['profile_error']; } ?>
+                        <?php if(isset($_SESSION['profile_success'])) { echo $_SESSION['profile_success']; } ?>
                         <h2>Profile Information</h2>
-                    <form action="#" method="post">
+                    <form action="" method="post">
                         <div class="form-group">
-                            <input type="text" placeholder="First Name" class="form-control">
+                            <input type="text" placeholder="First Name" name="first_name" value="<?= $profile_information->first_name; ?>" class="form-control">
                         </div>
                         <div class="form-group">
-                            <input type="text" placeholder="Middle Name" class="form-control">
+                            <input type="text" placeholder="Middle Name" name="middle_name" value="<?= $profile_information->middle_name; ?>" class="form-control">
                         </div>
                         <div class="form-group">
-                            <input type="text" placeholder="Last Name" class="form-control">
+                            <input type="text" placeholder="Last Name" name="last_name" value="<?= $profile_information->last_name; ?>" class="form-control">
                         </div>
                         <div class="form-group">
-                            <input type="text" placeholder="Username" class="form-control">
+                            <input type="text" placeholder="Username" name="username" value="<?= $profile_information->username; ?>" class="form-control">
                         </div>
                         <div class="form-group">
-                            <input type="text" placeholder="Email" class="form-control">
+                            <input type="text" placeholder="Email" name="email" value="<?= $profile_information->email; ?>" class="form-control">
                         </div>
                         <div class="form-group">
-                            <input type="password" placeholder="Password" class="form-control">
+                            <input type="password" placeholder="Password" name="password" value="<?= $profile_information->password; ?>" class="form-control">
                         </div>
                         <div class="form-group">
-                            <input type="text" placeholder="Phone Number" class="form-control">
+                            <input type="date" placeholder="Date Of Birth" name="dob" value="<?= $profile_information->dob; ?>" class="form-control">
                         </div>
                         <div class="form-group">
-                            <input type="date" placeholder="Date Of Birth" class="form-control">
+                            <input type="text" placeholder="Address" name="address" value="<?= $profile_information->address; ?>" class="form-control">
                         </div>
                         <div class="form-group">
-                            <input type="text" placeholder="Address" class="form-control">
+                            <input type="text" placeholder="Business Name" name="business_name" value="<?= $profile_information->business_name; ?>" class="form-control">
                         </div>
                         <div class="form-group">
-                            <input type="text" placeholder="Business Name" class="form-control">
+                            <input type="text" placeholder="Business Location" name="business_location" value="<?= $profile_information->business_location; ?>" class="form-control">
                         </div>
                         <div class="form-group">
-                            <input type="text" placeholder="Business Location" class="form-control">
+                            <input type="text" placeholder="Business Email" name="business_email" value="<?= $profile_information->business_email; ?>" class="form-control">
                         </div>
                         <div class="form-group">
-                            <input type="text" placeholder="Business Email" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <input type="text" placeholder="Business Phone" class="form-control">
+                            <input type="text" placeholder="Business Phone" name="business_phone" value="<?= $profile_information->business_phone; ?>" class="form-control">
                         </div>
                         <input type="submit" value="Save" class="btn btn-success">
                     </form>

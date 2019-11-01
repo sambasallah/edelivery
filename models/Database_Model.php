@@ -14,13 +14,13 @@ class Database_Model {
         public $conn = null;
 
         // Query statement
-        private $query_stmt = null;
+        private $query_stmt;
 
         // Result set
-        private $results = null;
+        private $results;
 
         // Single result
-        private $result = null;
+        private $result;
 
         // Keep track on the database connection status
         public $connection_status = null; 
@@ -39,12 +39,6 @@ class Database_Model {
                 $this->connection_status = "Connection failed: " . $e->getMessage();
                 }
         }
-        
-        // Closes the database connection
-        public function closeDBConnection() : void{
-            $this->conn = null;
-        }
-
 
         // Prepare query string 
         public function prepareQuery(string $query) : void {
@@ -53,19 +47,19 @@ class Database_Model {
 
         // Bind query string parameter values
         public function bind($param,$value,$type = null) : void {
-            if(is_null($type)){
+            if(\is_null($type)){
                 switch(true) {
-                    case is_int( $value ) : 
-                       $type = PDO::PARAM_INT; 
-                    case is_bool( $value ) :
-                        $type = PDO::PARAM_BOOL;
-                    case is_null( $value ) : 
-                        $type = PDO::PARAM_NULL;
+                    case \is_int( $value ) : 
+                       $type = \PDO::PARAM_INT; 
+                    case \is_bool( $value ) :
+                        $type = \PDO::PARAM_BOOL;
+                    case \is_null( $value ) : 
+                        $type = \PDO::PARAM_NULL;
                     default:
-                        $type = PDO::PARAM_STR;
+                        $type = \PDO::PARAM_STR;
                 }
             }
-            $this->query_stmt->bindParam($param,$value,$type);
+            $this->query_stmt->bindParam($param,$value);
         }
 
         // Execute the query string
@@ -74,19 +68,29 @@ class Database_Model {
         }
 
         // Get result set
-        public function getResults() : array {
+        public function getResults() : object {
             $this->executeQuery();
-            $this->results = $this->query_stmt->fetchAll(PDO::FETCH_OBJ);
+            $this->results = $this->query_stmt->fetchAll(\PDO::FETCH_OBJ);
 
             return $this->results;
         }
 
         // Get single result
-        public function getResult() : array {
+        public function getResult() : object {
             $this->executeQuery();
-            $this->result = $this->query_stmt->fetch(PDO::FETCH_OBJ);
+            $this->result = $this->query_stmt->fetch(\PDO::FETCH_OBJ);
 
             return $this->result;
+        }
+
+        // Get number of rows
+        public function rows() : int {
+            return $this->query_stmt->rowCount();
+        }
+
+          // Closes the database connection
+          public function closeDBConnection() : void{
+            $this->conn = null;
         }
 
 }

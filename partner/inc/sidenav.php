@@ -1,6 +1,6 @@
 <div class="dashboard_menu">
                     <ul>
-                        <li><a href="dashboard">Dashboard</a></li>
+                        <li><a href="./">Dashboard</a></li>
                         <li><i class="fa fa-tachometer-alt"></i></li>
                     </ul>
                     <ul>
