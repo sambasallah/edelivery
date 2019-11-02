@@ -15,18 +15,18 @@ if($_SESSION['merchant_logged_in'] === TRUE) {
     $template = new Template('views/profile.php');
 
     if($_SERVER['REQUEST_METHOD'] == "POST") {
-        $first_name = stripslashes($_POST['first_name']);
-        $middle_name = stripslashes($_POST['middle_name']);
-        $last_name = stripslashes($_POST['last_name']);
-        $email = stripslashes($_POST['email']);
-        $username = stripslashes($_POST['username']);
-        $password = password_hash(stripslashes($_POST['password']),PASSWORD_ARGON2ID);
-        $dob = stripslashes($_POST['dob']);
-        $address = stripslashes($_POST['address']);
-        $business_name = stripslashes($_POST['business_name']);
-        $business_location = stripslashes($_POST['business_location']);
-        $business_email = stripslashes($_POST['business_email']);
-        $business_phone = stripslashes($_POST['business_phone']);
+        $first_name = $_POST['first_name'];
+        $middle_name = $_POST['middle_name'];
+        $last_name = $_POST['last_name'];
+        $email = $_POST['email'];
+        $username = $_POST['username'];
+        $password = $merchant->isPasswordChanged($_POST['password'])? \password_hash($_POST['password'],PASSWORD_ARGON2ID,['cost' => 10, 'memory_cost' => 2048, 'threads' => 4]) : "";
+        $dob = $_POST['dob'];
+        $address = $_POST['address'];
+        $business_name = $_POST['business_name'];
+        $business_location = $_POST['business_location'];
+        $business_email = $_POST['business_email'];
+        $business_phone = $_POST['business_phone'];
 
         $data = array(
             "first_name" => $first_name,
@@ -47,7 +47,6 @@ if($_SESSION['merchant_logged_in'] === TRUE) {
     }
 
     $template->profile_information = $merchant->getProfileInformation($_SESSION['user']);
-
 
     echo $template;
 }else {

@@ -59,7 +59,7 @@ class Database_Model {
                         $type = \PDO::PARAM_STR;
                 }
             }
-            $this->query_stmt->bindParam($param,$value);
+            $this->query_stmt->bindParam($param,$value,$type);
         }
 
         // Execute the query string
@@ -68,7 +68,7 @@ class Database_Model {
         }
 
         // Get result set
-        public function getResults() : object {
+        public function getResults() : array {
             $this->executeQuery();
             $this->results = $this->query_stmt->fetchAll(\PDO::FETCH_OBJ);
 

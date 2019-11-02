@@ -47,7 +47,7 @@
                         <div class="form-group">
                             <input type="text" placeholder="Business Phone" name="business_phone" value="<?= $profile_information->business_phone; ?>" class="form-control">
                         </div>
-                        <input type="submit" value="Save" class="btn btn-success">
+                        <input type="submit" value="Save" name="update_profile" class="btn btn-success">
                     </form>
                     </div>
                 </div>

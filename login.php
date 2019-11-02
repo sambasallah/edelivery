@@ -14,8 +14,8 @@ $template = new Template('views/login.php');
 
 
 if($_SERVER['REQUEST_METHOD'] == "POST") {
-    $usernameOREmail = stripslashes($_POST['username_or_email']);
-    $password = stripslashes($_POST['password']);
+    $usernameOREmail = $_POST['username_or_email'];
+    $password = $_POST['password'];
 
     $data = array(
         "usernameOREmail" => $usernameOREmail,

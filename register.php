@@ -15,12 +15,12 @@ $merchant = new Merchant_Model($database);
 // Register merchant
 if($_SERVER['REQUEST_METHOD'] == "POST") {
     
-    $first_name = \stripslashes($_POST['first_name']);
-    $last_name = \stripslashes($_POST['last_name']);
-    $middle_name = \stripslashes($_POST['middle_name']);
-    $email = \stripslashes($_POST['email']);
-    $password = \password_hash(\stripslashes($_POST['password']), PASSWORD_ARGON2ID,['cost' => 10, 'memory_cost' => 2048, 'threads' => 4]);
-    $username = \stripslashes($_POST['username']);
+    $first_name = $_POST['first_name'];
+    $last_name = $_POST['last_name'];
+    $middle_name = $_POST['middle_name'];
+    $email = $_POST['email'];
+    $password = \password_hash($_POST['password'], PASSWORD_ARGON2ID,['cost' => 10, 'memory_cost' => 2048, 'threads' => 4]);
+    $username = $_POST['username'];
 
     $data = array(
         "first_name" => $first_name,

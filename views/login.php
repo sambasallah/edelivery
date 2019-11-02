@@ -28,7 +28,7 @@
   </div>
   <div class="tab-pane container" id="partner">
   <h5>Partner Login</h5>
-        <form action="login" method="post">
+        <form action="" method="post">
             <input type="text" class="form-control" placeholder="Username or Email">
             <input type="password" class="form-control" placeholder="Password">
             <input type="submit" value="login" n class="btn btn-success">
