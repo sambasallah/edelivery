@@ -173,6 +173,7 @@ class Merchant_Model {
     }
 
     /**
+     * @param $usernameOREmail - string
      * @return $data - object
      */
     public function getProfileInformation(string $usernameOREmail) : object {
@@ -396,11 +397,6 @@ class Merchant_Model {
             "<div class='alert alert-success'>
                 <strong>Your Profile Is Incomplete</strong>
             </div>";
-        }else {
-            $_SESSION['fill_profile'] = 
-            "<div class='alert alert-success'>
-                <strong>Welcome Admin</strong>
-            </div>"; 
         }
     }
 
