@@ -208,7 +208,8 @@ class Merchant_Model {
                                         item_price = :item_price,
                                         item_type = :item_type,
                                         request_status = :request_status,
-                                        merchant_id = :merchant_id");
+                                        merchant_id = :merchant_id,
+                                        rate_id = :rate_id");
         $this->conn->bind(":to_location", $to);
         $this->conn->bind(":from_location", $from);
         $this->conn->bind(":receipient_name",$receipient_name);
@@ -222,6 +223,7 @@ class Merchant_Model {
         $this->conn->bind(":item_type", $item_type);
         $this->conn->bind(":request_status",'Pending');
         $this->conn->bind(":merchant_id",$merchant_id);
+        $this->conn->bind(":rate_id",$rate_id);
 
         if($this->conn->executeQuery()) {
             $_SESSION['delivery_request_success'] = 
@@ -250,8 +252,9 @@ class Merchant_Model {
      * @return array;
      */
 
-    public function getAllDeliveryRequests() : array {
-        $this->conn->prepareQuery("SELECT * FROM delivery_requests");
+    public function getAllDeliveryRequests(int $merchant_id) : array {
+        $this->conn->prepareQuery("SELECT *,delivery_rates.rate FROM delivery_requests INNER JOIN delivery_rates ON delivery_requests.rate_id = delivery_rates.rate_id WHERE merchant_id = :merchant_id");
+        $this->conn->bind(":merchant_id",$merchant_id);
         $this->conn->executeQuery();
 
         if($this->conn->rows() >= 1) {
@@ -290,8 +293,18 @@ class Merchant_Model {
 
     }
 
-    public function getAccountBalance(string $query) : void {
-        
+    /**
+     * @param $merchant_id - int
+     * @return $account_balance - int
+     */
+    public function getAccountBalance(int $merchant_id) : int {
+        $this->conn->prepareQuery("SELECT account_balance FROM merchant WHERE merchant_id = :merchant_id");
+        $this->conn->bind(":merchant_id",$merchant_id);
+        $this->conn->executeQuery();
+
+        $result = $this->conn->getResult();
+
+        return intval($result->account_balance);
     }
 
     /**
@@ -416,5 +429,78 @@ class Merchant_Model {
         return true;
     }
 
+    /**
+     * @param $to - string
+     * @param $from - string
+     * @return int
+     * - Returns the delivery rate_id
+     */
+    public function calculateDeliveryRate(string $to, string $from) : int {
+        $this->conn->prepareQuery("SELECT rate_id FROM delivery_rates WHERE to_town = :to AND from_town = :from");
+        $this->conn->bind(":to",$to);
+        $this->conn->bind(":from",$from);
+        $this->conn->executeQuery();
+
+        $result = $this->conn->getResult();
+
+        return intval($result->rate_id);
+
+
+    }
+
+    /**
+     * @param $data - array
+     * @return int 
+     * - Calculate the total amount spent on deliveries
+     */
+    public function calculateTotalSpentOnDeliveries(array $data) : int {
+        $total_spent = 0;
+        foreach($data as $row) {
+            $this->conn->prepareQuery("SELECT rate FROM delivery_rates WHERE rate_id = :id");
+            $this->conn->bind(":id",$row->rate_id);
+            $this->conn->executeQuery();
+            $result = $this->conn->getResult();
+            $total_spent += intval($result->rate);
+        }
+
+        return $total_spent;
+    }
+
+    public function updateTotalSpentAmount(string $total_spent, int $merchant_id) : bool {
+        $this->conn->prepareQuery("UPDATE merchant 
+                                    SET
+                                    total_spent = :total_spent 
+                                    WHERE merchant_id = :merchant_id 
+                            ");
+        $this->conn->bind(":total_spent",$total_spent);
+        $this->conn->bind(":merchant_id",$merchant_id);
+        
+        if( $this->conn->executeQuery()) {
+            return true;
+        }
+
+        return false;
+
+
+        
+    }
+
+    /**
+     * @param $merchant_id - int
+     * @return int
+     * - Return's the total spent 
+     */
+    public function totalSpent(int $merchant_id) : int {
+        $this->conn->prepareQuery("SELECT rate_id FROM delivery_requests WHERE merchant_id = :merchant_id");
+        $this->conn->bind(":merchant_id",$merchant_id);
+        $this->conn->executeQuery();
+
+        $total_spent = $this->calculateTotalSpentOnDeliveries($this->conn->getResults());
+
+        return $total_spent;
+
+    }
+
+    
 }
  

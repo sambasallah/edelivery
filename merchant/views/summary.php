@@ -24,6 +24,7 @@
                                 <th>Receipient Number</th>
                                 <th>Item Name</th>
                                 <th>Status</th>
+                                <th>Fee (GMD)</th>
                                 <th>Cancel Request</th>
                             </tr>
                         </thead>
@@ -37,7 +38,8 @@
                                     <td><?= $delivery->receipient_name; ?></td>
                                     <td><?= $delivery->receipient_mobile_number; ?></td>
                                     <td><?= $delivery->item_name; ?></td>
-                                    <th style="color: red;"><?= $delivery->request_status; ?></th>
+                                    <td style="color: red;"><?= $delivery->request_status; ?></td>
+                                    <td><?= $delivery->rate; ?></td>
                                     <td>
                                       <form action="" method="post">
                                             <input type="hidden" value="<?= $delivery->id; ?>" name="request_id">

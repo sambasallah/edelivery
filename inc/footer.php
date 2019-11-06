@@ -43,7 +43,7 @@
     </div>
 
     <footer>
-        All Rights Reserved &copy; 2019.
+        All Rights Reserved &copy; <?= date("Y"); ?>.
     </footer>
 
     <!-- scripts -->

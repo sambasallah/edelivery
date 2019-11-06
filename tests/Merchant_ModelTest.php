@@ -61,7 +61,7 @@ class Merchant_ModelTest extends TestCase {
         $database = new Database_Model();
         $merchant = new Merchant_Model($database);
 
-        self::assertTrue($merchant->getAllDeliveryRequests());
+        self::assertTrue($merchant->getAllDeliveryRequests(1));
     }
 
     // Test getMerchantID()
@@ -95,5 +95,39 @@ class Merchant_ModelTest extends TestCase {
 
         self::assertTrue($merchant->isPasswordChanged("merchant_password"));
     }
+
+    // Test calculateDeliveryRate()
+    public function test_calculate_delivery_rate() {
+        $database = new Database_Model();
+        $merchant = new Merchant_Model($database);
+
+        self::assertEquals($merchant->calculateDeliveryRate("Banjul","Serrekuda"),1);
+    }
+
+    // Test getAccountBalance()
+    public function test_get_account_balance() {
+        $database = new Database_Model();
+        $merchant = new Merchant_Model($database);
+
+        self::assertEquals($merchant->getAccountBalance(1),1); 
+    }
+
+    // Test calculateTotalSpentOnDeliveries()
+    public function test_calculate_total_spent_on_deliveries() {
+        $database = new Database_Model();
+        $merchant = new Merchant_Model($database);
+
+        self::assertEquals($merchant->calculateTotalSpentOnDeliveries(array(12,3,5,2)),1); 
+    }
+
+    // Test totalSpent()
+    public function test_total_spent() {
+        $database = new Database_Model();
+        $merchant = new Merchant_Model($database);
+
+        self::assertEquals($merchant->totalSpent(1),1); 
+    }
+
+    
 
 }

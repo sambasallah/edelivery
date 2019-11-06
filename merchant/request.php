@@ -27,6 +27,9 @@ if($_SESSION['merchant_logged_in'] === TRUE) {
         $item_price = $_POST['item_price'];
         $item_type = $_POST['item_type'];
 
+        // Get the delivey rate_id
+        $rate_id = $merchant->calculateDeliveryRate($to,$from);
+
         $data = array(
             "to" => $to,
             "from" => $from,
@@ -38,9 +41,9 @@ if($_SESSION['merchant_logged_in'] === TRUE) {
             "sender_address" => $sender_address,
             "item_name" => $item_name,
             "item_price" => $item_price,
-            "item_type" => $item_type
+            "item_type" => $item_type,
+            "rate_id" => $rate_id
         );
-
 
         $merchant_id = $merchant->getMerchantID($_SESSION['user']);
         $merchant->makeDeliveryRequest($data,$merchant_id);

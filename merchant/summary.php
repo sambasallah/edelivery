@@ -14,7 +14,9 @@ if($_SESSION['merchant_logged_in'] === TRUE) {
 
     $template = new Template('views/summary.php');
 
-    $template->delivery_summary = $merchant->getAllDeliveryRequests();
+    $merchant_id = $merchant->getMerchantID($_SESSION['user']);
+
+    $template->delivery_summary = $merchant->getAllDeliveryRequests($merchant_id);
 
     if(isset($_POST['cancel_request'])) {
         $merchant->cancelDeliveryRequest($_POST['request_id']);

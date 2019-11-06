@@ -5,10 +5,10 @@ namespace edelivery\models;
 class Database_Model {
 
         // Database parameters
-        private  $HOST = "localhost";
-        private  $DB_NAME = "edelivery";
-        private  $DB_PASSWORD = "";
-        private  $DB_USERNAME = "root";
+        private $HOST = DB_HOST;
+        private  $DB_NAME = DB_NAME;
+        private  $DB_PASSWORD = DB_PASSWORD;
+        private  $DB_USERNAME = DB_USERNAME;
 
         // Database connection 
         public $conn = null;

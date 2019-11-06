@@ -110,12 +110,13 @@ class Merchant_Model {
     }
 
     /**
+     * @param $merchant_id - int
      * @return bool
      * - Get's all delivery requests
      */
-    public function getAllDeliveryRequests() : bool {
-        if($this->conn->query("Get all delivery request")) {
-            return true;
+    public function getAllDeliveryRequests(int $merchant_id) : bool {
+        if(is_int($merchant_id)) {
+            return $this->conn->query("Get merchant id");
         }
 
         return false;
@@ -184,6 +185,63 @@ class Merchant_Model {
         }
 
         return false;
+    }
+
+    /**
+     * @param $to - string
+     * @param $from - string
+     * @return int
+     * - Calcuates the delivery rate
+     */
+    public function calculateDeliveryRate(string $to, string $from) : int {
+        if(!empty($to) && !empty($from)) {
+            $this->conn->query("Calculate Rate");
+            return 1;
+        }
+
+        return 0;
+    }
+
+    /**
+     * @param $merchant_id - int
+     * @return $account_balance - int
+     * - Returns the account balance
+     */
+    public function getAccountBalance(int $merchant_id) : int {
+        if(!empty($merchant_id)) {
+            $this->conn->query("Get account balance");
+            return 1;
+        }
+
+        return 0;
+    }
+
+    /**
+     * @param $data - array
+     * @return int
+     * - Calculate the total amount spent on deliveries
+     */
+    public function calculateTotalSpentOnDeliveries(array $data) : int {
+        if(is_array($data)) {
+            return 1;
+        }
+
+        return 0;
+    }
+
+    /**
+     * @param $merchant_id - int
+     * @return bool
+     * - Get total amount spent on deliveries
+     */
+    public function totalSpent(int $merchant_id) : int {
+        if(!empty($merchant_id)) {
+           $this->conn->query("delivery_requests to update the merchant account total spent");
+           $total_spent = $this->calculateTotalSpentOnDeliveries(array(array(1,3,5),array(2,5,6)));
+           return $total_spent;
+        }
+
+        return 0;
     }
 }
  
