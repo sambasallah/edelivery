@@ -14,6 +14,8 @@ if($_SESSION['merchant_logged_in'] === TRUE) {
 
     $template = new Template('views/request.php');
 
+    $merchant_id = $merchant->getMerchantID($_SESSION['user']);
+
     if($_SERVER['REQUEST_METHOD'] == "POST") {
         $to = $_POST['to'];
         $from = $_POST['from'];
@@ -28,7 +30,7 @@ if($_SESSION['merchant_logged_in'] === TRUE) {
         $item_type = $_POST['item_type'];
 
         // Get the delivey rate_id
-        $rate_id = $merchant->calculateDeliveryRate($to,$from);
+        $rate_id = $merchant->getDeliveryRateID($to,$from);
 
         $data = array(
             "to" => $to,
@@ -46,11 +48,19 @@ if($_SESSION['merchant_logged_in'] === TRUE) {
         );
 
         $merchant_id = $merchant->getMerchantID($_SESSION['user']);
-        $merchant->makeDeliveryRequest($data,$merchant_id);
-        
-    }
-
-    echo $template;
+        $delivery_rate = $merchant->calculateDeliveryRate($to,$from);
+        if($merchant->isAccountBalanceSufficient($merchant_id,$delivery_rate)) {
+            $merchant->makeDeliveryRequest($data,$merchant_id);
+        }else {
+            $_SESSION['insufficient_balance'] = 
+            "<div class='alert alert-danger alert-dismissible'>
+            <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
+            <strong>Failed!</strong> Insufficient Account Balance.
+          </div>";
+          header("location:dashboard");
+        }
+        }
+        echo $template;
 }else {
     header("location:../register");
 }

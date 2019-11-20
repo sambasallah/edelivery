@@ -122,10 +122,10 @@
                 </ul>
 
                 <h5>How much do I pay eDelivery?</h5>
-                <p>Sign up is free. Sendy works on a small service fee and 20% commission per delivery.</p>
+                <p>Sign up is free. eDelivery works on a small service fee and 20% commission per delivery.</p>
 
                 <h5>How will I be paid?</h5>
-                <p>Partners can withdraw total weekly earnings. The withdrawal process is initiated from the Partner app, and the money can be delivered to either the Driver, Owner or another number provided during training.</p>
+                <p>Partners can withdraw total weekly earnings. The withdrawal process is initiated from the Partner Account, and the money can be delivered to either the Driver, Owner or another number provided during training.</p>
 
                 <h5>Can I bring multiple vehicles to the platform?</h5>
                 <p>Yes! There is no limit to the number of vehicles you can bring to the platform.</p>

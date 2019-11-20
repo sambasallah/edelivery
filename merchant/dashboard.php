@@ -14,7 +14,7 @@ if($_SESSION['merchant_logged_in'] === TRUE) {
     
     $merchant_id = $merchant->getMerchantID($_SESSION['user']);
 
-    $template->total_spent = $merchant->totalSpent($merchant_id);
+    $template->total_spent = $merchant->calculateTotalSpentOnDeliveries($merchant_id);
 
     $template->account_balance = $merchant->getAccountBalance($merchant_id);
 

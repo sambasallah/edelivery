@@ -48,14 +48,14 @@ class Merchant_Model {
             "<div class='alert alert-danger'>
                 <strong>Username Exists!</strong>
             </div>";
-            header("location:register");
+            \header("location:register");
         }elseif($this->emailExists($email)) {
             $_SESSION['email_exists'] = 
             "<div class='alert alert-danger'>
                 <strong>Email Exists!</strong> 
             </div>";
 
-            header("location:register"); 
+            \header("location:register"); 
         }else {
             $this->conn->prepareQuery("INSERT INTO merchant 
             SET 
@@ -76,13 +76,13 @@ class Merchant_Model {
             
             $_SESSION['merchant_logged_in'] = TRUE;
             $_SESSION['user']  = $username;
-            header("location:merchant");
+            \header("location:merchant");
         }else {
             $_SESSION['error_register'] = 
             "<div class='alert alert-danger'>
                 <strong>Error Occured!</strong>
             </div>";
-            header("location:register");
+            \header("location:register");
         }   
         }
     }
@@ -160,13 +160,13 @@ class Merchant_Model {
         <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
         <strong>Success!</strong> Profile Updated.
       </div>";
-           header("location:profile");
+           \header("location:profile");
        }else {
         $_SESSION['profile_error'] = 
         "<div class='alert alert-danger'>
              <strong>Error Occured!</strong>
          </div>";
-         header("location:profile");
+         \header("location:profile");
        }
 
        
@@ -226,19 +226,22 @@ class Merchant_Model {
         $this->conn->bind(":rate_id",$rate_id);
 
         if($this->conn->executeQuery()) {
+            $delivery_rate = $this->calculateDeliveryRate($to,$from);
+            $this->updateBalance($delivery_rate, $merchant_id);
+            $this->updateTotalSpentAmount(strval($delivery_rate),$merchant_id);
             $_SESSION['delivery_request_success'] = 
             "<div class='alert alert-success alert-dismissible'>
             <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
             <strong>Success!</strong> Delivery Request Sent.
           </div>";
-          header("location:request");
+          \header("location:request");
         }else {
             $_SESSION['delivery_request_error'] = 
             "<div class='alert alert-danger alert-dismissible'>
             <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
             <strong>Error!</strong> There was an error sending your request.
           </div>";
-          header("location:request");
+          \header("location:request");
         }
 
 
@@ -249,6 +252,7 @@ class Merchant_Model {
     }
 
     /**
+     * @param $merchant_id - int
      * @return array;
      */
 
@@ -267,11 +271,14 @@ class Merchant_Model {
 
     /**
      * @param $request_id - int
+     * - cancels a delivery request
      */
-    public function cancelDeliveryRequest(int $request_id) : void {
+    public function cancelDeliveryRequest(int $request_id, int $merchant_id) : void {
+        $refund_amount = $this->getRefundAmount($request_id);
         $this->conn->prepareQuery("DELETE FROM delivery_requests WHERE id = :request_id");
         $this->conn->bind(":request_id", $request_id);
         if($this->conn->executeQuery()) {
+            $this->refund($refund_amount,$merchant_id);
             $_SESSION['canceled_request'] = 
             "<div class='alert alert-success alert-dismissible'>
             <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
@@ -288,9 +295,39 @@ class Merchant_Model {
         }
     }
 
+    /**
+     * @param $request_id - int
+     * @return int
+     * - gets the amount to refund
+     */
+    private function getRefundAmount(int $request_id) : int {
+        $this->conn->prepareQuery("SELECT rate FROM delivery_requests INNER JOIN delivery_rates ON delivery_requests.rate_id = delivery_rates.rate_id WHERE id = :request_id");
+        $this->conn->bind(":request_id",$request_id);
+        $this->conn->executeQuery();
 
-    public function getTotalSpentOnDeliveries(string $query) : void {
+        $result = $this->conn->getResult();
 
+        return intval($result->rate);
+    }
+
+    /**
+     * @param $amount - int
+     * @param $merchant_id - int
+     * @return bool
+     * - refund the amount
+     */
+    private function refund(int $amount, int $merchant_id) : bool {
+        $account_balance = $this->getAccountBalance($merchant_id);
+        $account_balance += $amount;
+        $this->conn->prepareQuery("UPDATE merchant SET account_balance = :new_balance WHERE merchant_id = :merchant_id");  
+        $this->conn->bind(":new_balance",$account_balance);
+        $this->conn->bind(":merchant_id",$merchant_id);
+        
+        if($this->conn->executeQuery()) {
+            return true;
+        }
+
+        return false;
     }
 
     /**
@@ -436,6 +473,23 @@ class Merchant_Model {
      * - Returns the delivery rate_id
      */
     public function calculateDeliveryRate(string $to, string $from) : int {
+        $this->conn->prepareQuery("SELECT rate FROM delivery_rates WHERE to_town = :to AND from_town = :from");
+        $this->conn->bind(":to",$to);
+        $this->conn->bind(":from",$from);
+        $this->conn->executeQuery();
+
+        $result = $this->conn->getResult();
+
+        return intval($result->rate);
+    }
+
+    /**
+     * @param $to - string
+     * @param $from - string
+     * @return int
+     * - Returns the delivery rate_id
+     */
+    public function getDeliveryRateID(string $to, string $from) : int {
         $this->conn->prepareQuery("SELECT rate_id FROM delivery_rates WHERE to_town = :to AND from_town = :from");
         $this->conn->bind(":to",$to);
         $this->conn->bind(":from",$from);
@@ -444,45 +498,45 @@ class Merchant_Model {
         $result = $this->conn->getResult();
 
         return intval($result->rate_id);
-
-
     }
 
     /**
-     * @param $data - array
-     * @return int 
+     * @param $merchant_id - int
      * - Calculate the total amount spent on deliveries
      */
-    public function calculateTotalSpentOnDeliveries(array $data) : int {
-        $total_spent = 0;
-        foreach($data as $row) {
-            $this->conn->prepareQuery("SELECT rate FROM delivery_rates WHERE rate_id = :id");
-            $this->conn->bind(":id",$row->rate_id);
-            $this->conn->executeQuery();
-            $result = $this->conn->getResult();
-            $total_spent += intval($result->rate);
-        }
-
-        return $total_spent;
+    public function calculateTotalSpentOnDeliveries(int $merchant_id) : string {
+       $this->conn->prepareQuery("SELECT SUM(rate) as total_spent FROM delivery_rates INNER JOIN delivery_requests ON delivery_requests.rate_id = delivery_rates.rate_id WHERE merchant_id = :id");
+       $this->conn->bind(":id",$merchant_id);
+       $this->conn->executeQuery();
+    
+       $result = $this->conn->getResult();
+    
+       if($result->total_spent == null ) {
+           return "0.00";
+       };
+       return $result->total_spent;
     }
 
-    public function updateTotalSpentAmount(string $total_spent, int $merchant_id) : bool {
+    /**
+     * @param $total_spent - string
+     * @param $merchant_id - int
+     * - Updates the total amount spent on deliveries
+     */
+    private function updateTotalSpentAmount(string $total_spent, int $merchant_id) : bool {
+        $total_amt_spent = $this->calculateTotalSpentOnDeliveries($merchant_id);
+        $total_amt_spent += intval($total_spent);
         $this->conn->prepareQuery("UPDATE merchant 
                                     SET
                                     total_spent = :total_spent 
                                     WHERE merchant_id = :merchant_id 
                             ");
-        $this->conn->bind(":total_spent",$total_spent);
+        $this->conn->bind(":total_spent",strval($total_amt_spent));
         $this->conn->bind(":merchant_id",$merchant_id);
         
         if( $this->conn->executeQuery()) {
             return true;
         }
-
-        return false;
-
-
-        
+        return false; 
     }
 
     /**
@@ -495,10 +549,48 @@ class Merchant_Model {
         $this->conn->bind(":merchant_id",$merchant_id);
         $this->conn->executeQuery();
 
-        $total_spent = $this->calculateTotalSpentOnDeliveries($this->conn->getResults());
+        $total_spent = $this->calculateTotalSpentOnDeliveries($this->conn->getResults(),$merchant_id);
 
-        return $total_spent;
+        return \intval($total_spent);
 
+    }
+
+    /**
+     * @param $total_spent - int
+     * @return bool
+     * - Updates the account balance
+     */
+    private function updateBalance(int $total_spent,int $merchant_id) : bool {
+        $account_balance = $this->getAccountBalance($merchant_id);
+        $account_balance -= $total_spent;
+        $this->conn->prepareQuery("UPDATE merchant
+                                    SET 
+                                    account_balance = :balance WHERE merchant_id = :id");
+        $this->conn->bind(":balance",$account_balance);
+        $this->conn->bind(":id",$merchant_id);
+        
+        if($this->conn->executeQuery()) {
+            return true;
+        }
+
+        return false;
+    }
+
+
+    /**
+    *@param $merchant_id - int
+    *@param $request_id - int
+    *@return bool
+    *- Checks whether balance is sufficient to make delivery request
+    */
+    public function isAccountBalanceSufficient(int $merchant_id,int $requestAmount) : bool {
+        $account_balance = $this->getAccountBalance($merchant_id);
+
+        if(($account_balance - $requestAmount) >= 0) {
+            return true;
+        }
+
+        return false;
     }
 
     

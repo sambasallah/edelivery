@@ -128,6 +128,20 @@ class Merchant_ModelTest extends TestCase {
         self::assertEquals($merchant->totalSpent(1),1); 
     }
 
-    
+    // Test updateBalance()
+    public function test_update_balance() {
+        $database = new Database_Model();
+        $merchant = new Merchant_Model($database);
+
+        self::assertTrue($merchant->updateBalance(1000,2)); 
+    }
+
+    // Test refund()
+    public function test_refund() {
+        $database = new Database_Model();
+        $merchant = new Merchant_Model($database);
+
+        self::assertEquals($merchant->refund(1),1); 
+    }
 
 }

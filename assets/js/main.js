@@ -174,7 +174,6 @@ function showTab(n) {
    });
 
    // estimates for delivery by location
-
    const estimates_by_location = [{to: "Serrekunda", from: "Banjul", rate : "GMD 500"},{to:"Serrekunda",from:"Serrekunda", rate: "GMD 150"},{to:"Banjul",from:"Banjul", rate: "GMD 100"}];
 
    $(".estimate").on('click', () => {

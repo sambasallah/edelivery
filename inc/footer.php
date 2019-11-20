@@ -24,7 +24,7 @@
                 <div class="col-md-3 col-sm">
                 <h5>Contact</h5>
                     <ul>
-                        <li>Help & Support</li>
+                        <li><a href="customer-support">Help & Support</a></li>
                         <li>Facebook</li>
                         <li>Twitter</li>
                         <li>Linkedin</li>
@@ -33,9 +33,9 @@
                 <div class="col-md-3 col-sm">
                 <h5>Policies</h5>
                     <ul>
-                        <li>Terms of service</li>
-                        <li>Privacy</li>
-                        <li>Driver Privacy</li>
+                        <li><a href="terms-of-service">Terms of service</a></li>
+                        <li><a href="privacy">Privacy</a></li>
+                        <li><a href="drivers-privacy">Driver Privacy</a></li>
                     </ul>
                 </div>
             </div>

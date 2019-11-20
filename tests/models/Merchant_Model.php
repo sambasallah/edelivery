@@ -243,5 +243,31 @@ class Merchant_Model {
 
         return 0;
     }
+    
+    /**
+     * @param $total_spent - int
+     * @return bool 
+     * - Updates the account balance
+     */
+    public function updateBalance(int $total_spent, int $merchant_id) : bool {
+        if(!empty($total_spent) && !empty($merchant_id)) {
+            return $this->conn->query("update account balance");
+        }
+
+        return false;
+    }
+
+    /**
+     * @param $amount - int
+     * @return int
+     * - refund the canceled delivery request
+     */
+    public function refund(int $request_id) : int {
+        if(!empty($request_id)) {
+            $this->conn->query("Refund Amount");
+            return 1;
+        }
+        return 0;
+    }
 }
  

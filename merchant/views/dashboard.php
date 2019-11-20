@@ -10,6 +10,8 @@
                 <div class="dashboard_summary">
                     <?php if(isset($_SESSION['fill_profile'])) { echo $_SESSION['fill_profile'];
                          unset($_SESSION['fill_profile']); } ?>
+                     <?php if(isset($_SESSION['insufficient_balance'])) { echo $_SESSION['insufficient_balance']; 
+                         unset($_SESSION['insufficient_balance']); } ?>
                     <div class="row">
                         <div class="col-md-4">
                             <div class="deliveries">
@@ -20,7 +22,7 @@
                         <div class="col-md-4">
                             <div class="spendings">
                                 <h3>Total Spent</h3>
-                                <p><i class="fa fa-money-bill-wave"></i> GMD<?= $total_spent; ?></p>
+                                <p><i class="fa fa-money-bill-wave"></i> GMD<?= number_format($total_spent); ?></p>
                             </div>
                         </div>
                         <div class="col-md-4">

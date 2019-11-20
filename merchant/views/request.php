@@ -14,14 +14,14 @@
                         <form action="" method="post">
                             <div class="form-group">
                                     <select name="to" id="" class="custom-select" required>
-                                            <option value="0">To</option>
+                                            <option value="Serrekunda">To</option>
                                             <option value="Serrekunda">Serrekunda</option>
                                             <option value="Banjul">Banjul</option>
                                         </select>
                             </div>
                             <div class="form-group">
                                 <select name="from" id="" class="custom-select" required>
-                                        <option value="0">From</option>
+                                        <option value="Banjul">From</option>
                                         <option value="Serrekunda">Serrekunda</option>
                                         <option value="Banjul">Banjul</option>
                                     </select>

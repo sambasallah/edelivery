@@ -19,7 +19,7 @@ if($_SESSION['merchant_logged_in'] === TRUE) {
     $template->delivery_summary = $merchant->getAllDeliveryRequests($merchant_id);
 
     if(isset($_POST['cancel_request'])) {
-        $merchant->cancelDeliveryRequest($_POST['request_id']);
+        $merchant->cancelDeliveryRequest($_POST['request_id'],$merchant_id);
     }
 
     echo $template;
