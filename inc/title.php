@@ -22,4 +22,20 @@
 
 <title>Partner Account Registration | Delivery service for ecommerce and restaurants</title>
 
+<?php elseif( basename($_SERVER['SCRIPT_NAME']) == 'terms-of-service.php') : ?>
+
+<title>Terms Of Service | Delivery service for ecommerce and restaurants</title>
+
+<?php elseif( basename($_SERVER['SCRIPT_NAME']) == 'customer-support.php') : ?>
+
+<title>Customer Support | Delivery service for ecommerce and restaurants</title>
+
+<?php elseif( basename($_SERVER['SCRIPT_NAME']) == 'drivers-privacy.php') : ?>
+
+<title>Drivers Privacy | Delivery service for ecommerce and restaurants</title>
+
+<?php elseif( basename($_SERVER['SCRIPT_NAME']) == 'privacy.php') : ?>
+
+<title>Privacy Policy | Delivery service for ecommerce and restaurants</title>
+
 <?php endif; ?>
