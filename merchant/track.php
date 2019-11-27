@@ -12,10 +12,18 @@ if($_SESSION['merchant_logged_in'] === TRUE) {
     $template = new Template('views/track.php');
     $database = new Database_Model();
     $merchant = new Merchant_Model($database);
-    
- 
 
-    echo $template;
+    if($_POST['track']) {
+        $template->delivery_id = $_POST['delivery_id'];
+        $template->delivery_information = $merchant->getDeliveryRequest($_POST['delivery_id']);
+        echo $template;
+    }else {
+        echo $template;
+    }
+
+    
+    
+   
 }else {
     header("location:../register");
 }

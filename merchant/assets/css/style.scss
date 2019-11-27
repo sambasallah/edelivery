@@ -120,6 +120,7 @@ $grey : grey;
 
 .deliveries i.fa.fa-truck, .spendings i.fa.fa-money-bill-wave, .balance i.fa.fa-money-bill-alt {
     color: #000;
+    font-size: 18px !important;
 }
 
 /** Graph **/
@@ -269,8 +270,20 @@ $grey : grey;
     font-size: 30px;
 }
 
+.tracking_data ul li i.fa.fa-gift {
+    color: red;
+}
+
 .tracking_data ul li i.fa.fa-truck, i.fa.fa-box-open {
     color: #f5f5f5;
+}
+
+.tracking_data ul li i.fa.fa-truck.color_route {
+    color: $primary_color;
+}
+
+.tracking_data ul li i.fa.fa-box-open.color_delivered {
+    color: $secondary_color;
 }
 
 .right .driver_data {

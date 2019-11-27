@@ -47,14 +47,16 @@
                                     <?php endif; ?>
                                     <td><?= $delivery->rate; ?></td>
                                     <td>
-                                      <form action="" method="post">
+                                      <form action="track" method="post">
                                             <input type="hidden" value="<?= $delivery->id; ?>" name="request_id">
                                             <?php if($delivery->request_status == "Pending") : ?>
                                                 <input type="submit" value="Cancel" name="cancel_request" class="btn btn-danger">
                                             <?php elseif($delivery->request_status == "Delivered") : ?>
-                                                <input type="submit" value="Closed" name="" class="btn btn-success" disabled>
+                                                <input type="submit" value="Track" name="track" class="btn btn-success">
+                                                <input type="hidden" value="<?= $delivery->id; ?>" name="delivery_id">
                                             <?php else : ?>
-                                                <input type="submit" value="Track" name="" class="btn btn-info">
+                                                <input type="submit" value="Track" name="track" class="btn btn-info">
+                                                <input type="hidden" value="<?= $delivery->id; ?>" name="delivery_id">
                                             <?php endif; ?>
                                       </form>
                                     </td>

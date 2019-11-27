@@ -268,6 +268,22 @@ class Merchant_Model {
         return [];
     }
 
+    /**
+     * @param $merchant_id - int
+     * @return object
+     */
+    public function getDeliveryRequest(int $merchant_id) : object {
+        $this->conn->prepareQuery("SELECT *,partner.* FROM delivery_requests INNER JOIN partner ON partner.partner_id = delivery_requests.partner_id WHERE delivery_requests.id = :merchant_id");
+        $this->conn->bind(":merchant_id",$merchant_id);
+        $this->conn->executeQuery();
+
+        if($this->conn->rows() == 1) {
+            return $this->conn->getResult();
+        }
+
+        return null;
+    }
+
 
     /**
      * @param $request_id - int
