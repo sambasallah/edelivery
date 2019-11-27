@@ -695,7 +695,7 @@ footer {
 	background-color: #ffffff;
 	margin: 100px auto;
 	padding: 40px;
-	width: 70%;
+	width: 100%;
 	min-width: 300px;
   }
   
@@ -799,31 +799,24 @@ footer {
 	margin-bottom: 5px;
 }
 
-/** customer support **/
-.customer_support {
+/** About Us **/
+.about {
 	width: 100%;
 }
 
-.customer_support .customer_support_container {
-	width: 90%;
-	margin: 20px auto;
-	padding: 10px 0px;
+.about .about_container {
+	width: 80%;
+	margin: auto;
+	padding: 20px 0px;
 }
 
-.customer_support_container .card {
-	width: 100%;
+.about .about_container h1 {
+	margin-bottom: 5px;
 }
 
-.customer_support_container  .card .card-body {
-	width: 100%;
-	height: auto;
-	padding: 30px 10px;
-	text-align: center;
-	box-sizing: border-box;
-}
-
-.customer_support_container h1 {
-	margin: 10px 0px;
+.about .about_container p {
+	letter-spacing: 1px;
+	font-weight: 300px;
 }
 
 /** media query **/
@@ -855,6 +848,7 @@ footer {
 
 	.grow_business .card {
 		width: 100%;
+		height: auto;
 	}
 
 	.grow_business .left_grow_business {
@@ -867,14 +861,23 @@ footer {
 	}
 
 	.calc_price .calc_price_container {
-		width: fit;
-		margin: auto;
+		width: 100%;
+		margin-left: 8px;
 	}
 
 	.calc_price select {
 		width: 100%;
-		margin: auto;
 		margin-bottom: 8px;
+		margin-left: 8px;
+	}
+
+	.register_partner {
+		width: 100%;
+	}
+
+	.register_partner .register_partner_container {
+		width: 95%;
+		margin: auto;
 	}
 
 	.footer_section .footer_section_container {
@@ -910,6 +913,11 @@ footer {
 
 	.grow_business .card {
 		width: 100%;
+		height: auto;
+	}
+
+	.grow_business .card img {
+		height: auto !important;
 	}
 
 	.grow_business .left_grow_business {
@@ -917,8 +925,28 @@ footer {
 	}
 
 	.calc_price {
-		width: 100%;
 		height: auto;
+	}
+
+	.calc_price .calc_price_container {
+		width: 100%;
+
+		margin-left: 8px;
+	}
+
+	.calc_price select {
+		width: 100%;
+		margin-bottom: 8px;
+		margin-left: 8px;
+	}
+
+	.register_partner {
+		width: 100%;
+	}
+
+	.register_partner .register_partner_container {
+		width: 95%;
+		margin: auto;
 	}
 
 	.calc_price .calc_price_container {

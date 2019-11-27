@@ -5,29 +5,23 @@
                 <div class="col-md-3 col-sm">
                     <h5>Info</h5>
                     <ul>
-                        <li>Home</li>
-                        <li>E-commerce</li>
-                        <li>Restaurant</li>
-                        <li>Pricing</li>
+                        <li><a href="./">Home</a></li>
+                        <li><a href="ecommerce">E-commerce</a></li>
                         <li>API</li>
-                        <li>Cities</li>
                     </ul>
                 </div>
                 <div class="col-md-3 col-sm">
                 <h5>Company</h5>
                     <ul>
-                        <li>Career</li>
-                        <li>Drivers</li>
-                        <li>Owner Login</li>
+                        <li><a href="about">About Us</a></li>
                     </ul>
                 </div>
                 <div class="col-md-3 col-sm">
                 <h5>Contact</h5>
                     <ul>
-                        <li><a href="customer-support">Help & Support</a></li>
-                        <li>Facebook</li>
-                        <li>Twitter</li>
-                        <li>Linkedin</li>
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">Twitter</a></li>
+                        <li><a href="#">Linkedin</a></li>
                     </ul>
                 </div>
                 <div class="col-md-3 col-sm">
