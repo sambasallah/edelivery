@@ -16,7 +16,7 @@
                         <div class="col-md-4">
                             <div class="deliveries">
                                 <h3>Ongoing Delvs</h3>
-                                <p><i class="fa fa-truck"></i> 2</p>
+                                <p><i class="fa fa-truck"></i> <?= $ongoingDelvs; ?></p>
                             </div>
                         </div>
                         <div class="col-md-4">

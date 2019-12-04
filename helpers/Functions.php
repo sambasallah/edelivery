@@ -4,7 +4,5 @@ namespace edelivery\helpers;
 
 
 class Functions {
-  
-
 
 }

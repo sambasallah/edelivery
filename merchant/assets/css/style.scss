@@ -51,8 +51,9 @@ $grey : grey;
 
 .dashboard_menu {
     background-color: #fff;
-    margin: auto;
+    margin: 20px auto;
     padding: 20px 5px;
+    border-radius: 5px;
 }
 
 .dashboard_menu ul {
@@ -255,6 +256,7 @@ $grey : grey;
     background-color: #fff;
     height: 100px;
     box-sizing: border-box;
+    border-radius: 5px;
 }
 
 .tracking_data ul{
@@ -288,6 +290,8 @@ $grey : grey;
 
 .right .driver_data {
     background-color: #fff;
+    border-radius: 5px;
+    padding: 0px 10px;
 }
 
 .driver_data ul {

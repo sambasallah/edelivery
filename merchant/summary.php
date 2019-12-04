@@ -16,11 +16,20 @@ if($_SESSION['merchant_logged_in'] === TRUE) {
 
     $merchant_id = $merchant->getMerchantID($_SESSION['user']);
 
-    $template->delivery_summary = $merchant->getAllDeliveryRequests($merchant_id);
-
     if(isset($_POST['cancel_request'])) {
         $merchant->cancelDeliveryRequest($_POST['request_id'],$merchant_id);
     }
+
+    $page_no = 1; // default page
+
+    if(isset($_GET['page']) && is_numeric($_GET['page'])) {
+        $template->page = $_GET['page'];
+        $template->delivery_summary = $merchant->getAllDeliveryRequests($merchant_id,$_GET['page']);
+    } else {
+        $template->delivery_summary = $merchant->getAllDeliveryRequests($merchant_id,$page_no);
+    }
+
+    $template->total_pages = $merchant->getTotalPages();
 
     echo $template;
 }else {

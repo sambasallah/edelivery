@@ -32,6 +32,7 @@ class Database_Model {
                 $this->conn = new \PDO("mysql:host=$this->HOST;dbname=$this->DB_NAME", $this->DB_USERNAME, $this->DB_PASSWORD);
                 // set the PDO error mode to exception
                 $this->conn->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+                $this->conn->setAttribute(\PDO::ATTR_EMULATE_PREPARES, false);
                 $this->connection_status =  "Connected successfully";
                 }
             catch(PDOException $e)
@@ -40,13 +41,21 @@ class Database_Model {
                 }
         }
 
-        // Prepare query string 
+        /**
+         * @param $query - string
+         * - Prepare's the query statement for execution
+         */
         public function prepareQuery(string $query) : void {
             $this->query_stmt = $this->conn->prepare($query);
         }
 
-        // Bind query string parameter values
-        public function bind($param,$value,$type = null) : void {
+        /**
+         * @param $placeholder - string
+         * @param $value
+         * @param $type - null *optional 
+         * - Bind placeholders in the query string
+         */
+        public function bind(string $placeholder,$value,$type = null) : void {
             if(\is_null($type)){
                 switch(true) {
                     case \is_int( $value ) : 
@@ -59,15 +68,21 @@ class Database_Model {
                         $type = \PDO::PARAM_STR;
                 }
             }
-            $this->query_stmt->bindParam($param,$value,$type);
+            $this->query_stmt->bindParam($placeholder,$value,$type);
         }
 
-        // Execute the query string
+        /**
+         * @return bool
+         * - Execute query string 
+         */
         public function executeQuery() : bool {
            return $this->query_stmt->execute();
         }
 
-        // Get result set
+        /**
+         * @return array
+         * - Returns results set
+         */
         public function getResults() : array {
             $this->executeQuery();
             $this->results = $this->query_stmt->fetchAll(\PDO::FETCH_OBJ);
@@ -75,7 +90,10 @@ class Database_Model {
             return $this->results;
         }
 
-        // Get single result
+        /**
+         * @return object
+         * - Return result set
+         */
         public function getResult() : object {
             $this->executeQuery();
             $this->result = $this->query_stmt->fetch(\PDO::FETCH_OBJ);
@@ -83,13 +101,18 @@ class Database_Model {
             return $this->result;
         }
 
-        // Get number of rows
+        /**
+         * @return int
+         * - Return total number of rows in the query string
+         */
         public function rows() : int {
             return $this->query_stmt->rowCount();
         }
 
-          // Closes the database connection
-          public function closeDBConnection() : void{
+        /**
+         * - Closes the database connection
+         */
+        public function closeDBConnection() : void{
             $this->conn = null;
         }
 

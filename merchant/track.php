@@ -13,16 +13,11 @@ if($_SESSION['merchant_logged_in'] === TRUE) {
     $database = new Database_Model();
     $merchant = new Merchant_Model($database);
 
-    if($_POST['track']) {
+    if(isset($_POST['track']) && $_SERVER['REQUEST_METHOD'] == "POST") {
         $template->delivery_id = $_POST['delivery_id'];
         $template->delivery_information = $merchant->getDeliveryRequest($_POST['delivery_id']);
         echo $template;
-    }else {
-        echo $template;
     }
-
-    
-    
    
 }else {
     header("location:../register");

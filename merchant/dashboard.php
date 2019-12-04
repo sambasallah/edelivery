@@ -16,6 +16,8 @@ if($_SESSION['merchant_logged_in'] === TRUE) {
 
     $template->total_spent = $merchant->calculateTotalSpentOnDeliveries($merchant_id);
     
+    $template->ongoingDelvs = $merchant->getOngoingDeliveries();
+
     $template->account_balance = $merchant->getAccountBalance($merchant_id); 
 
     echo $template;

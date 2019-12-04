@@ -754,14 +754,18 @@ footer {
 
 /** Terms of service **/
 
-.term_of_service {
+.terms_of_service {
 	width: 100%;
+	background-color: #f5f5f5;
+	padding: 30px 0px;
 }
 
 .terms_of_service .terms_of_service_container {
 	width: 80%;
-	margin: auto;
-	padding: 20px 0px;
+	margin:auto;
+	padding: 20px 9px;
+	background-color: #fff;
+	border-radius: 5px;
 }
 
 .terms_of_service_container h1,h3 {
@@ -771,12 +775,16 @@ footer {
 /** Privacy **/
 .privacy {
 	width: 100%;
+	background-color: #f5f5f5;
+	padding: 30px 0px;
 }
 
 .privacy .privacy_container {
 	width: 80%;
 	margin: auto;
-	padding: 20px 0px;
+	padding: 20px 9px;
+	background-color: #fff;
+	border-radius: 5px;
 }
 
 .privacy .privacy_container h1,h3 {
@@ -787,12 +795,16 @@ footer {
 
 .drivers_privacy {
 	width: 100%;
+	background-color: #f5f5f5;
+	padding: 30px 0px;
 }
 
 .drivers_privacy .drivers_privacy_container {
 	width: 80%;
 	margin: auto;
-	padding: 20px 0px;
+	padding: 20px 9px;
+	background-color: #fff;
+	border-radius: 5px;
 }
 
 .drivers_privacy .drivers_privacy_container h1,h3 {
@@ -802,12 +814,16 @@ footer {
 /** About Us **/
 .about {
 	width: 100%;
+	background-color: #f5f5f5;
+	padding: 30px 0px;
 }
 
 .about .about_container {
 	width: 80%;
 	margin: auto;
-	padding: 20px 0px;
+	padding: 20px 9px;
+	background-color: #fff;
+	border-radius: 5px;
 }
 
 .about .about_container h1 {

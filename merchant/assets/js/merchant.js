@@ -1,9 +1,18 @@
-
 $(document).ready(() => {
-    // graph 
-let  days = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
-let delivery_requests = ["12","20","60","8","200","100","50"];
+// graph 
+let  days = [];
+let delivery_requests = [];
   
+$(document).ready(() => {
+  $.ajax({url: "graph.php", type: "GET", async : false, dataType: "json", success : (result) => {   
+        $.each(result.data, (index, data) => {
+          days[index] = data.Day;
+          delivery_requests[index] = data.Request;
+        ;
+        })
+  }, fail : (jqXHR, textStatus, errorTrown) => {
+        console.log("There was an error -> "+textStatus + " : "+ errorTrown);
+  }});
 
 let chart = document.querySelector("#spendings_chart");
 new Chart(chart, {
@@ -23,4 +32,4 @@ new Chart(chart, {
 });
 });
 
-
+});

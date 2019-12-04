@@ -2,7 +2,7 @@ RewriteEngine On
 
 DirectoryIndex dashboard.php
 RewriteCond %{REQUEST_FILENAME} !-f
-
+RewriteRule ^summary/([^/]+)/?$ summary.php?page=$1 [L,QSA]
 RewriteRule ^([^\.]+)$ $1.php [NC,L]
 
 RewriteRule ^merchant dashboard.php [L,QSA]

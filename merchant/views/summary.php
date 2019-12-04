@@ -28,7 +28,7 @@
                                 <th>Cancel Request</th>
                             </tr>
                         </thead>
-                            <tbody>                         
+                            <tbody>                   
                             <?php foreach($delivery_summary as $delivery) : ?>
                             <tr>
                                     <td><?= $delivery->to_location; ?></td>
@@ -47,30 +47,41 @@
                                     <?php endif; ?>
                                     <td><?= $delivery->rate; ?></td>
                                     <td>
-                                      <form action="track" method="post">
+                                      <form action="" method="post">
                                             <input type="hidden" value="<?= $delivery->id; ?>" name="request_id">
-                                            <?php if($delivery->request_status == "Pending") : ?>
+                                                 <?php if($delivery->request_status == "Pending") : ?>
                                                 <input type="submit" value="Cancel" name="cancel_request" class="btn btn-danger">
-                                            <?php elseif($delivery->request_status == "Delivered") : ?>
-                                                <input type="submit" value="Track" name="track" class="btn btn-success">
-                                                <input type="hidden" value="<?= $delivery->id; ?>" name="delivery_id">
-                                            <?php else : ?>
+                                            <?php endif; ?>
+                                      </form>
+                                      <form action="track" method="post">
+                                           <?php if($delivery->request_status == "On Route") : ?>
                                                 <input type="submit" value="Track" name="track" class="btn btn-info">
+                                                <input type="hidden" value="<?= $delivery->id; ?>" name="delivery_id">
+                                           <?php endif; ?>
+                                      </form> 
+                                      <form action="track" method="post">
+                                            <?php if($delivery->request_status == "Delivered") : ?>
+                                                <input type="submit" value="Track" name="track" class="btn btn-success">
                                                 <input type="hidden" value="<?= $delivery->id; ?>" name="delivery_id">
                                             <?php endif; ?>
                                       </form>
+                                              
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
                             </tbody>
                      </table>
-                     <ul class="pagination justify-content-center">
-                        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                    </ul>
+                     <?php if($total_pages > 0) : ?>
+                        <ul class="pagination justify-content-center">
+                            <?php if(isset($page) && $page > 1)  : ?>
+                                <li class="page-item"><a class="page-link" href="summary/<?php if(isset($page) && $page > 1) { echo $page - 1; } else { echo '#'; } ?>">Previous</a></li>
+                            <?php endif; ?>
+                            <?php for($i = 1; $i <= $total_pages; $i++) : ?>
+                                <li class="page-item"><a class="page-link" href="summary/<?= $i; ?>"><?= $i; ?></a></li>
+                            <?php endfor; ?>
+                            <li class="page-item"><a class="page-link" href="summary/<?php if(isset($page) && ($i > $page)) { if($page > $total_pages - 1) { echo $total_pages; } else { echo $page + 1; } } else { echo 2; } ?>">Next</a></li>
+                        </ul>
+                     <?php endif; ?>
                      <?php endif; ?>
                      
                 </div>

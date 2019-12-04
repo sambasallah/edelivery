@@ -5,6 +5,8 @@ namespace edelivery\models;
 class Merchant_Model {
 
     public $conn;
+    private $NUMBER_OF_RECORDS_PER_PAGE = 5;
+    private $total_pages = 0;
 
     public function __construct($db_connection)
     {
@@ -256,9 +258,14 @@ class Merchant_Model {
      * @return array;
      */
 
-    public function getAllDeliveryRequests(int $merchant_id) : array {
-        $this->conn->prepareQuery("SELECT *,delivery_rates.rate FROM delivery_requests INNER JOIN delivery_rates ON delivery_requests.rate_id = delivery_rates.rate_id WHERE merchant_id = :merchant_id");
+    public function getAllDeliveryRequests(int $merchant_id, int $page_no) : array {
+        $total_rows = $this->getTotalRows($merchant_id);
+        $offset = ($page_no-1) * $this->NUMBER_OF_RECORDS_PER_PAGE;
+        $this->total_pages = (int) ceil($total_rows / $this->NUMBER_OF_RECORDS_PER_PAGE);
+        $this->conn->prepareQuery("SELECT *,delivery_rates.rate FROM delivery_requests INNER JOIN delivery_rates ON delivery_requests.rate_id = delivery_rates.rate_id WHERE merchant_id = :merchant_id ORDER BY request_time DESC LIMIT :offset,:total_records_per_page ");
         $this->conn->bind(":merchant_id",$merchant_id);
+        $this->conn->bind(":offset",$offset);
+        $this->conn->bind(":total_records_per_page", $this->NUMBER_OF_RECORDS_PER_PAGE);
         $this->conn->executeQuery();
 
         if($this->conn->rows() >= 1) {
@@ -266,6 +273,38 @@ class Merchant_Model {
         }
 
         return [];
+    }
+
+    /**
+     * @param $merchant_id - int
+     * @return int 
+     * - Returns the total rows
+     */
+    private function getTotalRows(int $merchant_id) : int {
+        $this->conn->prepareQuery("SELECT * FROM delivery_requests WHERE merchant_id = :id");
+        $this->conn->bind(":id",$merchant_id);
+        $this->conn->executeQuery();
+
+        return $this->conn->rows();
+    }
+
+    /**
+     * @return int
+     * - Returns the total number of pages
+     */
+    public function getTotalPages() : int {
+        return $this->total_pages;
+    }   
+
+    /**
+     * @return int
+     * - Returns the number of ongoing deliveries
+     */
+    public function getOngoingDeliveries() : int {
+        $this->conn->prepareQuery("SELECT * FROM delivery_requests WHERE request_status = 'On Route' ");
+        $this->conn->executeQuery();
+
+        return $this->conn->rows();
     }
 
     /**
@@ -520,7 +559,7 @@ class Merchant_Model {
      * @param $merchant_id - int
      * - Calculate the total amount spent on deliveries
      */
-    public function calculateTotalSpentOnDeliveries(int $merchant_id) : string {
+    public function calculateTotalSpentOnDeliveries(int $merchant_id) : float {
        $this->conn->prepareQuery("SELECT SUM(rate) as total_spent FROM delivery_rates INNER JOIN delivery_requests ON delivery_requests.rate_id = delivery_rates.rate_id WHERE merchant_id = :id");
        $this->conn->bind(":id",$merchant_id);
        $this->conn->executeQuery();
@@ -528,7 +567,7 @@ class Merchant_Model {
        $result = $this->conn->getResult();
     
        if($result->total_spent == null ) {
-           return "0.00";
+           return 0.00;
        };
        return $result->total_spent;
     }
@@ -609,6 +648,23 @@ class Merchant_Model {
         return false;
     }
 
+    /**
+     * @return array
+     * - Returns total weekly delivery requests
+     */
+    public function getTotalWeeklyDeliveryRequests() : array {
+        $this->conn->prepareQuery("SELECT request_time,COUNT(*) as total_daily_requests,DAYOFWEEK(request_time) as day
+        from delivery_requests
+        where request_time >= Date_add(Now(),interval - 7 day) AND request_time <= NOW()
+        group by DATE(request_time) 
+        ");
+
+        if($this->conn->executeQuery()) {
+            return $this->conn->getResults();
+        }
+
+        return [];
+    }
     
 }
  
