@@ -5,14 +5,22 @@ require_once('../config/init_.php');
 use edelivery\template\Template;
 use edelivery\models\Database_Model;
 use edelivery\models\Merchant_Model;
+use edelivery\helpers\Functions;
 
-if($_SESSION['merchant_logged_in'] === TRUE) {
+$helper_functions = new Functions();
+
+if($helper_functions->isMerchantLoggedIn()) {
 
     $template = new Template('views/dashboard.php');
     $database = new Database_Model();
     $merchant = new Merchant_Model($database);
     
+    
     $merchant_id = $merchant->getMerchantID($_SESSION['user']);
+
+    $template->profile_complete = $helper_functions->profileCompleteStatus();
+
+    $helper_functions->unsetProfileCompleteStatus();
 
     $template->total_spent = $merchant->calculateTotalSpentOnDeliveries($merchant_id);
     

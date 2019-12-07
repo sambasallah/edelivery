@@ -112,7 +112,7 @@ class Database_Model {
         /**
          * - Closes the database connection
          */
-        public function closeDBConnection() : void{
+        public function closeDBConnection() : void {
             $this->conn = null;
         }
 
