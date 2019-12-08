@@ -5,6 +5,7 @@ require_once('../config/init_.php');
 use edelivery\template\Template;
 use edelivery\models\Database_Model;
 use edelivery\models\Merchant_Model;
+use edelivery\helpers\Functions;
 
 if($_SESSION['merchant_logged_in'] === TRUE) {
 
@@ -13,6 +14,16 @@ if($_SESSION['merchant_logged_in'] === TRUE) {
     $merchant = new Merchant_Model($database);
 
     $template = new Template('views/profile.php');
+
+    $helper_functions = new Functions();
+
+    $template->profile_success = $helper_functions->successProfile();
+
+    $helper_functions->unsetSuccessProfile();
+
+    $template->profile_error = $helper_functions->errorProfile();
+
+    $helper_functions->unsetErrorProfile();
 
     if($_SERVER['REQUEST_METHOD'] == "POST") {
         $first_name = $_POST['first_name'];

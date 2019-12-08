@@ -8,9 +8,8 @@
             </div>
             <div class="col-md-9 col-sm">
                 <div class="dashboard_summary">
-                    <?php echo $profile_complete; ?>
-                     <?php if(isset($_SESSION['insufficient_balance'])) { echo $_SESSION['insufficient_balance']; 
-                         unset($_SESSION['insufficient_balance']); } ?>
+                    <?= $profile_complete; ?>
+                     <?= $account_balance_status;  ?>
                     <div class="row">
                         <div class="col-md-4">
                             <div class="deliveries">

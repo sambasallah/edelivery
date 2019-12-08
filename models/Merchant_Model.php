@@ -652,12 +652,14 @@ class Merchant_Model {
      * @return array
      * - Returns total weekly delivery requests
      */
-    public function getTotalWeeklyDeliveryRequests() : array {
-        $this->conn->prepareQuery("SELECT request_time,COUNT(*) as total_daily_requests,DAYOFWEEK(request_time) as day
-        from delivery_requests
-        where request_time >= Date_add(Now(),interval - 7 day) AND request_time <= NOW()
-        group by DATE(request_time) 
+    public function getTotalWeeklyDeliveryRequests(string $merchant_id) : array {
+        $this->conn->prepareQuery("SELECT request_time,COUNT(*) AS total_daily_requests,DAYOFWEEK(request_time) AS day
+        FROM delivery_requests
+        WHERE request_time >= Date_add(Now(),interval - 7 day) AND request_time <= NOW() AND merchant_id = :id
+        group by DATE(request_time)
         ");
+
+        $this->conn->bind(":id",$merchant_id);
 
         if($this->conn->executeQuery()) {
             return $this->conn->getResults();

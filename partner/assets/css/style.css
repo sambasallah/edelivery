@@ -72,8 +72,9 @@ ul {
 
 .dashboard_menu {
   background-color: #fff;
-  margin: auto;
+  margin: 20px auto;
   padding: 5px 5px;
+  border-radius: 5px;
 }
 
 .dashboard_menu ul {

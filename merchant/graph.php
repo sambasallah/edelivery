@@ -4,15 +4,19 @@ require_once('../config/init_.php');
 
 use edelivery\models\Database_Model;
 use edelivery\models\Merchant_Model;
+use edelivery\helpers\Functions;
 
+$helper_functions = new Functions();
 
-if(isset($_SESSION['merchant_logged_in'])) {
-    if($_SESSION['merchant_logged_in'] === TRUE) {  
+if($helper_functions->isSetMerchantLoggedIn()) {
+    if($helper_functions->isMerchantLoggedIn()) {  
     
         $database = new Database_Model();
         $merchant = new Merchant_Model($database);
-    
-        $totalRequests = $merchant->getTotalWeeklyDeliveryRequests();
+
+        $merchant_id = $merchant->getMerchantID($_SESSION['user']);
+
+        $totalRequests = $merchant->getTotalWeeklyDeliveryRequests($merchant_id);
     
         $arr_data['data'] = array();
     

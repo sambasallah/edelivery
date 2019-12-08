@@ -7,8 +7,8 @@
                 </div>
                 <div class="col-md-9">
                     <div class="profile_right">
-                        <?php if(isset($_SESSION['profile_error'])) { echo $_SESSION['profile_error']; } ?>
-                        <?php if(isset($_SESSION['profile_success'])) { echo $_SESSION['profile_success']; } ?>
+                        <?= $profile_error; ?>
+                        <?= $profile_success; ?>
                         <h2>Profile Information</h2>
                     <form action="" method="post">
                         <div class="form-group">

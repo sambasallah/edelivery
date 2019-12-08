@@ -15,12 +15,15 @@ if($helper_functions->isMerchantLoggedIn()) {
     $database = new Database_Model();
     $merchant = new Merchant_Model($database);
     
-    
     $merchant_id = $merchant->getMerchantID($_SESSION['user']);
 
     $template->profile_complete = $helper_functions->profileCompleteStatus();
 
     $helper_functions->unsetProfileCompleteStatus();
+
+    $template->account_balance_status = $helper_functions->accountBalanceStatus();
+
+    $helper_functions->unsetAccountBalanceStatus();
 
     $template->total_spent = $merchant->calculateTotalSpentOnDeliveries($merchant_id);
     
@@ -30,5 +33,5 @@ if($helper_functions->isMerchantLoggedIn()) {
 
     echo $template;
 }else {
-    header("location:../register");
+    \header("location:../register");
 }

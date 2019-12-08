@@ -71,7 +71,7 @@
                             <?php endforeach; ?>
                             </tbody>
                      </table>
-                     <?php if($total_pages > 0) : ?>
+                     <?php if($total_pages > 1) : ?>
                         <ul class="pagination justify-content-center">
                             <?php if(isset($page) && $page > 1)  : ?>
                                 <li class="page-item"><a class="page-link" href="summary/<?php if(isset($page) && $page > 1) { echo $page - 1; } else { echo '#'; } ?>">Previous</a></li>
