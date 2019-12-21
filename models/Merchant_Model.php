@@ -4,12 +4,12 @@ namespace edelivery\models;
 
 class Merchant_Model {
 
-    public $conn;
+    protected $conn;
     private $NUMBER_OF_RECORDS_PER_PAGE = 5;
     private $total_pages = 0;
 
     public function __construct($db_connection)
-    {
+    { 
         $this->conn = $db_connection;
     } 
 

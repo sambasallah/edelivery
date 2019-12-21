@@ -75,7 +75,7 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="card">
-                    <img src="media/images/testimonial1.png" alt="" width="200px" style="margin: 5px auto"> 
+                    <img src="../media/images/testimonial1.png" alt="" width="200px" style="margin: 5px auto"> 
                     <div class="card-body">
                         <h5>Mariama</h5>
                         <h6>Pickup Owner</h6>
@@ -85,7 +85,7 @@
             </div>
             <div class="col-md-4">
             <div class="card">
-                    <img src="media/images/testimonial2.png" alt="" width="200px" style="margin: 5px auto">
+                    <img src="../media/images/testimonial2.png" alt="" width="200px" style="margin: 5px auto">
                     <div class="card-body">
                         <h5>Omar</h5>
                         <h6>Pickup Owner</h6>
@@ -95,7 +95,7 @@
             </div>
             <div class="col-md-4">
             <div class="card">
-                    <img src="media/images/testimonial3.png" alt=""  width="200px" style="margin: 5px auto">
+                    <img src="../media/images/testimonial3.png" alt=""  width="200px" style="margin: 5px auto">
                     <div class="card-body">
                         <h5>Fanding</h5>
                         <h6>Motorcycle Owner</h6>

@@ -2,13 +2,15 @@
 
 namespace edelivery\models;
 
+use phpDocumentor\Reflection\Types\Nullable;
+
 class Database_Model {
 
         // Database parameters
-        private $HOST = DB_HOST;
-        private  $DB_NAME = DB_NAME;
-        private  $DB_PASSWORD = DB_PASSWORD;
-        private  $DB_USERNAME = DB_USERNAME;
+        private string $HOST = DB_HOST;
+        private string  $DB_NAME = DB_NAME;
+        private string $DB_PASSWORD = DB_PASSWORD;
+        private string $DB_USERNAME = DB_USERNAME;
 
         // Database connection 
         public $conn = null;
@@ -17,10 +19,10 @@ class Database_Model {
         private $query_stmt;
 
         // Result set
-        private $results;
+        private array $results;
 
         // Single result
-        private $result;
+        private object $result;
 
         // Keep track on the database connection status
         public $connection_status = null; 
