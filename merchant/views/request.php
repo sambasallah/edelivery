@@ -45,13 +45,13 @@
                                 <input type="text" placeholder="Sender Address" name="sender_address" class="form-control" required>
                             </div>
                              <div class="form-group">
-                                <input type="text" placeholder="Item Name" name="item_name" class="form-control" required>
+                                <input type="text" placeholder="Package Type" name="package_type" class="form-control" required>
                             </div>
                             <div class="form-group">
-                                <input type="text" placeholder="Item Price" name="item_price" class="form-control" required>
+                                <input type="text" placeholder="Pick Up Date" name="pick_up_date" class="form-control" id="pick" required>
                             </div>
                             <div class="form-group">
-                                <input type="text" placeholder="Item Type (eg heavy,medium,light)" name="item_type" class="form-control" required> 
+                                <input type="text" placeholder="Package Size (Small,Medium,Large)" name="package_size" class="form-control" required> 
                             </div>
                             <input type="submit" value="Make Request" class="btn btn-success">
                         </form>

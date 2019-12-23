@@ -22,7 +22,7 @@
                                 <th>Sender Number</th>
                                 <th>Receipient Name</th>
                                 <th>Receipient Number</th>
-                                <th>Item Name</th>
+                                <th>Pick Up Date</th>
                                 <th>Status</th>
                                 <th>Fee (GMD)</th>
                                 <th>Cancel Request</th>
@@ -37,7 +37,7 @@
                                     <td><?= $delivery->sender_mobile_number; ?></td>
                                     <td><?= $delivery->receipient_name; ?></td>
                                     <td><?= $delivery->receipient_mobile_number; ?></td>
-                                    <td><?= $delivery->item_name; ?></td>
+                                    <td><?= $delivery->pick_up_date; ?></td>
                                     <?php if ($delivery->request_status == "Pending") : ?>
                                         <td style="color: red;"><?= $delivery->request_status; ?></td>
                                     <?php elseif($delivery->request_status == "Delivered") : ?>

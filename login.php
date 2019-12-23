@@ -33,5 +33,22 @@ if($helper_functions->isPost()) {
     
 } 
 
+if($helper_functions->isPartnerLoggedIn()) {
+    header("location:partner");
+}
+
+if($helper_functions->isPost()) {
+        $usernameOREmail = $_POST['username_or_email'];
+        $password = $_POST['password'];
+    
+        $data = array(
+            "usernameOREmail" => $usernameOREmail,
+            "password" => $password
+        );
+    
+        $merchant->loginPartner($data);
+    
+} 
+
 
 echo $template;

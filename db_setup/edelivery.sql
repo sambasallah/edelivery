@@ -1,9 +1,9 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 4.9.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 23, 2019 at 06:58 PM
+-- Generation Time: Dec 24, 2019 at 12:02 AM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.4.0
 
@@ -77,9 +77,9 @@ CREATE TABLE `delivery_requests` (
   `sender_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `sender_mobile_number` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `sender_address` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `item_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `item_price` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `item_type` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `pick_up_date` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `package_type` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `package_size` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `request_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `request_status` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `partner_id` int(11) DEFAULT NULL,
@@ -91,31 +91,8 @@ CREATE TABLE `delivery_requests` (
 -- Dumping data for table `delivery_requests`
 --
 
-INSERT INTO `delivery_requests` (`id`, `to_location`, `from_location`, `receipient_name`, `receipient_mobile_number`, `receipient_address`, `sender_name`, `sender_mobile_number`, `sender_address`, `item_name`, `item_price`, `item_type`, `request_time`, `request_status`, `partner_id`, `merchant_id`, `rate_id`) VALUES
-(27, 'Serrekunda', 'Banjul', 'Lamin Fatty', '3911176', 'London corner, Serrekunda', 'Buba Jallo', '3911176', 'London corner, Serrekunda', 'Printer', '2000', 'heavy', '2019-11-27 21:46:12', 'Delivered', 1, 1, 2),
-(28, 'Serrekunda', 'Serrekunda', 'Buba', '3911176', 'London corner, Serrekunda', 'Lamin Cham', '3911176', 'London corner, Serrekunda', 'samsung galaxy s4', '8000', 'medium', '2019-11-27 21:52:16', 'Delivered', 1, 1, 3),
-(29, 'Banjul', 'Banjul', 'Lamin Fatty', '3911176', 'London corner, Serrekunda', 'Buba Jallo', '3911176', 'London corner, Serrekunda', 'Iphone 8', '3000', 'medium', '2019-11-28 16:08:41', 'On Route', 1, 1, 4),
-(31, 'Banjul', 'Serrekunda', 'Lamin Fatty', '3911176', 'London corner, Serrekunda', 'Lamin Cham', '3911176', 'London corner, Serrekunda', 'Iphone 7', '4000', 'medium', '2019-11-17 16:44:06', 'Pending', NULL, 1, 1),
-(35, 'Serrekunda', 'Banjul', 'Lamin Fatty', '3911176', 'London corner, Serrekunda', 'Lamin Saidykhan', '3911176', 'London corner, Serrekunda', 'Samsung Galaxy s10', '8000', 'medium', '2019-11-24 15:10:10', 'Pending', NULL, 1, 2),
-(36, 'Serrekunda', 'Banjul', 'Lamin Fatty', '3911176', 'London corner, Serrekunda', 'Lamin Saidykhan', '3911176', 'London corner, Serrekunda', 'Samsung Galaxy s10', '4000', 'heavy', '2019-11-24 15:11:02', 'Pending', NULL, 1, 2),
-(38, 'Serrekunda', 'Banjul', 'Lamin Fatty', '3911176', 'London corner, Serrekunda', 'Lamin Saidykhan', '3911176', 'London corner, Serrekunda', 'Printer', '2000', 'medium', '2019-11-28 20:01:17', 'Pending', NULL, 1, 2),
-(40, 'Serrekunda', 'Banjul', 'Buba', '3911176', 'London corner, Serrekunda', 'Lamin Cham', '3911176', 'London corner, Serrekunda', 'Iphone 7', '2000', 'heavy', '2019-11-28 20:01:56', 'Pending', NULL, 1, 2),
-(41, 'Serrekunda', 'Banjul', 'Lamin Fatty', '3911176', 'London corner, Serrekunda', 'Buba Jallo', '3911176', 'London corner, Serrekunda', 'Printer', '10000', 'medium', '2019-11-28 20:02:15', 'Pending', NULL, 1, 2),
-(42, 'Serrekunda', 'Serrekunda', 'Lamin Fatty', '3911176', 'London corner, Serrekunda', 'Foday Sanneh', '3911176', 'London corner, Serrekunda', 'samsung galaxy s4', '10000', 'medium', '2019-11-28 20:02:34', 'Pending', NULL, 1, 3),
-(43, 'Serrekunda', 'Serrekunda', 'Lamin Fatty', '3911176', 'London corner, Serrekunda', 'Lamin Mballo', '3911176', 'London corner, Serrekunda', 'samsung galaxy s4', '3000', 'medium', '2019-11-28 20:03:06', 'Pending', NULL, 1, 3),
-(44, 'Serrekunda', 'Banjul', 'Lamin Fatty', '3911176', 'London corner, Serrekunda', 'Lamin Cham', '3911176', 'London corner, Serrekunda', 'Printer', '10000', 'medium', '2019-11-28 20:03:25', 'Pending', NULL, 1, 2),
-(46, 'Serrekunda', 'Banjul', 'Lamin Fatty', '3911176', 'London corner, Serrekunda', 'Foday Sanneh', '3911176', 'London corner, Serrekunda', 'Printer', '4000', 'medium', '2019-11-30 20:23:22', 'Pending', NULL, 1, 2),
-(47, 'Serrekunda', 'Banjul', 'Lamin Fatty', '3911176', 'London corner, Serrekunda', 'Lamin Saidykhan', '3911176', 'London corner, Serrekunda', 'Iphone 8', '10000', 'medium', '2019-11-30 21:49:52', 'Pending', NULL, 1, 2),
-(48, 'Serrekunda', 'Banjul', 'Lamin Fatty', '3911176', 'London corner, Serrekunda', 'Lamin Saidykhan', '3911176', 'London Corner, Serrekunda', 'Samsung Galaxy s10', '8000', 'medium', '2019-11-30 22:02:14', 'Pending', NULL, 1, 2),
-(49, 'Serrekunda', 'Banjul', 'Lamin Fatty', '3911176', 'London corner, Serrekunda', 'Lamin Cham', '3911176', 'London corner, Serrekunda', 'Iphone 8', '8000', 'medium', '2019-12-01 10:43:12', 'Pending', NULL, 1, 2),
-(50, 'Serrekunda', 'Serrekunda', 'Lamin Fatty', '3911176', 'London corner, Serrekunda', 'Lamin Mballo', '3911176', 'London corner, Serrekunda', 'Printer', '30000', 'medium', '2019-12-01 21:09:22', 'Pending', NULL, 1, 3),
-(51, 'Banjul', 'Serrekunda', 'Lamin Fatty', '3911176', 'London corner, Serrekunda', 'Buba Jallo', '3911176', 'London Corner, Serrekunda', 'samsung galaxy s4', '10000', 'medium', '2019-12-04 22:24:26', 'Pending', NULL, 1, 1),
-(52, 'Serrekunda', 'Banjul', 'Lamin Fatty', '3911176', 'London corner, Serrekunda', 'Foday Sanneh', '3911176', 'London corner, Serrekunda', 'Iphone 7', '8000', 'medium', '2019-12-07 11:06:55', 'Pending', NULL, 1, 2),
-(53, 'Serrekunda', 'Serrekunda', 'Lamin Fatty', '3911176', 'London corner, Serrekunda', 'Foday Sanneh', '3911176', 'London corner, Serrekunda', 'Iphone 7', '4000', 'medium', '2019-12-07 19:00:47', 'Pending', NULL, 1, 3),
-(54, 'Serrekunda', 'Banjul', 'Lamin Fatty', '3911176', 'London corner, Serrekunda', 'Buba Jallo', '3911176', 'London corner, Serrekunda', 'Samsung Galaxy s10', '4000', 'medium', '2019-12-07 21:56:56', 'Pending', NULL, 1, 2),
-(55, 'Serrekunda', 'Serrekunda', 'Lamin Fatty', '3911176', 'London corner, Serrekunda', 'Lamin Cham', '3911176', 'London corner, Serrekunda', 'samsung galaxy s4', '3000', 'medium', '2019-12-08 22:02:47', 'Pending', NULL, 2, 3),
-(56, 'Serrekunda', 'Banjul', 'Lamin Fatty', '3911176', 'London corner, Serrekunda', 'Lamin Cham', '3911176', 'London corner, Serrekunda', 'Iphone 7', '4000', 'medium', '2019-12-12 22:43:55', 'Pending', NULL, 1, 2),
-(57, 'Serrekunda', 'Banjul', 'Lamin Fatty', '3911176', 'London corner, Serrekunda', 'Lamin Mballo', '3911176', 'London corner, Serrekunda', 'samsung galaxy s4', '4000', 'medium', '2019-12-18 22:01:01', 'Pending', NULL, 1, 2);
+INSERT INTO `delivery_requests` (`id`, `to_location`, `from_location`, `receipient_name`, `receipient_mobile_number`, `receipient_address`, `sender_name`, `sender_mobile_number`, `sender_address`, `pick_up_date`, `package_type`, `package_size`, `request_time`, `request_status`, `partner_id`, `merchant_id`, `rate_id`) VALUES
+(58, 'Serrekunda', 'Banjul', 'Lamin Fatty', '3911176', 'London corner, Serrekunda', 'Lamin Saidykhan', '3911176', 'London corner, Serrekunda', '2019/12/23 23:00', 'Electronics', 'Small', '2019-12-23 21:14:00', 'Pending', NULL, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -146,7 +123,7 @@ CREATE TABLE `merchant` (
 --
 
 INSERT INTO `merchant` (`merchant_id`, `first_name`, `middle_name`, `last_name`, `username`, `password`, `email`, `dob`, `address`, `business_name`, `business_location`, `business_email`, `business_phone`, `account_balance`, `total_spent`) VALUES
-(1, 'Samba', '', 'Sallah', 'sambasallah10', '$argon2id$v=19$m=2048,t=2,p=4$TVRaWndwZEtVWkVTRTZUVw$bCwtl6cNb7+pvm4ZNdcP4YLhOi7xEvoMT1hZDCKaQYQ', 'sambasallah10@gmail.com', '1996-12-29', 'London corner, Serrekunda', 'eBaaba', 'eBaaba', 'sambasallah10@gmail.com', '3911176', '13396', '9850'),
+(1, 'Samba', '', 'Sallah', 'sambasallah10', '$argon2id$v=19$m=2048,t=2,p=4$TVRaWndwZEtVWkVTRTZUVw$bCwtl6cNb7+pvm4ZNdcP4YLhOi7xEvoMT1hZDCKaQYQ', 'sambasallah10@gmail.com', '1996-12-29', 'London corner, Serrekunda', 'eBaaba', 'eBaaba', 'sambasallah10@gmail.com', '3911176', '12896', '1000'),
 (2, 'admin', '', 'admin', 'admin', '$argon2id$v=19$m=2048,t=2,p=4$LzJXdHJrTXdEc2hFVWxkNw$6CabvdUz8BdZRCuQeYl+WMobyH1DcHy5xNRmCVmW4vI', 'admin@admin.com', NULL, NULL, NULL, NULL, NULL, NULL, '350', '300');
 
 -- --------------------------------------------------------
@@ -238,7 +215,7 @@ ALTER TABLE `delivery_rates`
 -- AUTO_INCREMENT for table `delivery_requests`
 --
 ALTER TABLE `delivery_requests`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 
 --
 -- AUTO_INCREMENT for table `merchant`

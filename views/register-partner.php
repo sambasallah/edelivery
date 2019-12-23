@@ -4,37 +4,37 @@
     <div class="register_partner_container">
         <div class="row">
             <div class="col-md-12">
-            <form id="regForm" action="" method="post">
+            <form action="" method="post">
 
                 <h1>Become A Partner</h1>
 
                 <!-- One "tab" for each step in the form: -->
                 <div class="tab">
-                <p><input placeholder="First name..." oninput="this.className = ''"></p>
-                <p><input placeholder="Last name..." oninput="this.className = ''"></p>
+                <p><input placeholder="First name..." oninput="this.className = ''" name="first_name"></p>
+                <p><input placeholder="Last name..." oninput="this.className = ''" name="last_name"></p>
                 </div>
 
                 <div class="tab">
-                <p><input placeholder="E-mail..." oninput="this.className = ''"></p>
-                <p><input placeholder="Phone..." oninput="this.className = ''"></p>
-                <p><input placeholder="Address..." oninput="this.className = ''"></p>
+                <p><input placeholder="E-mail..." oninput="this.className = ''" name="email_address"></p>
+                <p><input placeholder="Phone..." oninput="this.className = ''" name="phone_number"></p>
+                <p><input placeholder="Address..." oninput="this.className = ''" name="address"></p>
                 </div>
 
                 <div class="tab">
-                <p><input type="date" placeholder="Date Of Birth" oninput="this.className = ''"></p>
+                <p><input type="date" placeholder="Date Of Birth" oninput="this.className = ''" name="dob"></p>
                 </div>
 
                 <div class="tab">National ID Card / Passport:
-                    <p><input type="file" oninput="this.className = ''"></p>
+                    <p><input type="file" oninput="this.className = ''" name="national_document"></p>
                 </div>
 
                 <div class="tab">Valid Drivers License
-                    <p><input type="file"  oninput="this.className = ''"></p>
+                    <p><input type="file"  oninput="this.className = ''" name="valid_drivers_license"></p>
                 </div>
                 
                 <div class="tab">
-                    <p><input placeholder="Username..." oninput="this.className = ''"></p>
-                    <p><input type="password" placeholder="Password..." oninput="this.className = ''"></p>
+                    <p><input placeholder="Username..." oninput="this.className = ''" name="username"></p>
+                    <p><input type="password" placeholder="Password..." oninput="this.className = ''" name="password"></p>
                 </div>
 
                 <div style="overflow:auto;">

@@ -29,9 +29,9 @@
   <div class="tab-pane container" id="partner">
   <h5>Partner Login</h5>
         <form action="" method="post">
-            <input type="text" class="form-control" placeholder="Username or Email">
-            <input type="password" class="form-control" placeholder="Password">
-            <input type="submit" value="login" n class="btn btn-success">
+            <input type="text" class="form-control" name="username_or_email" placeholder="Username or Email">
+            <input type="password" class="form-control" name="password" placeholder="Password">
+            <input type="submit" value="login" name="login_partner" class="btn btn-success">
         </form>
         <p><a href="#">Forgot Password?</a></p>
         <p>Don't Have an Account? <a href="register-partner">Sign Up</a></p>

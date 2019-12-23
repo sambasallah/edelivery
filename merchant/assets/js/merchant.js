@@ -33,3 +33,7 @@ new Chart(chart, {
 });
 
 });
+
+$(document).ready(() => {
+  $('#pick').datetimepicker();
+});

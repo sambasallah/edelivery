@@ -15,6 +15,17 @@ class Functions {
         return false;
     }
 
+     /**
+     * @return bool
+     */
+    public function isPartnerLoggedIn() : bool {
+        if(isset($_SESSION['partner_logged_in']) && $_SESSION['partner_logged_in'] === TRUE) {
+            return true;
+        }
+        return false;
+    }
+
+
     /**
      * @return bool
      */

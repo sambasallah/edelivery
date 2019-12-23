@@ -206,9 +206,9 @@ class Merchant_Model {
                                         sender_name = :sender_name,
                                         sender_mobile_number = :sender_mobile_number,
                                         sender_address = :sender_address,
-                                        item_name = :item_name,
-                                        item_price = :item_price,
-                                        item_type = :item_type,
+                                        package_type = :package_type,
+                                        pick_up_date = :pick_up_date,
+                                        package_size = :package_size,
                                         request_status = :request_status,
                                         merchant_id = :merchant_id,
                                         rate_id = :rate_id");
@@ -220,9 +220,9 @@ class Merchant_Model {
         $this->conn->bind(":sender_name",$sender_name);
         $this->conn->bind(":sender_mobile_number",$sender_mobile_number);
         $this->conn->bind(":sender_address",$sender_address);
-        $this->conn->bind(":item_name",$item_name);
-        $this->conn->bind(":item_price",$item_price);
-        $this->conn->bind(":item_type", $item_type);
+        $this->conn->bind(":package_type",$package_type);
+        $this->conn->bind(":pick_up_date",$pick_up_date);
+        $this->conn->bind(":package_size", $package_size);
         $this->conn->bind(":request_status",'Pending');
         $this->conn->bind(":merchant_id",$merchant_id);
         $this->conn->bind(":rate_id",$rate_id);
