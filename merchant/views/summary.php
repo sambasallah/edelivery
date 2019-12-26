@@ -18,14 +18,14 @@
                             <tr>
                                 <th>To</th>
                                 <th>From</th>
-                                <th>Sender Name</th>
+                                <!-- <th>Sender Name</th> -->
                                 <th>Sender Number</th>
-                                <th>Receipient Name</th>
-                                <th>Receipient Number</th>
+                                <!-- <th>Receipient Name</th> -->
+                                <th>Receipt Number</th>
                                 <th>Pick Up Date</th>
                                 <th>Status</th>
                                 <th>Fee (GMD)</th>
-                                <th>Cancel Request</th>
+                                <th>Cancel</th>
                             </tr>
                         </thead>
                             <tbody>                   
@@ -33,9 +33,7 @@
                             <tr>
                                     <td><?= $delivery->to_location; ?></td>
                                     <td><?= $delivery->from_location; ?></td>
-                                    <td><?= $delivery->sender_name; ?></td>
                                     <td><?= $delivery->sender_mobile_number; ?></td>
-                                    <td><?= $delivery->receipient_name; ?></td>
                                     <td><?= $delivery->receipient_mobile_number; ?></td>
                                     <td><?= $delivery->pick_up_date; ?></td>
                                     <?php if ($delivery->request_status == "Pending") : ?>

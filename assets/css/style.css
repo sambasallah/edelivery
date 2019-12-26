@@ -667,7 +667,7 @@ footer {
 /** Register Partner **/
 .register_partner .register_partner_container {
   width: 70%;
-  margin: auto;
+  margin: 100px auto;
 }
 
 .register_partner #regForm {
@@ -679,7 +679,7 @@ footer {
 }
 
 /* Style the input fields */
-.register_partner input {
+.register_partner input, select {
   padding: 10px;
   width: 100%;
   font-size: 17px;

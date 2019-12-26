@@ -211,7 +211,9 @@ class Merchant_Model {
                                         package_size = :package_size,
                                         request_status = :request_status,
                                         merchant_id = :merchant_id,
-                                        rate_id = :rate_id");
+                                        rate_id = :rate_id,
+                                        delivery_note = :delivery_note,
+                                        payment_method = :payment_method");
         $this->conn->bind(":to_location", $to);
         $this->conn->bind(":from_location", $from);
         $this->conn->bind(":receipient_name",$receipient_name);
@@ -226,6 +228,8 @@ class Merchant_Model {
         $this->conn->bind(":request_status",'Pending');
         $this->conn->bind(":merchant_id",$merchant_id);
         $this->conn->bind(":rate_id",$rate_id);
+        $this->conn->bind(":delivery_note",$delivery_note);
+        $this->conn->bind(":payment_method",$payment_method);
 
         if($this->conn->executeQuery()) {
             $delivery_rate = $this->calculateDeliveryRate($to,$from);

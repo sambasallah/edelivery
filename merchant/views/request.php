@@ -44,6 +44,15 @@
                             <div class="form-group">
                                 <input type="text" placeholder="Sender Address" name="sender_address" class="form-control" required>
                             </div>
+                            <div class="form-group">
+                                <select name="payment_method" id="" class="custom-select" required>
+                                    <option value="Cash On Delivery">Choose</option>
+                                    <option value="Cash On Delivery">Cash On Delivery</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <textarea placeholder="Delivery Notes" class="form-control" name="delivery_note" row="3"></textarea>
+                            </div>
                              <div class="form-group">
                                 <input type="text" placeholder="Package Type" name="package_type" class="form-control" required>
                             </div>
