@@ -9,19 +9,15 @@ use edelivery\models\Partner_Model;
 
 $helpers = new Functions(); 
 
-if($helpers->isPartnerLoggedIn()) {
+if($helpers->isPartnerLoggedIn() && isset($_GET['request'])) {
     $database = new Database_Model();
+    $template = new Template('views/view-request.php');
     $partner = new Partner_Model($database);
 
-    $template = new Template('views/dashboard.php');
+    if(isset($_GET['request'])) {
+        $template->request_summary = $partner->getDeliveryRequest($_GET['request']);
+    }
 
-    $partner_id = $partner->getPartnerID($_SESSION['user']);
-
-    $template->earnings = $partner->getTotalEarnings($partner_id);
-    $template->withdrawals = $partner->getTotalWithdrawals($partner_id);
-    $template->balance = $partner->getBalance($partner_id);
-
-   
     echo $template;
 } else {
     \header("location:../login");

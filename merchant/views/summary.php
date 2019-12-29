@@ -47,7 +47,7 @@
                                     <td>
                                       <form action="" method="post">
                                             <input type="hidden" value="<?= $delivery->id; ?>" name="request_id">
-                                                 <?php if($delivery->request_status == "Pending") : ?>
+                                            <?php if($delivery->request_status == "Pending") : ?>
                                                 <input type="submit" value="Cancel" name="cancel_request" class="btn btn-danger">
                                             <?php endif; ?>
                                       </form>

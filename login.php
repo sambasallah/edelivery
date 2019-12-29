@@ -6,6 +6,7 @@ use edelivery\template\Template;
 use edelivery\models\Database_Model;
 use edelivery\models\Merchant_Model;
 use edelivery\helpers\Functions;
+use edelivery\models\Partner_Model;
 
 $database = new Database_Model();
 
@@ -15,12 +16,14 @@ $template = new Template('views/login.php');
 
 $helper_functions = new Functions();
 
+$partner = new Partner_Model($database);
+
 
 if($helper_functions->isMerchantLoggedIn()) {
     header("location:merchant");
 }
 
-if($helper_functions->isPost()) {
+if($helper_functions->isPost() && isset($_POST['login_merchant'])) {
         $usernameOREmail = $_POST['username_or_email'];
         $password = $_POST['password'];
     
@@ -37,7 +40,7 @@ if($helper_functions->isPartnerLoggedIn()) {
     header("location:partner");
 }
 
-if($helper_functions->isPost()) {
+if($helper_functions->isPost() && isset($_POST['login_partner'])) {
         $usernameOREmail = $_POST['username_or_email'];
         $password = $_POST['password'];
     
@@ -46,7 +49,7 @@ if($helper_functions->isPost()) {
             "password" => $password
         );
     
-        $merchant->loginPartner($data);
+        $partner->loginPartner($data);
     
 } 
 

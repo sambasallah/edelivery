@@ -8,7 +8,11 @@
                         <li><i class="fa fa-truck"></i></li>
                     </ul>
                     <ul>
-                        <li><a href="earnings">Earnings Summary</a></li>
+                        <li><a href="accepted">Accepted Requests</a></li>
+                        <li><i class="fa fa-truck"></i></li>
+                    </ul>
+                    <ul>
+                        <li><a href="earnings-summary">Earnings Summary</a></li>
                         <li><i class="fa fa-money-bill-alt"></i></li>
                     </ul>
                     <ul>

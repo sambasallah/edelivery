@@ -2,7 +2,7 @@ RewriteEngine On
 
 DirectoryIndex dashboard.php
 RewriteCond %{REQUEST_FILENAME} !-f
-
+RewriteRule ^view-request/([^/]+)/?$ view-request.php?request=$1 [L,QSA]
 RewriteRule ^([^\.]+)$ $1.php [NC,L]
 
 RewriteRule ^partner dashboard.php [L,QSA]

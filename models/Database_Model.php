@@ -37,7 +37,7 @@ class Database_Model {
                 $this->conn->setAttribute(\PDO::ATTR_EMULATE_PREPARES, false);
                 $this->connection_status =  "Connected successfully";
                 }
-            catch(PDOException $e)
+            catch(\PDOException $e)
                 {
                 $this->connection_status = "Connection failed: " . $e->getMessage();
                 }

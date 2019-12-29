@@ -12,19 +12,19 @@
                         <div class="col-md-4">  
                             <div class="earnings">
                                 <h3>Total Earnings</h3>
-                                <p><i class="fa fa-money-bill-alt"></i> GMD30,000</p>
+                                <p><i class="fa fa-money-bill-alt"></i> GMD<?= number_format($earnings); ?></p>
                             </div> 
                         </div>
                         <div class="col-md-4">
                             <div class="withdrawn_earnings">
                                 <h3>Withdrawn</h3>
-                                <p><i class="fa fa-money-bill"></i> GMD5,000</p>
+                                <p><i class="fa fa-money-bill"></i> GMD<?= number_format($withdrawals); ?></p>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="balance">
                                 <h3>Balance</h3>
-                                <p><i class="fa fa-money-bill"></i> 25,000</p>
+                                <p><i class="fa fa-money-bill"></i> GMD<?= number_format($balance); ?></p>
                             </div>
                         </div>
                     </div>
