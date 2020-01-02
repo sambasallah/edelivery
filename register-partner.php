@@ -24,6 +24,7 @@ if($helper_functions->isPost()) {
     $address = $_POST['address'];
     $municipality = $_POST['municipality'];
     $username = $_POST['username'];
+    $vehicle_type = $_POST['vehicle_type'];
     $password = \password_hash($_POST['password'], PASSWORD_ARGON2ID,['cost' => 10, 'memory_cost' => 2048, 'threads' => 4]);
 
     $data = array(
@@ -34,7 +35,8 @@ if($helper_functions->isPost()) {
         "address" => $address,
         "municipality" => $municipality,
         "username" => $username,
-        "password" => $password
+        "password" => $password,
+        "vehicle_type" => $vehicle_type
     );
 
     $partner->registerPartner($data,$_FILES,$_FILES);

@@ -66,13 +66,15 @@ class Merchant_Model {
             last_name = :last_name,
             email = :email,
             username = :username,
-            password = :password");
+            password = :password,
+            account_balance = :balance");
         $this->conn->bind(":middle_name", $middle_name);
         $this->conn->bind(":last_name", $last_name);
         $this->conn->bind(":email",$email);
         $this->conn->bind(":first_name", $first_name);
         $this->conn->bind(":username", $username);
         $this->conn->bind(":password", $password);
+        $this->conn->bind(":balance","10000");
         
         if($this->conn->executeQuery()) {
             

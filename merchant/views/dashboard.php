@@ -20,14 +20,14 @@
                         <div class="col-md-4">
                             <div class="spendings">
                                 <h3>Total Spent</h3>
-                                <p><i class="fa fa-money-bill-wave"></i> GMD<?= number_format($total_spent); ?></p>
+                                <p><i class="fa fa-money-bill-wave"></i> GMD <?= number_format($total_spent,2); ?></p>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="balance">
                             <div class="balance_container">
                                 <h3>Balance</h3>
-                                <p><i class="fa fa-money-bill-alt"></i> GMD<?= number_format($account_balance); ?></p>
+                                <p><i class="fa fa-money-bill-alt"></i> GMD <?= number_format($account_balance,2); ?></p>
                             </div>
                             </div>
                         </div>

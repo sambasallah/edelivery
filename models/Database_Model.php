@@ -2,8 +2,6 @@
 
 namespace edelivery\models;
 
-use phpDocumentor\Reflection\Types\Nullable;
-
 class Database_Model {
 
         // Database parameters

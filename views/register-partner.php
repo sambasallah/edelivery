@@ -22,10 +22,21 @@
                 <p><input placeholder="Address..." oninput="this.className = ''" name="address" required></p>
                 <p>
                     <select name="municipality" id=""  oninput="this.className = ''" required>
-                        <option value="Choose">Choose</option>
+                        <option value="Choose">Choose...</option>
                         <option value="KMC">Kanifing Municipal Council</option>
                         <option value="BCC">Banjul City Council</option>
                         <option value="BAC">Brikama Area Council</option>
+                   </select>
+                </p>
+                </div>
+
+                <div class="tab">Vehicle Type:
+                <p>
+                    <select name="vehicle_type" id=""  oninput="this.className = ''" required>
+                        <option value="Choose">Choose..</option>
+                        <option value="Motor Bike">Motor Bike</option>
+                        <option value="Pick Up">Pick Up</option>
+                        <option value="Truck">Truck</option>
                    </select>
                 </p>
                 </div>
@@ -52,6 +63,7 @@
 
                 <!-- Circles which indicates the steps of the form: -->
                 <div style="text-align:center;margin-top:40px;">
+                    <span class="step"></span>
                     <span class="step"></span>
                     <span class="step"></span>
                     <span class="step"></span>

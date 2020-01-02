@@ -103,7 +103,7 @@ ul {
 
 .analytics .earnings {
   width: 250px;
-  height: 75px;
+  height: 80px;
   background-color: #1b7fc3;
   border-radius: 5px;
   margin: auto;
@@ -117,8 +117,7 @@ ul {
 }
 
 .earnings p {
-  text-align: right;
-  padding-right: 8px;
+  padding-left: 5px;
   color: #fff;
 }
 
@@ -152,8 +151,7 @@ ul {
 }
 
 .withdrawn_earnings p {
-  text-align: right;
-  padding-right: 8px;
+  padding-left: 5px;
   color: #fff;
 }
 
@@ -167,8 +165,7 @@ ul {
 }
 
 .balance p {
-  text-align: right;
-  padding-right: 8px;
+  padding-left: 8px;
   color: #fff;
 }
 
@@ -286,6 +283,23 @@ ul {
 }
 
 .accepted_container .right h3 {
+  padding: 15px 0px;
+}
+
+/** Arrival Time **/
+.arrival_time {
+  position: relative;
+  width: 100%;
+  background-color: #f5f5f5;
+  height: 100vh;
+}
+
+.arrival_time .arrival_time_container {
+  width: 97%;
+  margin: auto;
+}
+
+.arrival_time_container .right h2 {
   padding: 15px 0px;
 }
 

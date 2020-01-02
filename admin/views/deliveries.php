@@ -9,6 +9,8 @@
             <div class="col-md-9">
                <div class="delivery_right">
                <h2>All Deliveries</h2>
+               <?php if(isset($_SESSION['updated'])) { echo $_SESSION['updated'];} ?>
+               <?php if(isset($_SESSION['error'])) { echo $_SESSION['error']; }   ?>
                 <table class="table table-responsive table-hover">
                         <thead>
                             <tr>
@@ -18,31 +20,36 @@
                                 <th>Receipt Name</th>
                                 <th>Sender Number</th>
                                 <th>Receipt Number</th>
-                                <th>Item Name</th>
-                                <th>E/D</th>
+                                <th>Package Type</th>
+                                <th>Edit</th>
                             </tr>
                             </thead>
                             <tbody>
+                                <?php foreach($deliveries as $delivery) : ?>
                                 <tr>
-                                    <td>Serrekunda</td>
-                                    <td>Banjul</td>
-                                    <td>Lamin Manneh</td>
-                                    <td>Samba Sallah</td>
-                                    <td>+2203911176</td>
-                                    <td>+2203929525</td>
-                                    <td>Bed Set</td>
-                                    <td><i class="fa fa-edit"></i> <i class="fa fa-trash"></i></td>
+                                    <td><?= $delivery->to_location; ?></td>
+                                    <td><?= $delivery->from_location; ?></td>
+                                    <td><?= $delivery->sender_name; ?></td>
+                                    <td><?= $delivery->receipient_name; ?></td>
+                                    <td><?= $delivery->sender_mobile_number; ?></td>
+                                    <td><?= $delivery->receipient_mobile_number; ?></td>
+                                    <td><?= $delivery->package_type; ?></td>
+                                    <td><a href="edit-deliveries/<?= $delivery->id; ?>"><i class="fa fa-edit"></i></a></td>
                                 </tr>
-                               
+                                <?php endforeach; ?>
                             </tbody>
                      </table>
-                     <ul class="pagination justify-content-center">
-                        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                    </ul>
+                     <?php if($total_pages > 1) : ?>
+                        <ul class="pagination justify-content-center">
+                            <?php if(isset($page) && $page > 1)  : ?>
+                                <li class="page-item"><a class="page-link" href="deliveries/<?php if(isset($page) && $page > 1) { echo $page - 1; } else { echo '#'; } ?>">Previous</a></li>
+                            <?php endif; ?>
+                            <?php for($i = 1; $i <= $total_pages; $i++) : ?>
+                                <li class="page-item"><a class="page-link" href="deliveries/<?= $i; ?>"><?= $i; ?></a></li>
+                            <?php endfor; ?>
+                            <li class="page-item"><a class="page-link" href="deliveries/<?php if(isset($page) && ($i > $page)) { if($page > $total_pages - 1) { echo $total_pages; } else { echo $page + 1; } } else { echo 2; } ?>">Next</a></li>
+                        </ul>
+                     <?php endif; ?> 
                </div>
             </div>
         </div>

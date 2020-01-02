@@ -18,7 +18,16 @@ if($helper_functions->isPartnerLoggedIn()) {
 
     $partner_id = $partner->getPartnerID($_SESSION['user']);
     
-    $template->accepted_requests = $partner->getAcceptedRequests($partner_id);
+    $page_no = 1; // default page_no
+
+    if(isset($_GET['page']) && is_numeric($_GET['page'])) {
+        $template->page = $_GET['page'];
+        $template->accepted_requests = $partner->getAcceptedRequests($partner_id,$_GET['page']);
+    } else {
+        $template->accepted_requests = $partner->getAcceptedRequests($partner_id,$page_no);
+    }
+
+    $template->total_pages = $partner->getTotalPages();
 
     if($helper_functions->isPost()) {
         

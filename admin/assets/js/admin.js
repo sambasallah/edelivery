@@ -1,24 +1,35 @@
-
 $(document).ready(() => {
-    // graph 
-let  days = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
-let weekly_revenue = ["30000","40000","500000","80000","20000","100000","50000"];
+  // graph 
+  let  days = [];
+  let  daily_revenue = [];
+    
+  $(document).ready(() => {
+    $.ajax({url: "graph.php", type: "GET", async : false, dataType: "json", success : (result) => {   
+          $.each(result.data, (index, data) => {
+            days[index] = data.Day;
+            daily_revenue[index] = data.Revenue;
+          ;
+          })
+    }, fail : (jqXHR, textStatus, errorTrown) => {
+          console.log("There was an error -> "+textStatus + " : "+ errorTrown);
+    }});
   
-
-let chart = document.querySelector("#admin_analytics");
-new Chart(chart, {
-        type: 'line',
-        data: {
-              labels: days,
-              datasets: [
-                      { 
-                        data: weekly_revenue,
-                        label: "Weekly Revenue",
-                        borderColor: "#1b7fc3",
-                        fill: true,
-
-                      }
-                    ]
-      }
-});
-});
+  let chart = document.querySelector("#admin_analytics");
+  new Chart(chart, {
+          type: 'line',
+          data: {
+                labels: days,
+                datasets: [
+                        { 
+                          data: daily_revenue,
+                          label: "Weekly Revenue",
+                          borderColor: "#1b7fc3",
+                          fill: true,
+  
+                        }
+                      ]
+        }
+  });
+  });
+  
+  });

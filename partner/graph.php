@@ -11,11 +11,11 @@ $helper_functions = new Functions();
 if($helper_functions->isPartnerLoggedIn()) {
     
         $database = new Database_Model();
-        $merchant = new Partner_Model($database);
+        $partner = new Partner_Model($database);
 
-        $partner_id = $merchant->getPartnerID($_SESSION['user']);
+        $partner_id = $partner->getPartnerID($_SESSION['user']);
 
-        $total_earnings = $merchant->getTotalWeeklyEarnings($partner_id);
+        $total_earnings = $partner->getTotalWeeklyEarnings($partner_id);
     
         $arr_data['data'] = array();
     

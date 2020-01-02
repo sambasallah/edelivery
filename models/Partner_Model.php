@@ -5,12 +5,17 @@ namespace edelivery\models;
 class Partner_Model {
 
     private $conn;
+    private $NUMBER_OF_RECORDS_PER_PAGE = 5;
+    private $total_pages = 0;
 
     public function __construct($db_connection) 
     {
         $this->conn = $db_connection;
     }
 
+    /**
+     * @param $data - array
+     */
     public function loginPartner(array $data) : void {
         \extract($data);
 
@@ -64,7 +69,8 @@ class Partner_Model {
             national_document = :national_document,
             account_status = :status,
             earnings = :balance,
-            withdrawals = :withdrawals ");
+            withdrawals = :withdrawals,
+            vehicle_type = :vehicle_type ");
 
                 $this->conn->bind(":first_name", $first_name);
                 $this->conn->bind(":last_name", $last_name);
@@ -78,6 +84,7 @@ class Partner_Model {
                 $this->conn->bind(":national_document", $national_document);
                 $this->conn->bind(":balance","0");
                 $this->conn->bind(":withdrawals","0");
+                $this->conn->bind(":vehicle_type",$vehicle_type);
 
         if($this->conn->executeQuery()) {
             
@@ -160,10 +167,16 @@ class Partner_Model {
     }
     
     /**
+     * @param $page_no - int
      * @return array
      */
-    public function getAllDeliveryRequests() : array {
-        $this->conn->prepareQuery("SELECT * FROM delivery_requests WHERE partner_id IS NULL");
+    public function getAllDeliveryRequests(int $page_no) : array {
+        $total_rows = $this->getDeliveryRequestRows();
+        $offset = ($page_no-1) * $this->NUMBER_OF_RECORDS_PER_PAGE;
+        $this->total_pages = (int) ceil($total_rows / $this->NUMBER_OF_RECORDS_PER_PAGE);
+        $this->conn->prepareQuery("SELECT * FROM delivery_requests WHERE partner_id IS NULL LIMIT :offset, :number_of_records");
+        $this->conn->bind(":offset",$offset);
+        $this->conn->bind(":number_of_records",$this->NUMBER_OF_RECORDS_PER_PAGE);
         $this->conn->executeQuery();
 
         return $this->conn->getResults();
@@ -185,10 +198,14 @@ class Partner_Model {
      * @param $current_user - int
      * @return array
      */
-    public function getEarningSummary(int $current_user) : array {
-        $this->conn->prepareQuery("SELECT * FROM earnings WHERE partner_id = :id");
+    public function getEarningSummary(int $current_user, int $page_no) : array {
+        $total_rows = $this->getTotalPages($current_user);
+        $offset = ($page_no-1) * $this->NUMBER_OF_RECORDS_PER_PAGE;
+        $this->total_pages = (int) ceil($total_rows / $this->NUMBER_OF_RECORDS_PER_PAGE);
+        $this->conn->prepareQuery("SELECT * FROM earnings WHERE partner_id = :id LIMIT :offset, :number_of_records");
         $this->conn->bind(":id",$current_user);
-
+        $this->conn->bind(":offset",$offset);
+        $this->conn->bind(":number_of_records",$this->NUMBER_OF_RECORDS_PER_PAGE);
         $this->conn->executeQuery();
 
         return $this->conn->getResults();
@@ -219,10 +236,14 @@ class Partner_Model {
      * @param $current_user - int
      * @return array
      */
-    public function getAcceptedRequests(int $current_user) : array {
-        $this->conn->prepareQuery("SELECT *,delivery_rates.* FROM delivery_requests INNER JOIN delivery_rates ON delivery_rates.rate_id = delivery_requests.rate_id WHERE partner_id = :id ORDER BY id DESC ");
+    public function getAcceptedRequests(int $current_user, int $page_no) : array {
+        $total_rows = $this->getTotalRows($current_user);
+        $offset = ($page_no-1) * $this->NUMBER_OF_RECORDS_PER_PAGE;
+        $this->total_pages = (int) ceil($total_rows / $this->NUMBER_OF_RECORDS_PER_PAGE);
+        $this->conn->prepareQuery("SELECT *,delivery_rates.* FROM delivery_requests INNER JOIN delivery_rates ON delivery_rates.rate_id = delivery_requests.rate_id WHERE partner_id = :id ORDER BY id DESC LIMIT :offset, :number_of_records");
         $this->conn->bind(":id",$current_user);
-
+        $this->conn->bind(":offset",$offset);
+        $this->conn->bind(":number_of_records",$this->NUMBER_OF_RECORDS_PER_PAGE);
         $this->conn->executeQuery();
 
         return $this->conn->getResults();
@@ -245,6 +266,35 @@ class Partner_Model {
         return false;
     }
 
+    /**
+     * @param $arrival_time - string
+     * @param $request_id - int
+     */
+    public function updateArrivalTime(string $arrival_time, int $request_id) : void {
+        $this->conn->prepareQuery("UPDATE delivery_requests SET
+                                                            arrival_time = :time WHERE id = :id");
+        $this->conn->bind(":time",$arrival_time);
+        $this->conn->bind(":id",$request_id);
+
+        if($this->conn->executeQuery()) {
+            $_SESSION['update_success'] = 
+            "<div class='alert alert-success alert-dismissible'>
+            <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
+            <strong>Success!</strong> Arrival Time Updated.
+        </div>";
+        \header("location:../accepted");
+        exit;
+        }
+
+        $_SESSION['update_error'] = 
+        "<div class='alert alert-danger alert-dismissible'>
+        <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
+        <strong>Error!</strong> An error occured.
+    </div>";
+    \header("location:../accepted");
+    exit;
+
+    }
     
     /**
      * @param $user - string
@@ -513,6 +563,37 @@ class Partner_Model {
         }
 
         return [];
+    }
+
+     /**
+     * @param $partner_id - int
+     * @return int 
+     * - Returns the total rows
+     */
+    private function getTotalRows(int $partner_id) : int {
+        $this->conn->prepareQuery("SELECT * FROM delivery_requests WHERE partner_id = :id");
+        $this->conn->bind(":id",$partner_id);
+        $this->conn->executeQuery();
+
+        return $this->conn->rows();
+    }
+
+      /**
+     * @return int 
+     * - Returns the total rows
+     */
+    private function getDeliveryRequestRows() : int {
+        $this->conn->prepareQuery("SELECT * FROM delivery_requests WHERE partner_id IS NULL");
+        $this->conn->executeQuery();
+
+        return $this->conn->rows();
+    }
+
+    /**
+     * @return int
+     */
+    public function getTotalPages() : int {
+        return $this->total_pages;
     }
 }
 

@@ -12,19 +12,19 @@
                         <div class="col-md-4">
                             <div class="total_revenue">
                                 <h3>Total Revenue</h3>
-                                <h4><i class="fa fa-money-bill-alt"></i> GMD 3,000,000</h4>
+                                <h4><i class="fa fa-money-bill-alt"></i> GMD <?= $total_revenue; ?></h4>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="partners">
                                 <h3>Partners</h3>
-                                <h4><i class="fa fa-users"></i> 100</h4>
+                                <h4><i class="fa fa-users"></i> <?= $number_of_partners; ?></h4>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="merchants">
                                 <h3>Merchants</h3>
-                                <h4><i class="fa fa-user"></i> 25</h4>
+                                <h4><i class="fa fa-user"></i> <?= $number_of_merchants; ?></h4>
                             </div>
                         </div>
                     </div>

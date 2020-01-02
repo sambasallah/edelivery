@@ -37,7 +37,8 @@
                             <li><h4>Full Name : <?= $delivery_information->first_name . ' ' . $delivery_information->last_name; ?></h4></li>
                             <li><h4>Mobile Number : <?= $delivery_information->phone_number; ?></h4></li>
                             <li><h4>Driver Status : <?= $delivery_information->account_status; ?></h4></li>
-                            <li><h4>Estimated Arrival Time : 12:00 PM 12/12/2019</h4></li>
+                            <li><h4>Estimated Arrival Time : <?= $delivery_information->arrival_time; ?></h4></li>
+                            <li><h4>Vehicle Type : <?= $delivery_information->vehicle_type; ?></h4></li>
                         </ul>
                     </div>
                 </div>

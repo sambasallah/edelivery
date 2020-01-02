@@ -5,20 +5,36 @@ use Slim\Factory\AppFactory;
 use edelivery\api\v1\middleware\RouteErrorHandler;
 use Slim\Routing\RouteCollectorProxy;
 
+use edelivery\api\v1\database\Database;
+use edelivery\api\v1\models\Merchant_Model;
+use edelivery\api\v1\middleware\LoginMiddleware;
+
+
 require '../../vendor/autoload.php';
+require 'init/init.php';
 
 $app = AppFactory::create();
 
 $app->group('/api/v1', function (RouteCollectorProxy $group) {
     $group->post('/make_request',function (Request $request,Response $response, $args) {
-        $response->getBody()->write(json_encode(array("make_request" => "Endpoint working correctly")));
+        
+        
+        $response->getBody()->write(json_encode($data));
         return $response->withHeader("Content-Type","application/json");
     });
     
-    $group->post('/track/{request_id:[0-9]+}', function ($request, $response, $args) {
-        $response->getBody()->write(json_encode(array("Tracking Endpoint" => "Your tracking endpoint test is working with request id=".$args['request_id'])));
+    $group->get('/track/{request_id:[0-9]+}', function ($request, $response, $args) {
+        $database = new Database();
+        $merchant = new Merchant_Model($database);
+        $request_status = $merchant->track($args['request_id']);
+        $response->getBody()->write(json_encode(array("Delivery Status" => $request_status, "Status Code" => http_response_code())));
         return $response->withHeader("Content-Type","application/json");
     });
+    $group->post('/login-merchant', function (Request $request, Response $response, $args) {
+        $response->getBody()->write(json_encode(array("Error" => "Invalid Login Credentials")));
+        return $response->withHeader("Content-Type","application/json");
+      
+    })->add(new LoginMiddleware());
 });
 
 // Add Error Middleware

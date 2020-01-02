@@ -16,7 +16,16 @@ if($helpers->isPartnerLoggedIn()) {
 
     $template = new Template('views/delivery-requests.php');
 
-    $template->delivery_requests = $partner->getAllDeliveryRequests();
+    $page_no = 1; // default page_no
+
+    if(isset($_GET['page']) && is_numeric($_GET['page'])) {
+        $template->page = $_GET['page'];
+        $template->delivery_requests = $partner->getAllDeliveryRequests($_GET['page']);
+    } else {
+        $template->delivery_requests = $partner->getAllDeliveryRequests($page_no);
+    }
+
+    $template->total_pages = $partner->getTotalPages();
 
     $partner_id = $partner->getPartnerID($_SESSION['user']);
     $template->user = $partner_id;

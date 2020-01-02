@@ -2,7 +2,14 @@ RewriteEngine On
 
 DirectoryIndex dashboard.php
 RewriteCond %{REQUEST_FILENAME} !-f
-
+RewriteRule ^partners/([^/]+)/?$ partners.php?page=$1 [L,QSA]
+RewriteRule ^merchants/([^/]+)/?$ merchants.php?page=$1 [L,QSA]
+RewriteRule ^deliveries/([^/]+)/?$ deliveries.php?page=$1 [L,QSA]
+RewriteRule ^users/([^/]+)/?$ users.php?page=$1 [L,QSA]
+RewriteRule ^users/([^/]+)/?$ users.php?delete=$1 [L,QSA]
+RewriteRule ^add-user/([^/]+)/?$ add-user.php?edit=$1 [L,QSA]
+RewriteRule ^partner-view/([^/]+)/?$ partner-view.php?view=$1 [L,QSA]
+RewriteRule ^edit-deliveries/([^/]+)/?$ edit-deliveries.php?edit=$1 [L,QSA]
 RewriteRule ^([^\.]+)$ $1.php [NC,L]
 
 RewriteRule ^admin dashboard.php [L,QSA]

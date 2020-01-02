@@ -7,6 +7,8 @@
             </div>
             <div class="col-md-9 right">
             <h3>Accepted Delivery Request</h3>
+            <?php if(isset($_SESSION['update_success'])) { echo $_SESSION['update_success']; unset($_SESSION['update_success']); } ?>
+            <?php if(isset($_SESSION['update_error'])) { echo $_SESSION['update_error']; unset($_SESSION['update_error']); } ?>
             <table class="table table-responsive table-hover">
                         <thead>
                             <tr>
@@ -16,7 +18,8 @@
                                 <th>Package Size</th>
                                 <th>Delivery Fee</th>
                                 <th>Pick Up Date</th>
-                                <th>Earned (70%)</th> 
+                                <th>Earned (70%)</th>
+                                <th>Edit</th> 
                                 <th>Status</th>
                             </tr>
                             </thead>
@@ -30,6 +33,11 @@
                                     <td><?= $request->rate; ?></td>
                                     <td><?= $request->pick_up_date; ?></td>
                                     <td><?= $request->rate * (70/100); ?></td>
+                                    <?php if($request->request_status == "Delivered") : ?>
+                                        <td><i class="fa fa-edit"></i></td>
+                                    <?php else : ?>
+                                        <td><a href="arrival-time/<?= $request->id; ?>"><i class="fa fa-edit"></i></a></td>
+                                    <?php endif; ?>
                                     <td>
                                         <form action="" method="post">
                                            <?php if($request->request_status == "On Route") : ?>
@@ -48,7 +56,19 @@
                                     </tr>
                                 <?php endforeach; ?>
                             </tbody>
-                     </table>
+                        </table>
+                        <?php if($total_pages > 1) : ?>
+                        <ul class="pagination justify-content-center">
+                            <?php if(isset($page) && $page > 1)  : ?>
+                                <li class="page-item"><a class="page-link" href="accepted/<?php if(isset($page) && $page > 1) { echo $page - 1; } else { echo '#'; } ?>">Previous</a></li>
+                            <?php endif; ?>
+                            <?php for($i = 1; $i <= $total_pages; $i++) : ?>
+                                <li class="page-item"><a class="page-link" href="accepted/<?= $i; ?>"><?= $i; ?></a></li>
+                            <?php endfor; ?>
+                            <li class="page-item"><a class="page-link" href="accepted/<?php if(isset($page) && ($i > $page)) { if($page > $total_pages - 1) { echo $total_pages; } else { echo $page + 1; } } else { echo 2; } ?>">Next</a></li>
+                        </ul>
+                     <?php endif; ?>                 
+                     
             </div>
         </div>
     </div>

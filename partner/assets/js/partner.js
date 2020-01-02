@@ -58,3 +58,8 @@ $(document).ready(() => {
   });
   
   });
+
+
+  $(document).ready(() => {
+    $('#arrival_time').datetimepicker();
+  });

@@ -10,13 +10,17 @@
         <!-- scripts -->
 		<script type="text/javascript" src="../assets/js/jquery-3.4.1.min.js"></script>
 		<script type="text/javascript" src="../assets/js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="assets/js/Chart.min.js"></script>
-        <script type="text/javascript" src="assets/js/partner.js"></script>
+		<script type="text/javascript" src="assets/js/Chart.min.js"></script>
+		<script type="text/javascript" src="assets/js/jquery.datetimepicker.full.min.js"></script>
+		<script type="text/javascript" src="assets/js/partner.js"></script>
 		
+
 		<!-- style -->
 		<link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.min.css">	
 		<link rel="stylesheet" type="text/css" href="../assets/css/all.min.css">  	
-        <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+		<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+		<link rel="stylesheet" type="text/css" href="assets/css/jquery.datetimepicker.css">
+		
 </head>
 <body>
 

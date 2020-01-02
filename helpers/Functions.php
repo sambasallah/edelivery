@@ -25,6 +25,16 @@ class Functions {
         return false;
     }
 
+    /**
+     * @return bool
+     */
+    public function isAdminLoggedIn() : bool {
+        if(isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] === TRUE) {
+            return true;
+        }
+        return false;
+    }
+
 
     /**
      * @return bool
