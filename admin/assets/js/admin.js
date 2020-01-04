@@ -16,7 +16,7 @@ $(document).ready(() => {
   
   let chart = document.querySelector("#admin_analytics");
   new Chart(chart, {
-          type: 'line',
+          type: 'bar',
           data: {
                 labels: days,
                 datasets: [

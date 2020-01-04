@@ -31,6 +31,7 @@ if($_SESSION['merchant_logged_in'] === TRUE) {
 
     $template->total_pages = $merchant->getTotalPages();
 
+
     echo $template;
 }else {
     header("location:../register");

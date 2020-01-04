@@ -7,6 +7,7 @@ use Psr\Http\Server\RequestHandlerInterface as RequestHandler;
 use Slim\Psr7\Response;
 use edelivery\api\v1\database\Database;
 use edelivery\api\v1\models\Merchant_Model;
+use ReallySimpleJWT\Token;
 
 
 class LoginMiddleware {
@@ -27,8 +28,17 @@ class LoginMiddleware {
                 $merchant = new Merchant_Model($database);
 
                 if($merchant->userExists($post_data)) {
+                     
+                    $token = new Token;
+                    $userId = 2587258272;
+                    $secret = 'ede!VerY25*&';
+                    $expiration = time() + 3600;
+                    $issuer = 'localhost';
+
+                    $token = Token::create($userId, $secret, $expiration, $issuer);
+
                     $merchant_id = $merchant->getMerchantID($post_data['usernameOREmail']);
-                    $response->getBody()->write(json_encode(array("Login" => "Successful", "Merchant_ID" => $merchant_id)));
+                    $response->getBody()->write(json_encode(array("Login" => "Successful", "JWT" => $token, "Status Code" => \http_response_code())));
                     return $response->withHeader("Content-Type", "application/json");   
                 }
             }

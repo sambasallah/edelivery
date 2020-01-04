@@ -4,9 +4,9 @@ namespace edelivery\models;
 
 class Partner_Model {
 
-    private $conn;
-    private $NUMBER_OF_RECORDS_PER_PAGE = 5;
-    private $total_pages = 0;
+    private object $conn;
+    private int $NUMBER_OF_RECORDS_PER_PAGE = 5;
+    private int $total_pages = 0;
 
     public function __construct($db_connection) 
     {

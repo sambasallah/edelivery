@@ -63,14 +63,14 @@ class Merchant_Model {
      * @param $usernameOREmail - string
      * @return string
      */
-    public function getMerchantID(string $usernameOREmail) : string {
+    public function getMerchantID(string $usernameOREmail) : int {
         $this->conn->prepareQuery("SELECT * FROM merchant WHERE username = :username OR email =:email");
         $this->conn->bind(":username",$usernameOREmail);
         $this->conn->bind(":email",$usernameOREmail);
 
         $this->conn->executeQuery();
 
-        return strval($this->conn->getResult()->merchant_id);
+        return intval($this->conn->getResult()->merchant_id);
     }
 
     /**
@@ -87,11 +87,13 @@ class Merchant_Model {
 
     /**
      * @param $data - array
-     * @param $merchant_id - int
+     * @return bool
      */
-    public function makeDeliveryRequest(array $data, int $merchant_id) : void {
+    public function makeDeliveryRequest(array $data) : bool {
         \extract($data);
- 
+        
+        $merchant_id = $this->getMerchantID($merchant_username);
+
         $this->conn->prepareQuery("INSERT INTO delivery_requests 
                                     SET
                                         to_location = :to_location,
@@ -110,8 +112,8 @@ class Merchant_Model {
                                         rate_id = :rate_id,
                                         delivery_note = :delivery_note,
                                         payment_method = :payment_method");
-        $this->conn->bind(":to_location", $to);
-        $this->conn->bind(":from_location", $from);
+        $this->conn->bind(":to_location", $to_location);
+        $this->conn->bind(":from_location", $from_location);
         $this->conn->bind(":receipient_name",$receipient_name);
         $this->conn->bind(":receipient_mobile_number",$receipient_mobile_number);
         $this->conn->bind(":receipient_address",$receipient_address);
@@ -128,23 +130,14 @@ class Merchant_Model {
         $this->conn->bind(":payment_method","Cash On Delivery");
 
         if($this->conn->executeQuery()) {
-            $delivery_rate = $this->calculateDeliveryRate($to,$from);
+            $delivery_rate = $this->calculateDeliveryRate($to_location,$from_location);
             $this->updateBalance($delivery_rate, $merchant_id);
             $this->updateTotalSpentAmount(strval($delivery_rate),$merchant_id);
-            $_SESSION['delivery_request_success'] = 
-            "<div class='alert alert-success alert-dismissible'>
-            <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
-            <strong>Success!</strong> Delivery Request Sent.
-          </div>";
-          \header("location:request");
-        }else {
-            $_SESSION['delivery_request_error'] = 
-            "<div class='alert alert-danger alert-dismissible'>
-            <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
-            <strong>Error!</strong> There was an error sending your request.
-          </div>";
-          \header("location:request");
+           
+            return true;
         }
+
+        return false;
 
     }
 
@@ -163,6 +156,23 @@ class Merchant_Model {
         $result = $this->conn->getResult();
 
         return intval($result->rate);
+    }
+
+    /**
+     * @param $to - string
+     * @param $from - string
+     * @return int
+     * - Returns the delivery rate_id
+     */
+    public function getDeliveryRateID(string $to, string $from) : int {
+        $this->conn->prepareQuery("SELECT rate_id FROM delivery_rates WHERE to_town = :to AND from_town = :from");
+        $this->conn->bind(":to",$to);
+        $this->conn->bind(":from",$from);
+        $this->conn->executeQuery();
+
+        $result = $this->conn->getResult();
+
+        return intval($result->rate_id);
     }
 
     /**

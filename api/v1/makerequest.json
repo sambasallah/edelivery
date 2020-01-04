@@ -1,0 +1,15 @@
+{
+ "to_location":"Serrekunda",
+ "from_location": "Serrekunda",
+ "receipient_name": "Saikou Marong",
+ "receipient_mobile_number": "4253867",
+ "receipient_address": "London corner",
+ "sender_name": "Fatou Jaiteh",
+ "sender_mobile_number": "3207726",
+ "sender_address": "Bakoteh Layout",
+ "pick_up_date": "2020/01/8 13:45",
+ "package_type": "Electronics",
+ "package_size": "Medium",
+ "merchant_username": "sambasallah",
+ "delivery_note": "Pick it up at my office"
+}

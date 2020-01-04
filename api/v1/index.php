@@ -8,7 +8,8 @@ use Slim\Routing\RouteCollectorProxy;
 use edelivery\api\v1\database\Database;
 use edelivery\api\v1\models\Merchant_Model;
 use edelivery\api\v1\middleware\LoginMiddleware;
-
+use edelivery\api\v1\middleware\MakeRequestMiddleware;
+use edelivery\api\v1\middleware\TrackMiddleWare;
 
 require '../../vendor/autoload.php';
 require 'init/init.php';
@@ -16,20 +17,19 @@ require 'init/init.php';
 $app = AppFactory::create();
 
 $app->group('/api/v1', function (RouteCollectorProxy $group) {
-    $group->post('/make_request',function (Request $request,Response $response, $args) {
-        
-        
-        $response->getBody()->write(json_encode($data));
+    // Make Delivery Request
+    $group->post('/make-request',function (Request $request,Response $response, $args) {
+        $response->getBody()->write(json_encode(array("Error" => "Invalid Authorization token")));
         return $response->withHeader("Content-Type","application/json");
-    });
-    
-    $group->get('/track/{request_id:[0-9]+}', function ($request, $response, $args) {
-        $database = new Database();
-        $merchant = new Merchant_Model($database);
-        $request_status = $merchant->track($args['request_id']);
-        $response->getBody()->write(json_encode(array("Delivery Status" => $request_status, "Status Code" => http_response_code())));
+    })->add(new MakeRequestMiddleware());
+
+    // Track Delivery Request Status
+    $group->get('/track/{id}',function (Request $request,Response $response, $args) {
+        $response->getBody()->write(json_encode(array("Error" => "Invalid Authorization token")));
         return $response->withHeader("Content-Type","application/json");
-    });
+    })->add(new TrackMiddleWare());
+
+    // Login Merchant
     $group->post('/login-merchant', function (Request $request, Response $response, $args) {
         $response->getBody()->write(json_encode(array("Error" => "Invalid Login Credentials")));
         return $response->withHeader("Content-Type","application/json");

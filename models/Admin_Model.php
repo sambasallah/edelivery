@@ -5,7 +5,7 @@ namespace edelivery\models;
 class Admin_Model {
 
     private $conn;
-    private $NUMBER_OF_RECORDS_PER_PAGE = 5;
+    private $NUMBER_OF_RECORDS_PER_PAGE = 9;
     private $total_pages = 0;
     public function __construct($database) 
     {
