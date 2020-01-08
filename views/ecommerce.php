@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-md-6 left_ecommerce col-sm">
                 <h2>Deliver to your clients without the stress.</h2>
-                <p>We understand your business like nobody else. Whether you are selling clothing, furniture or electronics, Sendy will deliver your goods safely to your customers.</p>
+                <p>We understand your business like nobody else. Whether you are selling clothing, furniture or electronics, eDelivery will deliver your goods safely to your customers.</p>
             </div>
             <div class="col-md-6 right_ecommerce col-sm">
                 <img src="media/images/ecommerce-bg.png" alt="Solution For E-Commerce Websites" height="400px">
@@ -62,7 +62,7 @@
             <div class="col-md-6 left_automate col-sm">
                 <h2>Automate your deliveries</h2>
                 <p>With the eDelivery API, your customers can request and manage their deliveries right from your mobile app, online shop or platform.</p>
-                <a href="#" class="learn_more">Learn More</a>
+                <a href="api-doc" class="learn_more">Learn More</a>
             </div>
             <div class="col-md-6 right_automate col-sm">
                 <img src="media/images/api-bg.png" alt="API Image" height="400px">

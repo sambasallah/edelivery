@@ -306,8 +306,9 @@ class Merchant_Model {
      * @return int
      * - Returns the number of ongoing deliveries
      */
-    public function getOngoingDeliveries() : int {
-        $this->conn->prepareQuery("SELECT * FROM delivery_requests WHERE request_status = 'On Route' ");
+    public function getOngoingDeliveries(int $merchant_id) : int {
+        $this->conn->prepareQuery("SELECT * FROM delivery_requests WHERE request_status = 'On Route' AND merchant_id = :id ");
+        $this->conn->bind(":id", $merchant_id);
         $this->conn->executeQuery();
 
         return $this->conn->rows();
@@ -648,6 +649,25 @@ class Merchant_Model {
         $account_balance = $this->getAccountBalance($merchant_id);
 
         if(($account_balance - $requestAmount) >= 0) {
+            return true;
+        }
+
+        return false;
+    }
+
+
+    /**
+     * @param $request_id - int
+     * @return bool
+     */
+    public function acknowledgeDelivery(int $request_id) : bool {
+        $this->conn->prepareQuery("UPDATE delivery_requests
+                                                            SET
+                                                            received = :received WHERE id = :id");
+        $this->conn->bind(":received","Yes");
+        $this->conn->bind(":id", $request_id);
+
+        if($this->conn->executeQuery()) {
             return true;
         }
 

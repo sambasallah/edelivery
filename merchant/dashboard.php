@@ -27,7 +27,7 @@ if($helper_functions->isMerchantLoggedIn()) {
 
     $template->total_spent = $merchant->calculateTotalSpentOnDeliveries($merchant_id);
     
-    $template->ongoingDelvs = $merchant->getOngoingDeliveries();
+    $template->ongoingDelvs = $merchant->getOngoingDeliveries($merchant_id);
 
     $template->account_balance = $merchant->getAccountBalance($merchant_id); 
 

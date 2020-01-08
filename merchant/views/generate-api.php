@@ -10,6 +10,8 @@
                         <h2>Generate API Key</h2>
                         <form action="" method="post">
                              <input type="submit" value="Generate Key" class="btn btn-lg btn-success">
+                             <?php if(!empty($data)) { echo "<pre><code class='language-json5'>$data</code></pre>"; } ?>
+                             <?php if(!empty($error)) { echo $error; } ?>
                         </form>
                     </div>
                 </div>

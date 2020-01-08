@@ -7,7 +7,7 @@
                     <ul>
                         <li><a href="./">Home</a></li>
                         <li><a href="ecommerce">E-commerce</a></li>
-                        <li>API</li>
+                        <li><a href="api-doc">API</a></li>
                     </ul>
                 </div>
                 <div class="col-md-3 col-sm">

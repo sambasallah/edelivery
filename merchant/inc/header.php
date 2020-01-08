@@ -13,12 +13,14 @@
         <script type="text/javascript" src="assets/js/Chart.min.js"></script>
 		<script type="text/javascript" src="assets/js/merchant.js"></script>
 		<script type="text/javascript" src="assets/js/jquery.datetimepicker.full.min.js"></script>
+		<script type="text/javascript" src="assets/js/prism.js"></script>
 		
 		<!-- style -->
 		<link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.min.css">	
 		<link rel="stylesheet" type="text/css" href="../assets/css/all.min.css">  	
         <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 		<link rel="stylesheet" type="text/css" href="assets/css/jquery.datetimepicker.css">
+		<link rel="stylesheet" type="text/css" href="assets/css/prism.css">
 </head>
 <body>
     

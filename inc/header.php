@@ -13,6 +13,7 @@
 		<script type="text/javascript" src="assets/js/jquery.flexslider.js"></script>
 		<script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="assets/slick/slick.min.js"></script>
+		<script type="text/javascript" src="assets/js/prism.js"></script>
 		
 	
 		<!-- style -->
@@ -20,8 +21,7 @@
 		<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="assets/css/style.css">	
 		<link rel="stylesheet" type="text/css" href="assets/css/all.min.css">
-		<link rel="stylesheet" type="text/css" href="assets/slick/slick.css">
-		<link rel="stylesheet" type="text/css" href="assets/slick/slick-theme.css">		
+		<link rel="stylesheet" type="text/css" href="assets/css/prism.css">
 	
 </head>
 <body>

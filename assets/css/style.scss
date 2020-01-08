@@ -835,6 +835,37 @@ footer {
 	font-weight: 300px;
 }
 
+/** API Documentation **/
+
+.api_doc {
+	width: 100%;
+	background-color: #f5f5f5;
+	padding: 30px 0px;
+}
+
+.api_doc .api_doc_container {
+	width: 80%;
+	margin: auto;
+	padding: 20px 9px;
+	background-color: #fff;
+	border-radius: 3px;
+}
+
+.api_doc_container .request_method {
+	color: $yellow;
+}
+
+.api_doc_container .route {
+	margin: 15px 0px;
+	word-break: break-all;
+	border: 1px solid #e6e6e6;
+	padding: 6px 10px;
+	border-radius: 3px;
+	font-size: 12px;
+	color: #282828;
+	background-color: #f8f8f8;
+}
+
 /** media query **/
 
 @media screen and (min-width: 320px) and (max-width: 480px) {

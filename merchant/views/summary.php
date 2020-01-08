@@ -10,6 +10,8 @@
                    <h2>Delivery Requests</h2>
                    <?php if(isset($_SESSION['canceled_request'])) { echo $_SESSION['canceled_request']; }?>
                    <?php if(isset($_SESSION['request_cancel_error'])) { echo $_SESSION['request_cancel_error']; }?>
+                   <?php if(isset($_SESSION['acknowledged'])) { echo $_SESSION['acknowledged'];  unset($_SESSION['acknowledged']); }?>
+                   <?php if(isset($_SESSION['error_acknowledged'])) { echo $_SESSION['error_acknowledged']; unset($_SESSION['error_acknowledged']); }?>
                     <?php if(empty($delivery_summary)) : ?>
                         <h4>No Delivery Request Made</h4>
                     <?php else : ?>

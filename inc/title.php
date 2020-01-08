@@ -38,4 +38,8 @@
 
 <title>Privacy Policy | Delivery service for ecommerce and restaurants</title>
 
+<?php elseif( basename($_SERVER['SCRIPT_NAME']) == 'api-doc.php') : ?>
+
+<title>API DOCUMENTATION | Delivery service for ecommerce and restaurants</title>
+
 <?php endif; ?>

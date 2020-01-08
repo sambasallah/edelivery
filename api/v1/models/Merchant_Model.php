@@ -22,6 +22,57 @@ class Merchant_Model {
         return $this->checkLoginDetails($usernameOREmail,$password);
     }
 
+    /**
+     * @param $data - string
+     * @return bool
+     */
+    public function validateInterUser(array $data) : bool {
+        \extract($data);
+
+        if($this->usernameAndTokenExists($usernameOREmail, $token)) {
+            return true;
+        }
+
+        return false;
+    }
+
+     /**
+     * @param $username - string
+     * @return bool
+     * - Checks whether username exists
+     */
+    private function usernameExists(string $usernameOREmail) : bool {
+        $this->conn->prepareQuery("SELECT * FROM merchant WHERE username = :username OR email = :userEmail AND NOT NULL jwt-token"); 
+        $this->conn->bind(":username",$usernameOREmail);
+        $this->conn->bind(":userEmail", $usernameOREmail);
+
+        $this->conn->executeQuery();
+
+        if($this->conn->rows() == 1) {
+            return true;
+        }
+        
+        return false;
+    }
+
+    /**
+     * @param $email - string
+     * @return bool
+     * - Checks whether user email exists
+     */
+    private function emailExists(string $email) : bool {
+        $this->conn->prepareQuery("SELECT * FROM merchant WHERE email = :email"); 
+        $this->conn->bind(":email",$email);
+
+        $this->conn->executeQuery();
+
+        if($this->conn->rows() == 1) {
+            return true;
+        }
+
+        return false;
+    }
+
      /**
      * @param emailORusername - string
      * @param password - string
@@ -72,6 +123,58 @@ class Merchant_Model {
 
         return intval($this->conn->getResult()->merchant_id);
     }
+
+    /**
+     * @param $request_id - int
+     * - cancels a delivery request
+     */
+    public function cancelDeliveryRequest(int $request_id, int $merchant_id) : bool {
+        $refund_amount = $this->getRefundAmount($request_id);
+        $this->conn->prepareQuery("DELETE FROM delivery_requests WHERE id = :request_id");
+        $this->conn->bind(":request_id", $request_id);
+        if($this->conn->executeQuery()) {
+            $this->refund($refund_amount,$merchant_id);
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * @param $request_id - int
+     * @return int
+     * - gets the amount to refund
+     */
+    private function getRefundAmount(int $request_id) : int {
+        $this->conn->prepareQuery("SELECT rate FROM delivery_requests INNER JOIN delivery_rates ON delivery_requests.rate_id = delivery_rates.rate_id WHERE id = :request_id");
+        $this->conn->bind(":request_id",$request_id);
+        $this->conn->executeQuery();
+
+        $result = $this->conn->getResult();
+
+        return intval($result->rate);
+    }
+
+    /**
+     * @param $amount - int
+     * @param $merchant_id - int
+     * @return bool
+     * - refund the amount
+     */
+    private function refund(int $amount, int $merchant_id) : bool {
+        $account_balance = $this->getAccountBalance($merchant_id);
+        $account_balance += $amount;
+        $this->conn->prepareQuery("UPDATE merchant SET account_balance = :new_balance WHERE merchant_id = :merchant_id");  
+        $this->conn->bind(":new_balance",$account_balance);
+        $this->conn->bind(":merchant_id",$merchant_id);
+        
+        if($this->conn->executeQuery()) {
+            return true;
+        }
+
+        return false;
+    }
+
 
     /**
      * @param $request_id - int

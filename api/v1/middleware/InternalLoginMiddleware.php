@@ -7,10 +7,9 @@ use Psr\Http\Server\RequestHandlerInterface as RequestHandler;
 use Slim\Psr7\Response;
 use edelivery\api\v1\database\Database;
 use edelivery\api\v1\models\Merchant_Model;
-use ReallySimpleJWT\Token;
 
 
-class LoginMiddleware {
+class InternalLoginMiddleware {
 
     public function __invoke(Request $request, RequestHandler $handler): Response {
         $response = $handler->handle($request);
@@ -28,7 +27,7 @@ class LoginMiddleware {
                 $database = new Database();
                 $merchant = new Merchant_Model($database);
 
-                if($merchant->userExists($post_data)) {
+                if($merchant->validateInterUser($post_data)) {
                     $response->getBody()->write($existingContent);
                     return $response->withHeader("Content-Type", "application/json");
                 }

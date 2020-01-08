@@ -41,6 +41,22 @@
                             <li><h4>Vehicle Type : <?= $delivery_information->vehicle_type; ?></h4></li>
                         </ul>
                     </div>
+                   <?php if($delivery_information->received == "Yes") : ?>
+                        <div class="acknowledge_delivery">
+                            <h2>Acknowledge Delivery</h2>
+                            <form action="" method="post">
+                                <input type="submit" value="Acknowledged" class="btn btn-success" disabled>
+                            </form>
+                        </div>
+                   <?php else :  ?>
+                        <div class="acknowledge_delivery">
+                            <h2>Acknowledge Delivery</h2>
+                            <form action="" method="post">
+                                <input type="submit" value="Acknowledge" class="btn btn-success" name="acknowledge">
+                                <input type="hidden" value="<?= $delivery_information->id; ?>" name="request_id">
+                            </form>
+                        </div>
+                   <?php endif; ?>
                 </div>
             </div>
         </div>
