@@ -21,10 +21,8 @@ $helper_functions = new Functions();
 if($helper_functions->isAdminLoggedIn()) {
     
     if($helper_functions->isPost() && isset($_POST['approve'])) {
-        $total_earnings = $partner->getTotalEarnings($_POST['partner_id']);
         $total_withdrawals = intval($_POST['withdrawal_amount']) + $admin->getTotalWithdrawals($_POST['partner_id']);
         $data = array(
-            "total_earnings" => $total_earnings,
             "withdrawal_amount" => $_POST['withdrawal_amount'],
             "total_withdrawals" => $total_withdrawals
         );

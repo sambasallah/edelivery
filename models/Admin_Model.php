@@ -479,7 +479,6 @@ class Admin_Model {
      */
     public function approveWithdrawal(array $data, int $partner_id) : void {
         \extract($data);
-        $balance = intval($total_earnings) - intval($withdrawal_amount);
         $this->conn->prepareQuery("UPDATE partner SET
                                                     withdrawals = :withdrawal
                                                          WHERE partner_id = :id");

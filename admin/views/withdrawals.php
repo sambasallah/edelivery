@@ -17,8 +17,7 @@
                         <th>Withdrawal Amount</th>
                         <th>Account Number</th>
                         <th>BBAN Number</th>
-                        <th text-align="left">Approve</th>
-                        <th>Reject</th>
+                        <th>Approve</th>
                     </thead>
                     <tbody>
                         <?php foreach($withdrawals as $withdrawal) : ?>
@@ -38,16 +37,6 @@
                                     <input type="hidden" name="withdrawal_amount" value="<?= $withdrawal->withdrawal_amount; ?>">
                                 </form>
                                <?php endif; ?>
-                            </td>
-                            <td>
-                                <?php if($withdrawal->request_status == "Approved") : ?>
-                                    <input type="submit" value="Reject" disabled class="btn btn-danger btn-sm">
-                                <?php else : ?>
-                                    <form action="" method="post">
-                                   <input type="submit" value="Reject" name="reject" class="btn btn-danger btn-sm">
-                                   <input type="hidden" value="<?= $withdrawal->partner_id; ?>" name="partner_id">
-                                </form>
-                                <?php endif; ?>
                             </td>
                         </tr>
                         <?php endforeach; ?>

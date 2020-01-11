@@ -412,8 +412,10 @@ class Partner_Model {
      */
     private function isBalanceSufficient(string $amount, int $current_user) : bool {
         $account_balance = $this->getTotalEarnings($current_user);
-        $balance = intval($account_balance) - intval($amount);
-        if($balance > 0) {
+        $total_withdrawals = $this->getTotalWithdrawals($current_user);
+        $balance = intval($account_balance) - intval($total_withdrawals);
+
+        if($balance >= $amount) {
             return true;
         }
         return false;
