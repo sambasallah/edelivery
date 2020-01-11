@@ -12,21 +12,25 @@ if($_SESSION['merchant_logged_in'] === TRUE) {
     $template = new Template('views/generate-api.php');
 
     if($helper_functions->isPost()) {
-        $url = 'http://localhost:8001/api/v1/internal/login';
-        $data = array("usernameOREmail" => $_SESSION['user']);
+        $url = 'http://localhost:8000/api/v1/internal/login';
 
         // use key 'http' even if you send the request to https://...
         $options = array(
             'http' => array(
                 'header'  => "Content-type: application/json",
-                'method'  => 'POST',
-                'contents' => http_build_query($data)
+                'method'  => 'GET'
             )
         );
         $context  = stream_context_create($options);
         $result = @file_get_contents($url, false, $context);
         if ($result === FALSE) { 
-            $template->error = "<pre><code class='language-json5'>{'Error': 'No connection could be made because the target machine actively refused it.'}</code></pre>";
+            $template->error = "
+            <pre>
+            <code class='language-json5'>
+            
+            {'Error': 'No connection could be made because the target machine actively refused it.'}</code>
+            
+            </pre>";
          }
 
         $template->data = $result;

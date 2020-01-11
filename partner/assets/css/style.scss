@@ -67,7 +67,7 @@ $grey : grey;
     cursor: pointer;
 }
 
-.dashboard_menu ul li i.fa.fa-tachometer-alt, i.fa.fa-truck, i.fa.fa-money-bill-alt, i.fa.fa-user, i.fa.fa-book, i.fa.fa-edit {
+.dashboard_menu ul li i.fa.fa-tachometer-alt, i.fa.fa-truck, i.fa.fa-money-bill-alt, i.fa.fa-money-bill, i.fa.fa-user, i.fa.fa-book, i.fa.fa-edit, i.fa.fa-trash {
     color: $secondary_color;
 }
 
@@ -288,4 +288,38 @@ $grey : grey;
 
 .arrival_time_container .right h2 {
     padding: 15px 0px;
+}
+
+/** Withdrawal Request **/
+.withdrawal_request {
+    position: relative;
+    width: 100%;
+    background-color: #f5f5f5;
+    height: 100vh
+}
+
+.withdrawal_request .withdrawal_request_container {
+    width: 97%;
+    margin: auto;
+}
+
+.withdrawal_request_container h3 {
+    padding: 20px 0px;
+}
+
+/** Withdrawal summary **/
+.withdrawals {
+    position: relative;
+    width: 100%;
+    background-color: #f5f5f5;
+    height: 100vh
+}
+
+.withdrawals .withdrawals_container {
+    width: 97%;
+    margin: auto;
+}
+
+.withdrawals_container h3 {
+    padding: 20px 0px;
 }

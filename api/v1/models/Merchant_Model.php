@@ -22,19 +22,6 @@ class Merchant_Model {
         return $this->checkLoginDetails($usernameOREmail,$password);
     }
 
-    /**
-     * @param $data - string
-     * @return bool
-     */
-    public function validateInterUser(array $data) : bool {
-        \extract($data);
-
-        if($this->usernameAndTokenExists($usernameOREmail, $token)) {
-            return true;
-        }
-
-        return false;
-    }
 
      /**
      * @param $username - string

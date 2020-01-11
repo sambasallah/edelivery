@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 24, 2019 at 12:02 AM
+-- Generation Time: Jan 08, 2020 at 02:24 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.4.0
 
@@ -37,6 +37,13 @@ CREATE TABLE `admin` (
   `password` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `role` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`id`, `first_name`, `last_name`, `email`, `username`, `password`, `role`) VALUES
+(6, 'Samba', 'Sallah', 'sambasallah10@gmail.com', 'sambasallah', '$argon2id$v=19$m=2048,t=4,p=4$TE9HY1UyYjVkcEpkUTBaaQ$sCU7/EcSaaby83e9kbSTZjrWOGRAiBf+X5oe0BCfBco', 'admin');
 
 -- --------------------------------------------------------
 
@@ -84,15 +91,62 @@ CREATE TABLE `delivery_requests` (
   `request_status` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `partner_id` int(11) DEFAULT NULL,
   `merchant_id` int(11) DEFAULT NULL,
-  `rate_id` int(11) DEFAULT NULL
+  `rate_id` int(11) DEFAULT NULL,
+  `delivery_note` text COLLATE utf8_unicode_ci NOT NULL,
+  `payment_method` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `arrival_time` datetime NOT NULL,
+  `received` varchar(255) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `delivery_requests`
 --
 
-INSERT INTO `delivery_requests` (`id`, `to_location`, `from_location`, `receipient_name`, `receipient_mobile_number`, `receipient_address`, `sender_name`, `sender_mobile_number`, `sender_address`, `pick_up_date`, `package_type`, `package_size`, `request_time`, `request_status`, `partner_id`, `merchant_id`, `rate_id`) VALUES
-(58, 'Serrekunda', 'Banjul', 'Lamin Fatty', '3911176', 'London corner, Serrekunda', 'Lamin Saidykhan', '3911176', 'London corner, Serrekunda', '2019/12/23 23:00', 'Electronics', 'Small', '2019-12-23 21:14:00', 'Pending', NULL, 1, 2);
+INSERT INTO `delivery_requests` (`id`, `to_location`, `from_location`, `receipient_name`, `receipient_mobile_number`, `receipient_address`, `sender_name`, `sender_mobile_number`, `sender_address`, `pick_up_date`, `package_type`, `package_size`, `request_time`, `request_status`, `partner_id`, `merchant_id`, `rate_id`, `delivery_note`, `payment_method`, `arrival_time`, `received`) VALUES
+(68, 'Serrekunda', 'Banjul', 'Lamin Fatty', '3911176', 'London corner, Serrekunda', 'Lamin Cham', '3911176', 'London corner, Serrekunda', '2020/01/21 01:17', 'Furniture', 'Small', '2020-01-01 01:21:18', 'Delivered', 3, 4, 2, 'Testing', 'Cash On Delivery', '0000-00-00 00:00:00', ''),
+(69, 'Serrekunda', 'Banjul', 'Buba', '3911176', 'London corner, Serrekunda', 'Foday Sanneh', '3911176', 'London corner, Serrekunda', '2020/01/21 01:35', 'Electronics', 'Medium', '2020-01-01 01:35:57', 'Delivered', 3, 4, 2, 'This is for testing', 'Cash On Delivery', '0000-00-00 00:00:00', ''),
+(70, 'Serrekunda', 'Banjul', 'Lamin Fatty', '3911176', 'London corner, Serrekunda', 'Lamin Mballo', '3911176', 'London corner, Serrekunda', '2020/01/21 11:21', 'Electronics', 'Large', '2020-01-08 12:31:01', 'Delivered', 3, 4, 2, '', 'Cash On Delivery', '2020-01-03 21:00:00', 'Yes'),
+(71, 'Serrekunda', 'Banjul', 'Lamin Fatty', '3911176', 'London corner, Serrekunda', 'Lamin Cham', '3911176', 'London corner, Serrekunda', '2020/01/25 21:01', 'Furniture', 'Medium', '2020-01-08 12:45:05', 'Delivered', 3, 4, 2, 'Testing delivery note', 'Cash On Delivery', '2020-01-04 12:09:00', 'Yes'),
+(72, 'Serrekunda', 'Serrekunda', 'Lamin Fatty', '3911176', 'London corner, Serrekunda', 'Buba Jallo', '3911176', 'London corner, Serrekunda', '2020/01/18 03:00', 'Furniture', 'Medium', '2020-01-08 12:51:56', 'Delivered', 4, 4, 3, 'This is for testing', 'Cash On Delivery', '2020-01-03 02:00:00', 'Yes'),
+(73, 'Serrekunda', 'Banjul', 'Lamin Fatty', '3911176', 'London corner, Serrekunda', 'Samba Sallah', '3911176', 'London corner, Serrekunda', '2020/01/02 21:00', 'Furniture', 'Large', '2020-01-08 12:29:04', 'Delivered', 3, 4, 2, 'This is for testing', 'Cash On Delivery', '2020-01-11 21:57:00', 'Yes'),
+(74, 'Serrekunda', 'Serrekunda', 'Lamin Fatty', '3911176', 'London corner, Serrekunda', 'Samba Sallah', '3911176', 'London corner, Serrekunda', '2020/01/25 17:43', 'Furniture', 'Medium', '2020-01-08 12:24:02', 'Delivered', 3, 4, 3, 'Testing', 'Cash On Delivery', '0000-00-00 00:00:00', 'Yes'),
+(75, 'Serrekunda', 'Banjul', 'Lamin Fatty', '3911176', 'London corner, Serrekunda', 'Samba Sallah', '3911176', 'London corner, Serrekunda', '2020/01/25 17:44', 'Electronics', 'Large', '2020-01-08 12:17:26', 'Delivered', 3, 4, 2, 'Testing note', 'Cash On Delivery', '0000-00-00 00:00:00', 'Yes'),
+(85, 'Serrekunda', 'Serrekunda', 'Saikou Marong', '4253867', 'London corner', 'Fatou Jaiteh', '3207726', 'Bakoteh Layout', '2020/01/8 13:45', 'Electronics', 'Medium', '2020-01-08 12:22:04', 'Delivered', 3, 4, 3, 'Pick it up at my office', 'Cash On Delivery', '2020-01-04 02:00:00', 'Yes'),
+(86, 'Serrekunda', 'Serrekunda', 'Saikou Marong', '4253867', 'London corner', 'Fatou Jaiteh', '3207726', 'Bakoteh Layout', '2020/01/8 13:45', 'Electronics', 'Medium', '2020-01-08 12:19:02', 'Delivered', 3, 4, 3, 'Pick it up at my office', 'Cash On Delivery', '2020-01-25 21:48:00', 'Yes');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `earnings`
+--
+
+CREATE TABLE `earnings` (
+  `to_location` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `from_location` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `package_size` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `package_type` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `rate` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `earned` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `partner_id` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `request_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `earnings`
+--
+
+INSERT INTO `earnings` (`to_location`, `from_location`, `package_size`, `package_type`, `rate`, `earned`, `partner_id`, `request_time`) VALUES
+('Serrekunda', 'Banjul', 'Small', 'Furniture', '500', '350', '3', '2020-01-01 01:21:18'),
+('Serrekunda', 'Banjul', 'Medium', 'Electronics', '500', '350', '3', '2020-01-01 01:35:57'),
+('Serrekunda', 'Banjul', 'Large', 'Electronics', '500', '350', '3', '2020-01-01 11:22:25'),
+('Serrekunda', 'Banjul', 'Medium', 'Furniture', '500', '350', '3', '2020-01-01 21:02:26'),
+('Serrekunda', 'Serrekunda', 'Medium', 'Furniture', '150', '105', '4', '2020-01-01 23:38:06'),
+('Serrekunda', 'Banjul', 'Large', 'Electronics', '500', '350', '3', '2020-01-02 12:09:42'),
+('Serrekunda', 'Banjul', 'Large', 'Furniture', '500', '350', '3', '2020-01-02 22:05:13'),
+('Serrekunda', 'Serrekunda', 'Medium', 'Furniture', '150', '105', '3', '2020-01-03 16:50:02'),
+('Serrekunda', 'Banjul', 'Large', 'Electronics', '500', '350', '3', '2020-01-03 16:50:09'),
+('Serrekunda', 'Serrekunda', 'Medium', 'Electronics', '150', '105', '3', '2020-01-03 23:35:42'),
+('Serrekunda', 'Serrekunda', 'Medium', 'Electronics', '150', '105', '3', '2020-01-06 21:41:19');
 
 -- --------------------------------------------------------
 
@@ -115,16 +169,17 @@ CREATE TABLE `merchant` (
   `business_email` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `business_phone` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `account_balance` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `total_spent` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL
+  `total_spent` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `jwt-token` text COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `merchant`
 --
 
-INSERT INTO `merchant` (`merchant_id`, `first_name`, `middle_name`, `last_name`, `username`, `password`, `email`, `dob`, `address`, `business_name`, `business_location`, `business_email`, `business_phone`, `account_balance`, `total_spent`) VALUES
-(1, 'Samba', '', 'Sallah', 'sambasallah10', '$argon2id$v=19$m=2048,t=2,p=4$TVRaWndwZEtVWkVTRTZUVw$bCwtl6cNb7+pvm4ZNdcP4YLhOi7xEvoMT1hZDCKaQYQ', 'sambasallah10@gmail.com', '1996-12-29', 'London corner, Serrekunda', 'eBaaba', 'eBaaba', 'sambasallah10@gmail.com', '3911176', '12896', '1000'),
-(2, 'admin', '', 'admin', 'admin', '$argon2id$v=19$m=2048,t=2,p=4$LzJXdHJrTXdEc2hFVWxkNw$6CabvdUz8BdZRCuQeYl+WMobyH1DcHy5xNRmCVmW4vI', 'admin@admin.com', NULL, NULL, NULL, NULL, NULL, NULL, '350', '300');
+INSERT INTO `merchant` (`merchant_id`, `first_name`, `middle_name`, `last_name`, `username`, `password`, `email`, `dob`, `address`, `business_name`, `business_location`, `business_email`, `business_phone`, `account_balance`, `total_spent`, `jwt-token`) VALUES
+(4, 'samba', '', 'sallah', 'sambasallah', '$argon2id$v=19$m=2048,t=4,p=4$c2xESnUxeVdYNERLWnVBZw$hpFWs0bHjXMmwnQ0sgCaZcoAh11iR7HMa+kvAdi1VXY', 'sambasallah10@gmail.com', '2015-02-01', 'London Corner', 'eBaaba', 'Brusubi Phase 2 ', 'info@ebaaba.com', '3911176', '6900', '3900', ''),
+(5, 'merchant', '', 'merchant', 'merchant', '$argon2id$v=19$m=2048,t=4,p=4$c1J5ZGU1SlMwL3JWREV2MA$0P2SugmZDzyohECQ5v+qBtxBB6U0xRsRn5eDG45wDjo', 'merchant@merchant.com', NULL, NULL, NULL, NULL, NULL, NULL, '10000', NULL, '');
 
 -- --------------------------------------------------------
 
@@ -135,28 +190,28 @@ INSERT INTO `merchant` (`merchant_id`, `first_name`, `middle_name`, `last_name`,
 CREATE TABLE `partner` (
   `partner_id` int(11) NOT NULL,
   `first_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `middle_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `last_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `username` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `password` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `phone_number` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `dob` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `address` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `national_id` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `drivers_license` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `earnings` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `withdrawals` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `account_status` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `arrival_time` datetime NOT NULL
+  `municipality` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `license` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `national_document` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `vehicle_type` varchar(255) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `partner`
 --
 
-INSERT INTO `partner` (`partner_id`, `first_name`, `middle_name`, `last_name`, `username`, `password`, `email`, `phone_number`, `dob`, `address`, `national_id`, `drivers_license`, `earnings`, `withdrawals`, `account_status`, `arrival_time`) VALUES
-(1, 'Lamin', '', 'Sillah', 'laminsillah', '1234', 'lamin@sillah.com', '+2203911186', '30/12/1996', 'Latrikunda, German, the Gambia', 'ID National', 'Drivers License', '20000', '10000', 'Active', '2019-11-27 06:00:00');
+INSERT INTO `partner` (`partner_id`, `first_name`, `last_name`, `username`, `password`, `email`, `phone_number`, `address`, `earnings`, `withdrawals`, `account_status`, `municipality`, `license`, `national_document`, `vehicle_type`) VALUES
+(3, 'samba', 'sallah', 'sambasallah', '$argon2id$v=19$m=2048,t=4,p=4$dWNCYUlTN3pIQmsxL2lwMg$uZLufeXsE+1raGjJm+fsURfFrYFQcRnYSZM0qE18Ato', 'sambasallah10@gmail.com', '3911176', '', '7420', '0', 'Approved', 'KMC', 'drivers_license1135881988.jpg', 'national_id851042153.jpg', ''),
+(4, 'Lamin ', 'Cham', 'lamincham', '$argon2id$v=19$m=2048,t=4,p=4$d0hGMjEzckhWRHowQ0Y1UQ$eTLNtij/U2hyCDeUfKhS1dxptyKOSifpt2l4r5BetHc', 'lamincham@gmail.com', '7506442', '', '105', '0', 'Approved', 'BAC', 'drivers_license1303260740.jpg', 'national_id1261232944.jpg', 'Pick Up');
 
 --
 -- Indexes for dumped tables
@@ -203,7 +258,7 @@ ALTER TABLE `partner`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `delivery_rates`
@@ -215,19 +270,19 @@ ALTER TABLE `delivery_rates`
 -- AUTO_INCREMENT for table `delivery_requests`
 --
 ALTER TABLE `delivery_requests`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
 
 --
 -- AUTO_INCREMENT for table `merchant`
 --
 ALTER TABLE `merchant`
-  MODIFY `merchant_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `merchant_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `partner`
 --
 ALTER TABLE `partner`
-  MODIFY `partner_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `partner_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables

@@ -19,4 +19,8 @@
                         <li><a href="users">Users</a></li>
                         <li><i class="fa fa-user"></i></li>
                     </ul>
+                    <ul>
+                        <li><a href="withdrawals">Withdrawals</a></li>
+                        <li><i class="fa fa-money-bill"></i></li>
+                    </ul>
                 </div>

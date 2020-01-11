@@ -19,7 +19,7 @@
                         <h5>National Document : <a href="<?= '../public/uploads/documents/'. $partner_info->national_document; ?> ">View</a></h5>
                     </div>
                     <form action="" method="post">
-                       <?php if($partner_info->account_status == "Pending") : ?>
+                       <?php if($partner_info->account_status == "Under Review") : ?>
                             <input type="submit" value="Approve" name="approve" class="btn btn-success">
                         <?php else : ?>
                             <input type="submit" value="Revoke" name="revoke" class="btn btn-success">

@@ -22,10 +22,20 @@ class Partner_Model {
         $response = $this->checkLoginDetails($usernameOREmail,$password);
 
         if($response) {
-            $_SESSION['partner_logged_in'] = TRUE;
-            $_SESSION['user'] = $usernameOREmail;
-            \header("location:partner");
-        }else{
+            $partner_id = $this->getPartnerID($usernameOREmail);
+            if($this->isAccountApproved($partner_id)) {
+                $_SESSION['partner_logged_in'] = TRUE;
+                $_SESSION['user'] = $usernameOREmail;
+                \header("location:partner");
+            } else {
+                $_SESSION['under_review'] = 
+                "<div class='alert alert-danger alert-dismissible' style='margin-top: 30px; '>
+                <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
+                    <strong>Under Review!</strong> 
+                </div>";
+                \header("location:login");
+            }
+        }else {
             $_SESSION['invalid_credentials'] = 
             "<div class='alert alert-danger alert-dismissible' style='margin-top: 30px; '>
             <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
@@ -35,6 +45,24 @@ class Partner_Model {
         }
     }
     
+    /**
+     * @param $usernameOREmail - string
+     * @return bool
+     */
+    public function isAccountApproved(int $partner_id) : bool {
+        $this->conn->prepareQuery("SELECT * FROM partner WHERE partner_id = :id AND account_status = :status");
+        $this->conn->bind(":status","Approved");
+        // $this->conn->bind(":username",$usernameOREmail);
+        $this->conn->bind(":id",$partner_id);
+
+        $this->conn->executeQuery();
+
+        if($this->conn->rows() == 1) {
+            return true;
+        }
+
+        return false;
+    }
 
     public function registerPartner(array $data,array $national_document, array $valid_drivers_license) : void {
         \extract($data);
@@ -77,7 +105,7 @@ class Partner_Model {
                 $this->conn->bind(":email_address",$email_address);
                 $this->conn->bind(":username", $username);
                 $this->conn->bind(":password", $password);
-                $this->conn->bind(":status","Pending");
+                $this->conn->bind(":status","Under Review");
                 $this->conn->bind(":municipality", $municipality);
                 $this->conn->bind(":phone",$phone_number);
                 $this->conn->bind(":license", $drivers_license);
@@ -230,6 +258,180 @@ class Partner_Model {
         }
         \header("location:delivery-requests");
 
+    }
+
+    /**
+     * @param $data - array
+     * @param $partner_id - int
+     */
+    public function requestWithdrawal(array $data, int $partner_id) : void {
+        \extract($data);
+        if($this->isBalanceSufficient($amount, $partner_id)) {
+            $this->conn->prepareQuery('INSERT INTO withdrawal_requests
+                                                                SET
+                                                                name = :name,
+                                                                withdrawal_amount = :amount,
+                                                                bank_name = :bank,
+                                                                account_number = :account,
+                                                                bban_number = :bban,
+                                                                request_status = :status,
+                                                                partner_id = :id');
+            $this->conn->bind(":name",$name);
+            $this->conn->bind(":amount",$amount);
+            $this->conn->bind(":bank",$bank_name);
+            $this->conn->bind(":account",$account_number);
+            $this->conn->bind(":bban",$bban_number);
+            $this->conn->bind(":id",$partner_id);
+            $this->conn->bind(":status","Under Review");
+
+            if($this->conn->executeQuery()) {
+                $_SESSION['withdrawal_request'] = 
+                "<div class='alert alert-success alert-dismissible'>
+                <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
+                <strong>Success!</strong> withdrawal request sent.
+            </div>";
+                \header("location:dashboard");
+            } else {
+                $_SESSION['withdrawal_error'] = 
+            "<div class='alert alert-danger alert-dismissible'>
+            <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
+            <strong>Error!</strong> request cannot be sent.
+             </div>";
+        \header("location:dashboard");
+            }
+        } else {
+            $_SESSION['insufficient_balance'] = 
+            "<div class='alert alert-danger alert-dismissible'>
+            <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
+            <strong>Error!</strong> withdrawal amount is more than your account balance.
+             </div>";
+            \header("location:dashboard");
+        }
+
+        
+    }
+
+    public function updateWithdrawalRequest(array $data, int $partner_id) : void {
+        \extract($data);
+        if($this->isBalanceSufficient($amount,intval($partner_id))) {
+            $this->conn->prepareQuery("UPDATE withdrawal_requests 
+                                                        SET
+                                                        name = :name,
+                                                        withdrawal_amount = :amount,
+                                                        bank_name = :bank,
+                                                        bban_number = :bban,
+                                                        account_number = :account WHERE partner_id = :id");
+        $this->conn->bind(":name",$name);
+        $this->conn->bind(":amount",$amount);
+        $this->conn->bind(":bank",$bank_name);
+        $this->conn->bind(":bban",$bban_number);
+        $this->conn->bind(":account", $account_number);
+        $this->conn->bind(":id",$partner_id);
+
+        if($this->conn->executeQuery()) {
+            $_SESSION['update_success'] = 
+            "<div class='alert alert-success alert-dismissible'>
+            <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
+            <strong>Success!</strong> withdrawal request updated.
+        </div>";
+            \header('location:withdrawals');
+        } else {
+            $_SESSION['balance_error'] = 
+            "<div class='alert alert-danger alert-dismissible'>
+            <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
+            <strong>Error!</strong> there was an error...
+        </div>";
+            \header('location:withdrawals');
+            }
+        } else {
+            $_SESSION['update_error'] = 
+        "<div class='alert alert-danger alert-dismissible'>
+        <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
+        <strong>Error!</strong> withdrawal amount is greater than balance.
+    </div>";
+        \header('location:withdrawals');
+        }
+    }
+
+    public function deleteWithdrawalRequest(int $request_id) : void {
+        $this->conn->prepareQuery('DELETE FROM withdrawal_requests WHERE id = :id'); 
+        $this->conn->bind(":id",$request_id);
+
+        if($this->conn->executeQuery()) {
+            $_SESSION['delete_success'] = 
+            "<div class='alert alert-success alert-dismissible'>
+            <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
+            <strong>Success!</strong> deleted successfully.
+        </div>";
+        \header("location:withdrawals");
+        } else {
+            $_SESSION['delete_error'] = 
+        "<div class='alert alert-danger alert-dismissible'>
+        <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
+        <strong>Error!</strong> there was an error.
+    </div>";
+    \header("location:withdrawals");
+        }
+
+        
+    }
+
+    /**
+     * @param $request_id - int
+     * @return object
+     */
+    public function getWithdrawalRequest(int $request_id) : object {
+        $this->conn->prepareQuery("SELECT * FROM withdrawal_requests WHERE id = :id");
+        $this->conn->bind(":id",$request_id);
+
+        if($this->conn->executeQuery()) {
+            return $this->conn->getResult();
+        }
+    }
+
+    /**
+     * @param $partner_id - int
+     * @return bool
+     */
+    public function idExists(int $partner_id) : bool {
+        $this->conn->prepareQuery("SELECT * FROM withdrawal_requests WHERE id = :id");
+        $this->conn->bind(":id",$partner_id);
+
+        $this->conn->executeQuery();
+
+        if($this->conn->rows() == 1) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * @param $current_user - int
+     * @return bool
+     */
+    private function isBalanceSufficient(string $amount, int $current_user) : bool {
+        $account_balance = $this->getTotalEarnings($current_user);
+        $balance = intval($account_balance) - intval($amount);
+        if($balance > 0) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * @param $partner_id - int
+     * @return array
+     */
+    public function getWithdrawals(int $partner_id) : array {
+        $this->conn->prepareQuery('SELECT * FROM withdrawal_requests WHERE partner_id = :id');
+        $this->conn->bind(":id",$partner_id);
+
+        if($this->conn->executeQuery()) {
+            return $this->conn->getResults();
+        }
+
+        return [];
     }
     
     /**
@@ -421,7 +623,7 @@ class Partner_Model {
 
         $balance = intval($total_earnings) - intval($total_withdrawals);
 
-        return strval($balance);
+        return strval(abs($balance));
     }
 
     /**

@@ -8,6 +8,9 @@
             </div>
             <div class="col-md-9">
                 <div class="analytics">
+                    <?php if(isset($_SESSION['withdrawal_request'])) { echo $_SESSION['withdrawal_request']; unset($_SESSION['withdrawal_request']); } ?>
+                    <?php if(isset($_SESSION['withdrawal_error'])) { echo $_SESSION['withdrawal_error']; unset($_SESSION['withdrawal_error']); } ?>
+                    <?php if(isset($_SESSION['insufficient_balance'])) { echo $_SESSION['insufficient_balance']; unset($_SESSION['insufficient_balance']); } ?>
                     <div class="row">
                         <div class="col-md-4">  
                             <div class="earnings">

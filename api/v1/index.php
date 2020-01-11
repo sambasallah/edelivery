@@ -109,7 +109,7 @@ $app->group('/api/v1', function (RouteCollectorProxy $group) {
     })->add(new LoginMiddleware());
 
     // Login Merchant
-    $group->post('/internal/login', function (Request $request, Response $response, $args) {
+    $group->get('/internal/login', function (Request $request, Response $response, $args) {
             
         $token = new Token;
         $userId = 2587258272;
@@ -119,12 +119,12 @@ $app->group('/api/v1', function (RouteCollectorProxy $group) {
 
         $token = Token::create($userId, $secret, $expiration, $issuer);
 
-        $response->getBody()->write(json_encode(array("Login" => "Successful", "JWT" => $token, "Status Code" => \http_response_code(200))));
+        $response->getBody()->write(json_encode(array("Login" => "Successful", "JWT" => $token, "Status Code" => \http_response_code(200)),JSON_PRETTY_PRINT));
         $response = $response->withHeader("Content-Type", "application/json");
         $response = $response->withHeader('Access-Control-Allow-Origin', '*');
 
         return $response;
-    })->add(new InternalLoginMiddleware());
+    });
 
 });
 

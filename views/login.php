@@ -17,6 +17,7 @@
 <div class="tab-content">
   <div class="tab-pane active container" id="merchant">
     <?php if(isset($_SESSION['invalid_credentials'])) { echo $_SESSION['invalid_credentials']; } ?>
+    <?php if(isset($_SESSION['under_review'])) { echo $_SESSION['under_review']; } ?>
   <h5>Merchant Login</h5>
         <form action="" method="post">
             <input type="text" class="form-control" name="username_or_email" placeholder="Username or Email" required>

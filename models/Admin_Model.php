@@ -459,12 +459,85 @@ class Admin_Model {
     }
 
     /**
+     * @param $partner_id - int
+     * @return string
+     */
+    public function getTotalWithdrawals(int $partner_id) : string {
+        $this->conn->prepareQuery("SELECT withdrawals FROM partner WHERE partner_id = :id");
+        $this->conn->bind(":id",$partner_id);
+
+        if($this->conn->executeQuery()) {
+            return strval($this->conn->getResult()->withdrawals);
+        }
+
+        return "";
+    }
+
+    /**
+     * @param $data - array
+     * @param $partner_id - int
+     */
+    public function approveWithdrawal(array $data, int $partner_id) : void {
+        \extract($data);
+        $balance = intval($total_earnings) - intval($withdrawal_amount);
+        $this->conn->prepareQuery("UPDATE partner SET
+                                                    withdrawals = :withdrawal
+                                                         WHERE partner_id = :id");
+        $this->conn->bind(":withdrawal",$total_withdrawals);
+        $this->conn->bind(":id",$partner_id);
+
+        if($this->conn->executeQuery()) {
+            $this->updateWithdrawalStatus($partner_id,"Approved");
+            $_SESSION['approved'] = 
+            "<div class='alert alert-success alert-dismissible'>
+            <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
+            <strong>Success!</strong> withdrawal approved.
+        </div>";
+            \header("location:withdrawals");
+        } else {
+            $this->updateWithdrawalStatus($partner_id,"Rejected");
+            $_SESSION['rejected'] = 
+            "<div class='alert alert-danger alert-dismissible'>
+            <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
+            <strong>Error!</strong> withdrawal rejected.
+        </div>";
+            \header("location:withdrawals");
+        }
+    }
+
+    /**
+     * @param $partner_id - int
+     * @param $status - string
+     * @return bool
+     */
+    public function updateWithdrawalStatus(int $partner_id, string $status) : bool {
+        $this->conn->prepareQuery("UPDATE withdrawal_requests SET request_status = :status");
+        $this->conn->bind(":status",$status);
+
+        if($this->conn->executeQuery()) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * @return array
+     */
+    public function getAllWithdrawalRequest() : array {
+        $this->conn->prepareQuery('SELECT * FROM withdrawal_requests');
+        $this->conn->executeQuery();
+
+        return $this->conn->getResults();
+    }
+
+    /**
      * @param $user_id - int
      */
     public function revokePartner(int $user_id) : void {
         $this->conn->prepareQuery("UPDATE partner SET
                                                 account_status = :status WHERE partner_id = :id");
-        $this->conn->bind(":status","Pending");
+        $this->conn->bind(":status","Under Review");
         $this->conn->bind(":id",$user_id);
 
         if($this->conn->executeQuery()) {

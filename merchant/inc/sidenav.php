@@ -4,7 +4,7 @@
                         <li><i class="fa fa-tachometer-alt"></i></li>
                     </ul>
                     <ul>
-                        <li><a href="generate-api">API Key</a></li>
+                        <li><a href="generate-api">API</a></li>
                         <li><i class="fa fa-key"></i></li>
                     </ul>
                     <ul>

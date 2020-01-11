@@ -76,7 +76,7 @@ ul {
   cursor: pointer;
 }
 
-.dashboard_menu i.fa.fa-tachometer-alt, i.fa.fa-users, i.fa.fa-user, i.fa.fa-cog, i.fa.fa-truck {
+.dashboard_menu i.fa.fa-tachometer-alt, i.fa.fa-users, i.fa.fa-user, i.fa.fa-cog, i.fa.fa-truck, i.fa.fa-money-bill {
   color: #33b27b !important;
 }
 
@@ -338,6 +338,31 @@ ul {
 
 .edit_deliveries_container h2 {
   padding-top: 15px;
+}
+
+/** Withdrawals **/
+.withdrawals {
+  position: relative;
+  width: 100%;
+  background-color: #f5f5f5;
+  min-height: 100vh;
+}
+
+.withdrawals .withdrawals_container {
+  width: 97%;
+  margin: auto;
+}
+
+.withdrawals_container h3 {
+  padding: 20px 0px;
+}
+
+.withdrawals_container table td {
+  text-align: center;
+}
+
+.withdrawals_container table i.fa.fa-check-circle, i.fa.fa-minus-circle {
+  font-size: 20px;
 }
 
 /*# sourceMappingURL=style.css.map */

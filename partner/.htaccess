@@ -7,6 +7,7 @@ RewriteRule ^delivery-requests/([^/]+)/?$ delivery-requests.php?page=$1 [L,QSA]
 RewriteRule ^accepted/([^/]+)/?$ accepted.php?page=$1 [L,QSA]
 RewriteRule ^earnings-summary/([^/]+)/?$ earnings-summary.php?page=$1 [L,QSA]
 RewriteRule ^arrival-time/([^/]+)/?$ arrival-time.php?edit=$1 [L,QSA]
+RewriteRule ^withdrawal-request/([^/]+)/?$ withdrawal-request.php?edit=$1 [L,QSA]
 RewriteRule ^([^\.]+)$ $1.php [NC,L]
 
 RewriteRule ^partner dashboard.php [L,QSA]
