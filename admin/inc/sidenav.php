@@ -23,4 +23,8 @@
                         <li><a href="withdrawals">Withdrawals</a></li>
                         <li><i class="fa fa-money-bill"></i></li>
                     </ul>
+                    <ul>
+                        <li><a href="complaints">Complaints</a></li>
+                        <li><i class="fa fa-comments"></i></li>
+                    </ul>
                 </div>

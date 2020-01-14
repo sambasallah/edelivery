@@ -330,6 +330,107 @@ class Merchant_Model {
         return null;
     }
 
+    public function sendComplaint(string $complaint_text, int $partner_id, int $merchant_id) : void {
+        $partner_info = $this->getPartnerInfo($partner_id);
+        $merchant_info = $this->getMerchantInfo($merchant_id);
+        $this->conn->prepareQuery("UPDATE complaints SET
+                                                        partner_name = :name,
+                                                        partner_number = :number,
+                                                        complaint_text = :text, 
+                                                        partner_email = :email,
+                                                        merchant_name = :merchant_name,
+                                                        merchant_email = :merchant_email,
+                                                        merchant_number = :merchant_number WHERE partner_id = :id");
+        $this->conn->bind(":name", $partner_info->first_name . " " . $partner_info->last_name);
+        $this->conn->bind(":number",$partner_info->phone_number);
+        $this->conn->bind(":text", $complaint_text);
+        $this->conn->bind(":email",$partner_info->email);
+        $this->conn->bind(":merchant_name", $merchant_info->first_name . ' '.$merchant_info->last_name);
+        $this->conn->bind(":merchant_email", $merchant_info->business_email);
+        $this->conn->bind(":merchant_number", $merchant_info->business_phone);
+        $this->conn->bind(":id",$partner_id);
+        if($this->conn->executeQuery()) {
+            $_SESSION['complaint_sent'] = 
+            "<div class='alert alert-success alert-dismissible'>
+            <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
+            <strong>Success!</strong> Complaint Sent.
+          </div>";
+            \header("location:summary");
+        } else {
+            $_SESSION['complaint_not_sent'] = 
+            "<div class='alert alert-danger alert-dismissible'>
+            <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
+            <strong>Success!</strong> Complaint Not Sent.
+          </div>";
+            \header('location:summary');
+        }
+    }
+
+    /**
+     * @param $merchant_id - int
+     */
+    public function openComplaint(int $request_id, int $partner_id) : void {
+        $success = $this->notReceived($request_id);
+        $this->conn->prepareQuery("INSERT INTO complaints SET
+                                                            partner_id = :id"); 
+        $this->conn->bind(":id",$partner_id);
+
+        if($success &&  $this->conn->executeQuery()) {
+            $_SESSION['partner_id'] = $partner_id;
+            header("location:complaint");
+        } else {
+            header("location:summary");
+        }
+    }
+
+    /**
+     * @param $partner_id - int
+     * @return object
+     */
+    public function getPartnerInfo(int $partner_id) : object {
+        $this->conn->prepareQuery("SELECT first_name,last_name,email,phone_number FROM partner WHERE partner_id = :id");
+        $this->conn->bind(":id",$partner_id);
+
+        if($this->conn->executeQuery()) {
+            return $this->conn->getResult();
+        }
+
+        throw new \Exception("ID not found");
+    }
+
+     /**
+     * @param $merchant_id - int
+     * @return object
+     */
+    public function getMerchantInfo(int $merchant_id) : object {
+        $this->conn->prepareQuery("SELECT first_name,last_name,business_email,business_phone FROM merchant WHERE merchant_id = :id");
+        $this->conn->bind(":id",$merchant_id);
+
+        if($this->conn->executeQuery()) {
+            return $this->conn->getResult();
+        }
+
+        throw new \Exception("ID not found");
+    }
+
+
+    /**
+     * @param $merchant_id - int
+     * @param bool
+     */
+    private function notReceived(int $request_id) : bool {
+        $this->conn->prepareQuery("UPDATE delivery_requests SET
+                                                    received = :received WHERE id = :id");
+        $this->conn->bind(":received","No");
+        $this->conn->bind(":id",$request_id);
+
+        if($this->conn->executeQuery()) {
+           return true;
+        } 
+
+        return false;
+    }
+
 
     /**
      * @param $request_id - int

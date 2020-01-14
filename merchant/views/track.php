@@ -39,21 +39,25 @@
                             <li><h4>Driver Status : <?= $delivery_information->account_status; ?></h4></li>
                             <li><h4>Estimated Arrival Time : <?= $delivery_information->arrival_time; ?></h4></li>
                             <li><h4>Vehicle Type : <?= $delivery_information->vehicle_type; ?></h4></li>
+                            <li><h4>Partner ID : <?= $delivery_information->id; ?></h4></li>
                         </ul>
                     </div>
                    <?php if($delivery_information->received == "Yes") : ?>
                         <div class="acknowledge_delivery">
                             <h2>Acknowledge Delivery</h2>
                             <form action="" method="post">
-                                <input type="submit" value="Acknowledged" class="btn btn-success" disabled>
+                                <input type="submit" value="received" class="btn btn-success" disabled>
+                                <input type="submit" value="not received" class="btn btn-danger" disabled>
                             </form>
                         </div>
                    <?php else :  ?>
                         <div class="acknowledge_delivery">
                             <h2>Acknowledge Delivery</h2>
-                            <form action="" method="post">
-                                <input type="submit" value="Acknowledge" class="btn btn-success" name="acknowledge">
+                            <form action="complaint" method="post">
+                                <input type="submit" value="received" class="btn btn-success" name="acknowledge">
                                 <input type="hidden" value="<?= $delivery_information->id; ?>" name="request_id">
+                                <input type="hidden" value="<?= $delivery_information->partner_id; ?>" name="partner_id">
+                                <input type="submit" value="not received" class="btn btn-danger" name="not_received">
                             </form>
                         </div>
                    <?php endif; ?>

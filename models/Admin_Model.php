@@ -252,6 +252,18 @@ class Admin_Model {
     }
 
     /**
+     * @return array
+     */
+    public function getAllComplaints() : array {
+        $this->conn->prepareQuery("SELECT * FROM complaints");
+        
+        if($this->conn->executeQuery()) {
+            return $this->conn->getResults();
+        }
+        return [];
+    }
+
+    /**
      * @param $data - array
      * @param $user_id - int
      */

@@ -303,6 +303,22 @@ $grey : grey;
     padding: 20px 5px;
 }
 
+/** Complaint **/
+.complaint {
+    width: 100%;
+    background-color: #f5f5f5;
+    min-height: 100vh;
+}
+
+.complaint .complaint_container {
+    width: 97%;
+    margin: auto;
+}
+
+.complaint_container .right h2 {
+    padding: 15px 0px;
+}
+
 @media screen and (min-width: 300px) and (max-width: 500px) {
     .track_container .tracking_data {
         background-color: #fff;

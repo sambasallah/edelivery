@@ -40,6 +40,10 @@ if($_SESSION['merchant_logged_in'] === TRUE) {
         \header('location:summary');
         exit;
     }
+
+    if(isset($_POST['not_received']) && $helper_functions->isPost()) {
+        $merchant->notReceived($_POST['request_id']);
+    }
    
 }else {
     header("location:../register");
