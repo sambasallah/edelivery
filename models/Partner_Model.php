@@ -130,21 +130,24 @@ class Partner_Model {
         }
     }
 
-    public function updateProfileInformation(array $data, int $current_user) : void {
+    public function updateProfileInformation(array $data, int $current_user, array $profile_picture) : void {
         \extract($data);
         if(empty($password)) {
+            $profile_picture = $this->uploadPartnerProfilePicture($profile_picture);
             $this->conn->prepareQuery("UPDATE partner SET 
                                                     first_name = :first_name,
                                                     last_name = :last_name,
                                                     username = :username,
                                                     email = :email,
-                                                    phone_number = :phone_number WHERE partner_id = :id");
+                                                    phone_number = :phone_number,
+                                                    profile_picture = :picture WHERE partner_id = :id");
             $this->conn->bind(":first_name",$first_name);
             $this->conn->bind(":last_name",$last_name);
             $this->conn->bind(":username",$username);
             $this->conn->bind(":email",$email);
             $this->conn->bind(":phone_number",$phone_number);
             $this->conn->bind(":id",$current_user);
+            $this->conn->bind(":picture", $profile_picture);
          } else {
             $this->conn->prepareQuery("UPDATE partner SET 
             first_name = :first_name,
@@ -152,7 +155,8 @@ class Partner_Model {
             username = :username,
             password = :password,
             email = :email,
-            phone_number = :phone_number WHERE partner_id = :id");
+            phone_number = :phone_number,
+            profile_picture = :picture WHERE partner_id = :id");
             $this->conn->bind(":first_name",$first_name);
             $this->conn->bind(":last_name",$last_name);
             $this->conn->bind(":username",$username);
@@ -160,6 +164,7 @@ class Partner_Model {
             $this->conn->bind(":email",$email);
             $this->conn->bind(":phone_number",$phone_number);
             $this->conn->bind(":id",$current_user);
+            $this->conn->bind(":picture", $profile_picture);
          }
 
          if($this->conn->executeQuery()) {
@@ -705,7 +710,7 @@ class Partner_Model {
      */
     private function uploadDriversLicense(array $license) : string {
         $file_name = explode(".",$license['valid_drivers_license']['name']);
-        $targetDir = dirname(dirname(__FILE__))."/public/uploads/licenses/". $file_name[0].rand(0,time()).'.'.$file_name[1];
+        $targetDir = dirname(dirname(__FILE__))."/storage/public/uploads/licenses/". $file_name[0].rand(0,time()).'.'.$file_name[1];
 
         if($license['valid_drivers_license']['size'] > 1000000) {
             return "";
@@ -717,9 +722,34 @@ class Partner_Model {
 
         if($license['valid_drivers_license']['type'] == "image/jpeg" || $license['valid_drivers_license']['type'] == "application/pdf") {
             if(move_uploaded_file($license['valid_drivers_license']['tmp_name'],$targetDir)) {
-                return explode("/",$targetDir)[4];
+                return explode("/",$targetDir)[5];
             }else {
                 return "";
+            }
+        }
+    }
+
+     /**
+     * @param $profile - array
+     * @return String
+     */
+    private function uploadPartnerProfilePicture(array $profile) : string {
+        $file_name = explode(".",$profile['profile_picture']['name']);
+        $targetDir = dirname(dirname(__FILE__))."/storage/public/uploads/profile/". $file_name[0].rand(0,time()).'.'.$file_name[1];
+
+        if($profile['profile_picture']['size'] > 1000000) {
+            return "";
+        }
+
+        if(file_exists($targetDir)) {
+            return "";
+        }
+
+        if($profile['profile_picture']['type'] == "image/jpeg" || $profile['profile_picture']['type'] == "png" ) {
+            if(move_uploaded_file($profile['profile_picture']['tmp_name'],$targetDir)) {
+                return explode("/",$targetDir)[5];
+            }else {
+                return "partner_avatar.png";
             }
         }
     }
@@ -730,7 +760,7 @@ class Partner_Model {
      */
     private function uploadNationalDocument(array $national_document) : string {
         $file_name = explode(".",$national_document['national_document']['name']);
-        $targetDir = dirname(dirname(__FILE__))."/public/uploads/documents/". $file_name[0].rand(0,time()).'.'.$file_name[1];
+        $targetDir = dirname(dirname(__FILE__))."/storage/public/uploads/documents/". $file_name[0].rand(0,time()).'.'.$file_name[1];
 
         if($national_document['national_document']['size'] > 1000000) {
             return "";
@@ -740,9 +770,9 @@ class Partner_Model {
             return "";
         }
 
-        if($national_document['national_document']['type'] == "image/jpeg" || $national_document['national_document']['type'] == "application/pdf") {
+        if($national_document['national_document']['type'] == "jpg/jpeg/image" || $national_document['national_document']['type'] == "application/pdf") {
             if(move_uploaded_file($national_document['national_document']['tmp_name'],$targetDir)) {
-                return explode("/",$targetDir)[4];
+                return explode("/",$targetDir)[5];
             }else {
                 return "";
             }

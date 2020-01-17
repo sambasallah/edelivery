@@ -37,7 +37,7 @@ if($helper_functions->isPartnerLoggedIn()) {
             "phone_number" => $phone_number
         );
 
-        $partner->updateProfileInformation($data,$partner_id);
+        $partner->updateProfileInformation($data,$partner_id, $_FILES);
     }
 
     echo $template;

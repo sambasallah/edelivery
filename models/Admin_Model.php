@@ -254,13 +254,42 @@ class Admin_Model {
     /**
      * @return array
      */
-    public function getAllComplaints() : array {
-        $this->conn->prepareQuery("SELECT * FROM complaints");
+    public function getAllComplaints(int $page_no) : array {
+        $total_rows = $this->getTotalDeliveryRows();
+        $offset = ($page_no - 1) * $this->NUMBER_OF_RECORDS_PER_PAGE;
+        $this->total_pages = (int) ceil($total_rows / $this->NUMBER_OF_RECORDS_PER_PAGE);
+        $this->conn->prepareQuery("SELECT * FROM complaints LIMIT :offset, :number_of_records");
+        $this->conn->bind(":offset",$offset);
+        $this->conn->bind(":number_of_records", $this->NUMBER_OF_RECORDS_PER_PAGE);
         
         if($this->conn->executeQuery()) {
             return $this->conn->getResults();
         }
         return [];
+    }
+
+    /**
+     * @param $complaint_id - int
+     */
+    public function deleteComplaint(int $complaint_id) : void {
+        $this->conn->prepareQuery('DELETE FROM complaints WHERE id = :id');
+        $this->conn->bind(":id",$complaint_id);
+
+        if($this->conn->executeQuery()) {
+            $_SESSION['complaint_deleted'] = 
+            "<div class='alert alert-success alert-dismissible'>
+            <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
+                <strong>Success!</strong> Complaint deleted.
+            </div>";
+            \header("location:complaints");
+        } else {
+            $_SESSION['error_complaint'] = 
+            "<div class='alert alert-danger alert-dismissible'>
+            <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
+                <strong>Error!</strong> Problem deleting complaint
+            </div>";
+            \header("location:complaints");
+        }
     }
 
     /**

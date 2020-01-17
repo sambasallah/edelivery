@@ -53,8 +53,8 @@
                    <?php else :  ?>
                         <div class="acknowledge_delivery">
                             <h2>Acknowledge Delivery</h2>
-                            <form action="complaint" method="post">
-                                <input type="submit" value="received" class="btn btn-success" name="acknowledge">
+                            <form action="" method="post">
+                                <input type="submit" value="received" class="btn btn-success" name="received">
                                 <input type="hidden" value="<?= $delivery_information->id; ?>" name="request_id">
                                 <input type="hidden" value="<?= $delivery_information->partner_id; ?>" name="partner_id">
                                 <input type="submit" value="not received" class="btn btn-danger" name="not_received">

@@ -17,7 +17,18 @@ $template = new Template('views/complaints.php');
 
 if($helper_functions->isAdminLoggedIn()) {
     
-   $template->complaints = $admin->getAllComplaints();
+    $page_no = 1;
+    $template->total_pages = $admin->getTotalPages();
+
+    if(!isset($_GET['page'])) {
+        $template->complaints = $admin->getAllComplaints($page_no);
+    } else {
+        $template->complaints = $admin->getAllComplaints($_GET['page']);
+    }
+
+    if(isset($_POST['delete_complaint']) && $helper_functions->isPost()) {
+        $admin->deleteComplaint($_POST['complaint_id']);
+    }
 
     echo $template;
 } else {

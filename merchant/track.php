@@ -22,7 +22,7 @@ if($_SESSION['merchant_logged_in'] === TRUE) {
         echo $template;
     }
 
-    if(isset($_POST['acknowledge']) && $helper_functions->isPost()) {
+    if(isset($_POST['received']) && $helper_functions->isPost()) {
         $success = $merchant->acknowledgeDelivery($_POST['request_id']);
         if($success) {
             
@@ -41,8 +41,9 @@ if($_SESSION['merchant_logged_in'] === TRUE) {
         exit;
     }
 
+
     if(isset($_POST['not_received']) && $helper_functions->isPost()) {
-        $merchant->notReceived($_POST['request_id']);
+        $merchant->openComplaint($_POST['request_id'], $_POST['partner_id']);
     }
    
 }else {

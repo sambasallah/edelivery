@@ -13,20 +13,15 @@ if($_SESSION['merchant_logged_in'] === TRUE) {
 
     $merchant = new Merchant_Model($database);
 
+    $helper_functions = new Functions();
+
     $template = new Template('views/complaint.php');
 
-    $helper_function = new Functions();
-
-    if(isset($_POST['send_complaint']) && $helper_function->isPost()) {
+    if(isset($_POST['send_complaint']) && $helper_functions->isPost()) {
         $complaint_text = $_POST['complaint_text'];
         $merchant_id = $merchant->getMerchantID($_SESSION['user']);
         $merchant->sendComplaint($complaint_text,$_POST['partner_id'], $merchant_id);
     }
-
-    if(isset($_POST['not_received']) && $helper_function->isPost()) {
-        $merchant->openComplaint($_POST['request_id'], $_POST['partner_id']);
-    }
-
 
     echo $template;
 }else {

@@ -16,6 +16,9 @@ $helper_functions = new Functions();
 $template = new Template('views/dashboard.php');
 
 if($helper_functions->isAdminLoggedIn()) {
+
+    unset($_SESSION['complaint_deleted']);
+    unset($_SESSION['error_complaint']);
     
     $template->number_of_partners = $admin->getTotalPartnerRows();
     $template->number_of_merchants = $admin->getTotalMerchantRows();

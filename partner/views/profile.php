@@ -10,7 +10,7 @@
                     <h3>Profile Information</h3>
                     <?php if(isset($_SESSION['profile_success'])) { echo $_SESSION['profile_success']; } ?>
                     <?php if(isset($_SESSION['profile_error'])) { echo $_SESSION['profile_error']; } ?>
-                    <form action="" method="post">
+                    <form action="" method="post" enctype="multipart/form-data">
                         <div class="form-group">
                             <input type="text" placeholder="First Name" value="<?= $profile_information->first_name; ?>" name="first_name" class="form-control">
                         </div>
@@ -29,7 +29,16 @@
                         <div class="form-group">
                             <input type="text" placeholder="Phone Number" value="<?= $profile_information->phone_number; ?>" name="phone_number" class="form-control">
                         </div>
-                        <input type="submit" value="update" class="btn btn-primary">
+                        <div class="form-group">
+                          <?php if($profile_information->profile_picture == NULL) : ?>
+                            <img src="../media/images/partner_avatar.png" width="251px" height="201px" alt="Profile Picture">
+                            <input type="file" name="profile_picture">
+                          <?php else : ?>
+                            <img src="../storage/public/uploads/profile/<?= $profile_information->profile_picture; ?>" width="251px" height="201px" style="object-fit:cover;" alt="Profile Picture">
+                            <input type="file" name="profile_picture">
+                          <?php endif; ?>
+                        </div>
+                        <input type="submit" value="update" name="save_profile" class="btn btn-primary">
                     </form>
                     </div>
                 </div>

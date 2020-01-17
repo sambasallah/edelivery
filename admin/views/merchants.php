@@ -21,7 +21,7 @@
                                 <th>Spendings (GMD)</th>
                                 <th>Business Name</th>
                                 <th>Busines Location</th>
-                                <th>Del</th>
+                                <th>Delete</th>
                             </tr>
                             </thead>
                             <tbody>

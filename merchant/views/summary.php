@@ -63,8 +63,12 @@
                                       </form> 
                                       <form action="track" method="post">
                                             <?php if($delivery->request_status == "Delivered") : ?>
-                                                <input type="submit" value="Track" name="track" class="btn btn-success">
-                                                <input type="hidden" value="<?= $delivery->id; ?>" name="delivery_id">
+                                                <?php if($delivery->received == "No" || $delivery->received == NULL) : ?>
+                                                    <input type="submit" value="Track" name="track" class="btn btn-success">
+                                                    <input type="hidden" value="<?= $delivery->id; ?>" name="delivery_id">
+                                                <?php else : ?>
+                                                    <input type="submit" value="Track" class="btn btn-success" disabled>
+                                                <?php endif; ?>
                                             <?php endif; ?>
                                       </form>
                                               
