@@ -60,7 +60,15 @@
                                 <input type="text" placeholder="Pick Up Date" name="pick_up_date" class="form-control" id="pick" required>
                             </div>
                             <div class="form-group">
-                                <input type="text" placeholder="Package Size (Small,Medium,Large)" name="package_size" class="form-control" required> 
+                               <select name="package_size" id="" class="form-control">
+                                   <option value="Small">Package Size</option>
+                                   <option value="Small">Small</option>
+                                   <option value="Medium">Medium</option>
+                                   <option value="Large">Large</option>
+                               </select>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" placeholder="Item Name" required name="item_name" class="form-control">
                             </div>
                             <input type="submit" value="Make Request" class="btn btn-success">
                         </form>

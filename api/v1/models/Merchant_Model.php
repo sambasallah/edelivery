@@ -201,7 +201,8 @@ class Merchant_Model {
                                         merchant_id = :merchant_id,
                                         rate_id = :rate_id,
                                         delivery_note = :delivery_note,
-                                        payment_method = :payment_method");
+                                        payment_method = :payment_method,
+                                        item_name = :item_name");
         $this->conn->bind(":to_location", $to_location);
         $this->conn->bind(":from_location", $from_location);
         $this->conn->bind(":receipient_name",$receipient_name);
@@ -218,6 +219,7 @@ class Merchant_Model {
         $this->conn->bind(":rate_id",$rate_id);
         $this->conn->bind(":delivery_note",$delivery_note);
         $this->conn->bind(":payment_method","Cash On Delivery");
+        $this->conn->bind(":item_name", $item_name);
 
         if($this->conn->executeQuery()) {
             $delivery_rate = $this->calculateDeliveryRate($to_location,$from_location);

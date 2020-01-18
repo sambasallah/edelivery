@@ -34,7 +34,7 @@
                             <img src="../media/images/partner_avatar.png" width="251px" height="201px" alt="Profile Picture">
                             <input type="file" name="profile_picture">
                           <?php else : ?>
-                            <img src="../storage/public/uploads/profile/<?= $profile_information->profile_picture; ?>" width="251px" height="201px" style="object-fit:cover;" alt="Profile Picture">
+                            <img src="../storage/public/uploads/profile/<?= $profile_information->profile_picture; ?>" width="200px" height="200px" style="object-fit:cover; border-radius:50%" alt="Profile Picture">
                             <input type="file" name="profile_picture">
                           <?php endif; ?>
                         </div>

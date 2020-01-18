@@ -108,6 +108,7 @@ ul {
   border-radius: 5px;
   padding: 10px;
   margin: auto;
+  margin-bottom: 10px;
 }
 
 .summary .total_revenue {

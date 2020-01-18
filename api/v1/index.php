@@ -32,22 +32,23 @@ $app->group('/api/v1', function (RouteCollectorProxy $group) {
                 $database = new Database();
                 $merchant = new Merchant_Model($database);
 
-                $rate_id = $merchant->getDeliveryRateID($post_data['to_location'],$post_data['from_location']);
+                $rate_id = $merchant->getDeliveryRateID($post_data['to']['to_location'],$post_data['from']['from_location']);
 
                 $data = array(
-                    "to_location" => $post_data['to_location'],
-                    "from_location" => $post_data['from_location'],
-                    "receipient_name" => $post_data['receipient_name'],
-                    "receipient_mobile_number" => $post_data['receipient_mobile_number'],
-                    "receipient_address" => $post_data['receipient_address'],
-                    "sender_name" => $post_data['sender_name'],
-                    "sender_mobile_number" => $post_data['sender_mobile_number'],
-                    "sender_address" => $post_data['sender_address'],
-                    "pick_up_date" => $post_data['pick_up_date'],
-                    "package_type" => $post_data['package_type'],
-                    "package_size" => $post_data['package_size'],
+                    "to_location" => $post_data['to']['to_location'],
+                    "from_location" => $post_data['from']['from_location'],
+                    "receipient_name" => $post_data['receipient_information']['receipient_name'],
+                    "receipient_mobile_number" => $post_data['receipient_information']['receipient_mobile_number'],
+                    "receipient_address" => $post_data['receipient_information']['receipient_address'],
+                    "sender_name" => $post_data['sender_information']['sender_name'],
+                    "sender_mobile_number" => $post_data['sender_information']['sender_mobile_number'],
+                    "sender_address" => $post_data['sender_information']['sender_address'],
+                    "pick_up_date" => $post_data['data']['pick_up_date'],
+                    "package_type" => $post_data['data']['package_type'],
+                    "package_size" => $post_data['data']['package_size'],
                     "merchant_username" => $post_data['merchant_username'],
-                    "delivery_note" => $post_data['delivery_note'],
+                    "delivery_note" => $post_data['data']['delivery_note'],
+                    "item_name" => $post_data['data']['item_name'],
                     "rate_id" => $rate_id
                 );
 

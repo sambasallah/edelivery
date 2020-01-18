@@ -39,7 +39,7 @@
                             <li><h4>Driver Status : <?= $delivery_information->account_status; ?></h4></li>
                             <li><h4>Estimated Arrival Time : <?= $delivery_information->arrival_time; ?></h4></li>
                             <li><h4>Vehicle Type : <?= $delivery_information->vehicle_type; ?></h4></li>
-                            <li><h4>Partner ID : <?= $delivery_information->id; ?></h4></li>
+                            <li><h4><img src="../storage/public/uploads/profile/<?= $delivery_information->profile_picture; ?>" alt="Partner Profile" width="100px" height="100px" style="object-fit:cover; border-radius: 25px;"></h4></li>
                         </ul>
                     </div>
                    <?php if($delivery_information->received == "Yes") : ?>

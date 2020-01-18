@@ -17,7 +17,7 @@
             <h2>API Endpoints</h2>
             <hr>
             <div class="login">
-                <h5><span class="request_method">POST</span> localhost:8000/api/v1/request </h5>
+                <h5><span class="request_method">POST</span> localhost:8000/api/v1/login </h5>
                 <div class="route">http://localhost:8000/api/v1/login</div>
                 <h6>Login Merchant</h6>
 
@@ -51,22 +51,32 @@
                         "Content-Type": "application/json"
                         "Authorization" : "jwt-token"
 
-                        SAMPLE REQUEST BODY
                         {
-                            "to_location":"Serrekunda",
-                            "from_location": "Serrekunda",
-                            "receipient_name": "Saikou Marong",
-                            "receipient_mobile_number": "4253867",
-                            "receipient_address": "London corner",
-                            "sender_name": "Fatou Jaiteh",
-                            "sender_mobile_number": "3207726",
-                            "sender_address": "Bakoteh Layout",
-                            "pick_up_date": "2020/01/8 13:45",
-                            "package_type": "Electronics",
-                            "package_size": "Medium",
-                            "merchant_username": "sambasallah",
-                            "delivery_note": "Pick it up at my office"
-                        } 
+                            "merchant_username" : "sambasallah",
+                            "to" : {
+                                "to_location" : "Serrekunda"
+                            },
+                            "from" : {
+                                "from_location" : "Serrekunda"
+                            },
+                            "data" : {
+                                "item_name" : "Laptop",
+                                "package_type" : "Electronics",
+                                "package_size" : "Medium",
+                                "delivery_note" : "Deliver it with care.",
+                                "pick_up_date" : "2020/01/30 16:00"
+                            },
+                            "sender_information" : {
+                                "sender_name" : "Ebrima Secka",
+                                "sender_mobile_number" : "3925723",
+                                "sender_address" : "Latrikunda German"
+                            },
+                            "receipient_information" : {
+                                "receipient_name" : "Kebba Danso",
+                                "receipient_mobile_number" : "2837427",
+                                "receipient_address" : "Bundung Borehole"
+                            }
+                        }
 
                         SAMPLE RESPONSE
                         {

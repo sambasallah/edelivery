@@ -30,6 +30,7 @@ if($_SESSION['merchant_logged_in'] === TRUE) {
         $package_size = $_POST['package_size'];
         $delivery_note = $_POST['delivery_note'];
         $payment_method = $_POST['payment_method'];
+        $item_name = $_POST['item_name'];
 
         // Get the delivey rate_id
         $rate_id = $merchant->getDeliveryRateID($to,$from);
@@ -48,7 +49,8 @@ if($_SESSION['merchant_logged_in'] === TRUE) {
             "package_size" => $package_size,
             "rate_id" => $rate_id,
             "delivery_note" => $delivery_note,
-            "payment_method" => $payment_method
+            "payment_method" => $payment_method,
+            "item_name" => $item_name
         );
 
         $merchant_id = $merchant->getMerchantID($_SESSION['user']);

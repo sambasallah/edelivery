@@ -1,0 +1,26 @@
+{
+    "merchant_username" : "sambasallah",
+    "to" : {
+        "to_location" : "Serrekunda"
+    },
+    "from" : {
+        "from_location" : "Serrekunda"
+    },
+    "data" : {
+        "item_name" : "Laptop",
+        "package_type" : "Electronics",
+        "package_size" : "Medium",
+        "delivery_note" : "Deliver it with care.",
+        "pick_up_date" : "2020/01/30 16:00"
+    },
+    "sender_information" : {
+        "sender_name" : "Ebrima Secka",
+        "sender_mobile_number" : "3925723",
+        "sender_address" : "Latrikunda German"
+    },
+    "receipient_information" : {
+        "receipient_name" : "Kebba Danso",
+        "receipient_mobile_number" : "2837427",
+        "receipient_address" : "Bundung Borehole"
+    }
+}
