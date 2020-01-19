@@ -195,6 +195,10 @@ class Merchant_Model {
 
     }
 
+    /**
+     * @param $data - array
+     * @param $merchant_id - int
+     */
     public function makeDeliveryRequest(array $data, int $merchant_id) : void {
         \extract($data);
  

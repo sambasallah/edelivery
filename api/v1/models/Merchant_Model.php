@@ -176,6 +176,22 @@ class Merchant_Model {
     }
 
     /**
+     * @param $request_id - int
+     * @return object
+     */
+    public function getDriversInformation(int $request_id) : object {
+        $this->conn->prepareQuery("SELECT *,partner.* FROM delivery_requests INNER JOIN partner ON partner.partner_id = delivery_requests.partner_id WHERE delivery_requests.id = :request_id");
+        $this->conn->bind(":request_id",$request_id);
+        $this->conn->executeQuery();
+
+        if($this->conn->rows() == 1) {
+            return $this->conn->getResult();
+        }
+
+        return (object) [];
+    }
+
+    /**
      * @param $data - array
      * @return bool
      */

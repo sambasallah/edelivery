@@ -110,6 +110,23 @@
                         "Status Code": 200,
                         "Delivery Status": "Pending"
                     }
+
+                    OR 
+
+                    SAMPLE RESPONSE FOR ON ROUTE & DELIVERED DELIVERIES
+                    {
+                        "Success": true,
+                        "Status Code": 200,
+                        "Delivery Status": "Delivered",
+                        "Your Drivers Information": {
+                            "Name": "Samba Sallah",
+                            "Mobile Number": "3911176",
+                            "Driver Status": "Approved",
+                            "Estimated Arrival Time": "2020-01-25 23:26:00",
+                            "Vehicle Type": "Pick Up",
+                            "Partner Picture": "localhost/eshipping/storage/public/uploads/profile/profile483413912.jpg"
+                        }
+                    }
                     </code>
                 </pre>
             </div>
