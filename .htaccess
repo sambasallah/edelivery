@@ -1,5 +1,5 @@
 RewriteEngine On
-
+ErrorDocument 404 http://localhost/eshipping/404.php
 DirectoryIndex home.php
 RewriteCond %{REQUEST_FILENAME} !-f
 

@@ -42,4 +42,8 @@
 
 <title>API DOCUMENTATION | Delivery service for ecommerce and restaurants</title>
 
+<?php elseif( basename($_SERVER['SCRIPT_NAME']) == 'about.php') : ?>
+
+<title>About Us | Delivery service for ecommerce and restaurants</title>
+
 <?php endif; ?>

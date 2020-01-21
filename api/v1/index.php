@@ -134,7 +134,7 @@ $app->group('/api/v1', function (RouteCollectorProxy $group) {
 
         $token = Token::create($userId, $secret, $expiration, $issuer);
 
-        $response->getBody()->write(json_encode(array("Login" => "Successful", "JWT" => $token, "Status Code" => \http_response_code(200)),JSON_PRETTY_PRINT));
+        $response->getBody()->write(json_encode(array("JWT" => $token),JSON_PRETTY_PRINT));
         $response = $response->withHeader("Content-Type", "application/json");
         $response = $response->withHeader('Access-Control-Allow-Origin', '*');
 
