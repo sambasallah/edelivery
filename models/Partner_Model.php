@@ -134,21 +134,68 @@ class Partner_Model {
         \extract($data);
         if(empty($password)) {
             $profile_picture = $this->uploadPartnerProfilePicture($profile_picture);
-            $this->conn->prepareQuery("UPDATE partner SET 
-                                                    first_name = :first_name,
-                                                    last_name = :last_name,
-                                                    username = :username,
-                                                    email = :email,
-                                                    phone_number = :phone_number,
-                                                    profile_picture = :picture WHERE partner_id = :id");
-            $this->conn->bind(":first_name",$first_name);
-            $this->conn->bind(":last_name",$last_name);
-            $this->conn->bind(":username",$username);
-            $this->conn->bind(":email",$email);
-            $this->conn->bind(":phone_number",$phone_number);
-            $this->conn->bind(":id",$current_user);
-            $this->conn->bind(":picture", $profile_picture);
+            
+            if($profile_picture == "File Exist") {
+                $_SESSION['file_exist'] = 
+                "<div class='alert alert-danger'>
+                <strong>File Exists!</strong>
+            </div>";
+            } else if($profile_picture == "File Too Large") {
+                $_SESSION['large_file'] = 
+                "<div class='alert alert-danger'>
+                <strong>File Too Large!</strong>
+            </div>";
+            } else if ($profile_picture == "An Error Occured") {
+                $_SESSION['upload_error'] = 
+                "<div class='alert alert-danger'>
+                <strong>An Error Occured!</strong>
+            </div>";
+
+            }else if($profile_picture == "Unknown Error") {
+                $_SESSION['upload_error'] = 
+                "<div class='alert alert-danger'>
+                <strong>Unknown Error!</strong>
+            </div>"; 
+            
+            } else {
+                    $this->conn->prepareQuery("UPDATE partner SET 
+                                first_name = :first_name,
+                                last_name = :last_name,
+                                username = :username,
+                                email = :email,
+                                phone_number = :phone_number,
+                                profile_picture = :picture WHERE partner_id = :id");
+                $this->conn->bind(":first_name",$first_name);
+                $this->conn->bind(":last_name",$last_name);
+                $this->conn->bind(":username",$username);
+                $this->conn->bind(":email",$email);
+                $this->conn->bind(":phone_number",$phone_number);
+                $this->conn->bind(":id",$current_user);
+                $this->conn->bind(":picture", $profile_picture);
+            }
          } else {
+            if($profile_picture == "File Exists") {
+                $_SESSION['file_exists'] = 
+                "<div class='alert alert-danger'>
+                <strong>File Exists!</strong>
+            </div>";
+            } else if($profile_picture == "File Too Large") {
+                $_SESSION['large_file'] = 
+                "<div class='alert alert-danger'>
+                <strong>Large File!</strong>
+            </div>";
+            } else if ($profile_picture == "An Error Occured") {
+                $_SESSION['upload_error'] = 
+                "<div class='alert alert-danger'>
+                <strong>An Error Occured!</strong>
+            </div>";
+            } else if($profile_picture == "Unknown Error") {
+                $_SESSION['upload_error'] = 
+                "<div class='alert alert-danger'>
+                <strong>Unknown Error Occured!</strong>
+            </div>";
+            } else {
+                    
             $this->conn->prepareQuery("UPDATE partner SET 
             first_name = :first_name,
             last_name = :last_name,
@@ -165,6 +212,8 @@ class Partner_Model {
             $this->conn->bind(":phone_number",$phone_number);
             $this->conn->bind(":id",$current_user);
             $this->conn->bind(":picture", $profile_picture);
+            
+            }
          }
 
          if($this->conn->executeQuery()) {
@@ -738,19 +787,25 @@ class Partner_Model {
         $targetDir = dirname(dirname(__FILE__))."/storage/public/uploads/profile/". $file_name[0].rand(0,time()).'.'.$file_name[1];
 
         if($profile['profile_picture']['size'] > 1000000) {
-            return "";
+            return "File Too Large";
+        }
+
+        if($profile['profile_picture']['error'] != 0) {
+            return "An Error Occured";
         }
 
         if(file_exists($targetDir)) {
-            return "";
+            return "File Exist";
         }
 
-        if($profile['profile_picture']['type'] == "image/jpeg" || $profile['profile_picture']['type'] == "png" ) {
+        if($profile['profile_picture']['type'] == "image/jpg" || $profile['profile_picture']['type'] == "image/jpeg"  || $profile['profile_picture']['type'] == "image/png" ) {
             if(move_uploaded_file($profile['profile_picture']['tmp_name'],$targetDir)) {
                 return explode("/",$targetDir)[5];
             }else {
                 return "partner_avatar.png";
             }
+        } else {
+            return "Unknown Error";
         }
     }
 

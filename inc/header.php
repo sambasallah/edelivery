@@ -54,6 +54,9 @@
 			      </li>
 			      <li class="nav-item">
 			        <a class="nav-link" href="become-a-partner">Become a Partner</a>
+				  </li>
+				  <li class="nav-item">
+			        <a class="nav-link" href="api-doc">API</a>
 			      </li>
 			      <li class="nav-item">
 			        <a class="nav-link" href="login">Login</a>

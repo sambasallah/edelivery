@@ -41,6 +41,7 @@ if($helper_functions->isPartnerLoggedIn()) {
     }
 
     echo $template;
+   
 } else {
     \header("location:../login");
 }

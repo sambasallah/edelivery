@@ -24,6 +24,9 @@ if($helpers->isPartnerLoggedIn()) {
     $template->withdrawals = $partner->getTotalWithdrawals($partner_id);
     $template->balance = $partner->getBalance($partner_id);
 
+    unset($_SESSION['upload_error']);
+    unset($_SESSION['profile_success']);
+
    
     echo $template;
 } else {

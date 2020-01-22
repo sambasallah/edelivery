@@ -10,6 +10,9 @@
                     <h3>Profile Information</h3>
                     <?php if(isset($_SESSION['profile_success'])) { echo $_SESSION['profile_success']; } ?>
                     <?php if(isset($_SESSION['profile_error'])) { echo $_SESSION['profile_error']; } ?>
+                    <?php if(isset($_SESSION['file_exist'])) { echo $_SESSION['file_exist']; } ?>
+                    <?php if(isset($_SESSION['large_file'])) { echo $_SESSION['large_file']; } ?>
+                    <?php if(isset($_SESSION['upload_error'])) { echo $_SESSION['upload_error']; } ?>
                     <form action="" method="post" enctype="multipart/form-data">
                         <div class="form-group">
                             <input type="text" placeholder="First Name" value="<?= $profile_information->first_name; ?>" name="first_name" class="form-control">
