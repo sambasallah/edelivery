@@ -46,4 +46,17 @@
 
 <title>About Us | Delivery service for ecommerce and restaurants</title>
 
+<?php elseif( basename($_SERVER['SCRIPT_NAME']) == 'reset-password.php') : ?>
+
+<title>Reset Password | Delivery service for ecommerce and restaurants</title>
+
+<?php elseif( basename($_SERVER['SCRIPT_NAME']) == '404.php') : ?>
+
+<title>404 Not Found | Delivery service for ecommerce and restaurants</title>
+
+<?php elseif( basename($_SERVER['SCRIPT_NAME']) == 'reset-success.php') : ?>
+
+<title>Password Reset | Delivery service for ecommerce and restaurants</title>
+
+
 <?php endif; ?>

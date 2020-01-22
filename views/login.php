@@ -24,7 +24,7 @@
             <input type="password" class="form-control" name="password" placeholder="Password" required>
             <input type="submit" value="login" name="login_merchant" class="btn btn-success">
         </form>
-        <p><a href="#">Forgot Password?</a></p>
+        <p><a href="reset-password">Forgot Password?</a></p>
         <p>Don't Have an Account? <a href="register">Sign Up</a></p>
   </div>
   <div class="tab-pane container" id="partner">
@@ -34,7 +34,7 @@
             <input type="password" class="form-control" name="password" placeholder="Password">
             <input type="submit" value="login" name="login_partner" class="btn btn-success">
         </form>
-        <p><a href="#">Forgot Password?</a></p>
+        <p><a href="reset-password">Forgot Password?</a></p>
         <p>Don't Have an Account? <a href="register-partner">Sign Up</a></p>
   </div>
 </div>

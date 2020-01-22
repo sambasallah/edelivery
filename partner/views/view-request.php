@@ -23,6 +23,7 @@
                             <h5>Delivery Note : <?= $request_summary->delivery_note; ?></h5>
                             <h5>Payment Method : <?= $request_summary->payment_method; ?></h5>
                         </div>
+                        <a href="delivery-requests"><button class="btn btn-primary">Back</button></a>
                     </div>
                 </div>
             </div>

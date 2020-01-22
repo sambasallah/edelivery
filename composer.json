@@ -29,6 +29,7 @@
         "http-interop/http-factory-guzzle": "^1.0",
         "zendframework/zend-diactoros": "^2.2",
         "rbdwllr/reallysimplejwt": "^2.1",
-        "laminas/laminas-diactoros": "^2.2"
+        "laminas/laminas-diactoros": "^2.2",
+        "phpmailer/phpmailer": "^6.1"
     }
 }
