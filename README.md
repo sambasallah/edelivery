@@ -1,7 +1,7 @@
 # What is eDelivery
  eDelivery is a web application which enable merchant's to make delivery requests and have it delivered on their behalf to their desired destination all through the web app.
 # eDelivery Homepage
-![GitHub Logo](media/images/homepage.png)
+![GitHub Logo](media/images/home.png)
 # Merchant Dashboard
 ![GitHub Logo](media/images/merchant.png)
 # Partner Dashboard
