@@ -4,6 +4,13 @@ require_once('config/init.php');
 
 use edelivery\template\Template;
 
-$template = new Template('views/reset-success.php');
+if(isset($_SESSION['redirect_success']) && $_SESSION['redirect_success'] == true) {
+        
+    $template = new Template('views/reset-success.php');
 
-echo $template;
+    unset($_SESSION['redirect_success']);
+
+    echo $template;
+} else {
+    header('location:reset-password');
+}
