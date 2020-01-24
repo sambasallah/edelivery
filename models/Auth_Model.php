@@ -11,6 +11,8 @@ use PHPMailer\PHPMailer\Exception;
 class Auth_Model {
 
     private object $conn;
+    private string $merchant;
+    private string $partner;
 
     public function __construct(object $connection) {
         $this->conn = $connection;
@@ -83,5 +85,136 @@ class Auth_Model {
      */
     public function generateToken() : string {
         return "EDV".rand(0,time()-1);
+    }
+
+    /**
+     * @param $token - string
+     * @return string
+     */
+    public function getEmail(string $token) : string {
+        $this->conn->prepareQuery("SELECT email FROM reset_password WHERE token = :token");
+        $this->conn->bind(":token", $token);
+
+        if($this->conn->executeQuery()) {
+            return $this->conn->getResult()->email;
+        } else {
+            return "Invalid Token";
+        }
+    }
+
+    /**
+     * @param $email - string
+     * @param $data - array
+     */
+    public function changePassword(string $email, array $data) : void {
+        \extract($data);
+
+        if($password1 == $password2 && $this->emailExists($email)) {
+            $password = \password_hash($password1, PASSWORD_ARGON2ID,['cost' => 10, 'memory_cost' => 2048, 'threads'=> 4]);
+
+            if(strlen($this->partner) > 0) {
+                $success = $this->changePartnerPassword($password, $email);
+                if($success) {
+                    \header('location:login');
+                } else {
+                    \header('location:reset-password');
+                }
+            } else if(strlen($this->merchant) > 0) {
+                $success = $this->changeMerchantPassword($password, $email);
+                if($success) {
+                    \header('location:login');
+                } else {
+                    \header('location:reset-password');
+                }
+            } else {
+                \header('location:login');
+            }
+
+            
+        }
+    
+    }
+
+    /**
+     * @param $password - string
+     * @param $email - string
+     * @return bool
+     */
+    private function changePartnerPassword(string $password, string $email) : bool {
+        $this->conn->prepareQuery("UPDATE partner SET password = :password WHERE email = :email");
+        $this->conn->bind(":password", $password);
+        $this->conn->bind(":email", $email);
+
+        if($this->conn->executeQuery()) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * @param $password - string
+     * @param $email - string
+     * @return bool
+     */
+    private function changeMerchantPassword(string $password, string $email) : bool {
+        $this->conn->prepareQuery("UPDATE merchant SET password = :password WHERE email = :email");
+        $this->conn->bind(":password", $password);
+        $this->conn->bind(":email", $email);
+
+        if($this->conn->executeQuery()) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * @param $email - string
+     * @return bool
+     */
+    private function emailExists(string $email) : bool {
+        if($this->emailExistsInPartner($email)) {
+            $this->partner = "partner";
+            return true;
+        } else if ($this->emailExistsInMerchant($email)) {
+            $this->merchant = "merchant";
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
+    /**
+     * @param $email - string
+     * @return bool
+     */
+    private function emailExistsInPartner(string $email) : bool {
+        $this->conn->prepareQuery("SELECT * FROM partner WHERE email = :email");
+        $this->conn->bind(":email", $email);
+        $this->conn->executeQuery();
+
+        if($this->conn->rows() == 1) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * @param $email - string
+     * @return bool
+     */
+    private function emailExistsInMerchant(string $email) : bool {
+        $this->conn->prepareQuery("SELECT * FROM merchant WHERE email = :email");
+        $this->conn->bind(":email", $email);
+        $this->conn->executeQuery();
+
+        if($this->conn->rows() == 1) {
+            return true;
+        }
+
+        return false;
     }
 }

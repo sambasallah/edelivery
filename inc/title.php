@@ -58,5 +58,8 @@
 
 <title>Password Reset | Delivery service for ecommerce and restaurants</title>
 
+<?php elseif( basename($_SERVER['SCRIPT_NAME']) == 'change-password.php') : ?>
+
+<title>Change Password | Delivery service for ecommerce and restaurants</title>
 
 <?php endif; ?>

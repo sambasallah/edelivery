@@ -151,10 +151,10 @@ class Partner_Model {
                 <strong>An Error Occured!</strong>
             </div>";
 
-            }else if($profile_picture == "Unknown Error") {
+            }else if($profile_picture == "Invalid Image Type") {
                 $_SESSION['upload_error'] = 
                 "<div class='alert alert-danger'>
-                <strong>Unknown Error!</strong>
+                <strong>Invalid Image Type! make sure your image is jpeg/jpg/png</strong>
             </div>"; 
             
             } else {
@@ -805,7 +805,7 @@ class Partner_Model {
                 return "partner_avatar.png";
             }
         } else {
-            return "Unknown Error";
+            return "Invalid Image Type";
         }
     }
 

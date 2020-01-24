@@ -5,7 +5,7 @@
            <form action="" method="post">
                <div class="form-group">
                <label for="Reset Password"><h2>Reset Password</h2></label>
-                <input type="text" name="email" placeholder="Your Email">
+                <input type="text" name="email" placeholder="Your Email" required>
                </div>
                 <input type="submit" value="Send" class="send_btn">
             </form>

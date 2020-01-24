@@ -1171,7 +1171,7 @@ class SMTP
                     'SMTP -> get_lines(): timed-out (' . $this->Timeout . ' sec)',
                     self::DEBUG_LOWLEVEL
                 );
-                break;
+                exit();
             }
             //Deliberate noise suppression - errors are handled afterwards
             $str = @fgets($this->smtp_conn, self::MAX_REPLY_LENGTH);
