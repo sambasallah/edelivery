@@ -18,7 +18,7 @@
             <hr>
             <div class="login">
                 <h5><span class="request_method">POST</span> localhost:8000/api/v1/login </h5>
-                <div class="route">http://localhost:8000/api/v1/login</div>
+                <div class="route">http://localhost:8000/api/v1/auth/login</div>
                 <h6>Login Merchant</h6>
 
                 <pre>

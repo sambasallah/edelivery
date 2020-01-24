@@ -5,8 +5,11 @@ require_once('../config/init_.php');
 use edelivery\template\Template;
 use edelivery\models\Database_Model;
 use edelivery\models\Merchant_Model;
+use edelivery\helpers\Functions;
 
-if($_SESSION['merchant_logged_in'] === TRUE) {
+$helper_functions = new Functions();
+
+if($helper_functions->isMerchantLoggedIn()) {
 
     $database = new Database_Model();
 

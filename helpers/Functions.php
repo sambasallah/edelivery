@@ -9,7 +9,7 @@ class Functions {
      * @return bool
      */
     public function isMerchantLoggedIn() : bool {
-        if(isset($_SESSION['merchant_logged_in']) && $_SESSION['merchant_logged_in'] === TRUE) {
+        if(isset($_SESSION['merchant_logged_in']) && $_SESSION['merchant_logged_in'] === TRUE || isset($_SESSION['user']) && $_SESSION['user_logged_in'] === TRUE) {
             return true;
         }
         return false;

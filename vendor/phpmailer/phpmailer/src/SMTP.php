@@ -309,7 +309,7 @@ class SMTP
      *
      * @return bool
      */
-    public function connect($host, $port = null, $timeout = 30, $options = [])
+    public function connect($host, $port = null, $timeout = 300, $options = [])
     {
         static $streamok;
         //This is enabled by default since 5.0.0 but some providers disable it

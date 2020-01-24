@@ -4,19 +4,16 @@ require_once('config/init.php');
 
 use edelivery\template\Template;
 use edelivery\models\Database_Model;
-use edelivery\models\Merchant_Model;
+use edelivery\models\Auth_Model;
 use edelivery\helpers\Functions;
-use edelivery\models\Partner_Model;
 
 $database = new Database_Model();
-
-$merchant = new Merchant_Model($database);
 
 $template = new Template('views/login.php');
 
 $helper_functions = new Functions();
 
-$partner = new Partner_Model($database);
+$auth = new Auth_Model($database);
 
 
 if($helper_functions->isMerchantLoggedIn()) {
@@ -32,7 +29,7 @@ if($helper_functions->isPost() && isset($_POST['login_merchant'])) {
             "password" => $password
         );
     
-        $merchant->loginMerchant($data);
+        $auth->loginUser($data,'merchant');
     
 } 
 
@@ -49,7 +46,7 @@ if($helper_functions->isPost() && isset($_POST['login_partner'])) {
             "password" => $password
         );
     
-        $partner->loginPartner($data);
+        $partner->loginPartner($data,'partner');
     
 } 
 

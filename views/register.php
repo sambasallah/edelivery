@@ -1,4 +1,4 @@
-<?php require_once('../inc/header.php'); ?>
+`<?php require_once('../inc/header.php'); ?>
 
 <div class="register">
 
@@ -8,14 +8,9 @@
       
             <h4>Merchant Account</h4>
 
-            <?php if(isset($_SESSION['username_exists'])) {
-                echo $_SESSION['username_exists'];
-              }  ?>
-             <?php if(isset($_SESSION['email_exists'])) { 
-                 echo $_SESSION['email_exists'];
-                }  ?>
-            <?php if(isset($_SESSION['error_register'])) { echo $_SESSION['error_register'];
-            }  ?>
+            <?= $username_exists; ?>
+            <?= $email_exists; ?>
+            <?= $error_merchant;  ?>
           
             <form action="" method="post">
                <div class="form-group">

@@ -4,11 +4,11 @@ require_once('config/init.php');
 
 use edelivery\template\Template;
 use edelivery\models\Database_Model;
-use edelivery\models\Auth_Model;
+use edelivery\models\Reset_Password_Model;
 
 $database = new Database_Model();
 
-$auth = new Auth_Model($database);
+$auth = new Reset_Password_Model($database);
 
 $template = new Template('views/reset-password.php');
 

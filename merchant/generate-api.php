@@ -5,7 +5,9 @@ require_once('../config/init_.php');
 use edelivery\template\Template;
 use edelivery\helpers\Functions;
 
-if($_SESSION['merchant_logged_in'] === TRUE) {
+$helper_functions = new Functions();
+
+if($helper_functions->isMerchantLoggedIn()) {
 
     $helper_functions = new Functions();
 

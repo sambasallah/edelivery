@@ -2,15 +2,19 @@
 
 namespace edelivery\models;
 
+use edelivery\models\Auth_Model;
+
 class Merchant_Model {
 
     protected object $conn;
     private int $NUMBER_OF_RECORDS_PER_PAGE = 7;
     private int $total_pages = 0;
+    private object $auth;
 
     public function __construct($db_connection)
     { 
         $this->conn = $db_connection;
+        $this->auth = new Auth_Model($db_connection);
     } 
 
     /**
@@ -39,55 +43,52 @@ class Merchant_Model {
     
     
     /**
-     * @param $data - array
-     * - Register new merchant
+     * Register Merchant
+     * @param array $data
      */
     public function registerMerchant(array $data) : void {
         \extract($data);
 
         if($this->usernameExists($username)) {
-            $_SESSION['username_exists'] = 
-            "<div class='alert alert-danger'>
-                <strong>Username Exists!</strong>
-            </div>";
-            \header("location:register");
+            $_SESSION['username_exists'] = TRUE;
+            // \header("location:register");
         }elseif($this->emailExists($email)) {
-            $_SESSION['email_exists'] = 
-            "<div class='alert alert-danger'>
-                <strong>Email Exists!</strong> 
-            </div>";
+            $_SESSION['email_exists'] = TRUE;
+            // \header("location:register"); 
+        }else {
 
-            \header("location:register"); 
-        }else {
-            $this->conn->prepareQuery("INSERT INTO merchant 
-            SET 
-            first_name = :first_name,
-            middle_name = :middle_name,
-            last_name = :last_name,
-            email = :email,
-            username = :username,
-            password = :password,
-            account_balance = :balance");
-        $this->conn->bind(":middle_name", $middle_name);
-        $this->conn->bind(":last_name", $last_name);
-        $this->conn->bind(":email",$email);
-        $this->conn->bind(":first_name", $first_name);
-        $this->conn->bind(":username", $username);
-        $this->conn->bind(":password", $password);
-        $this->conn->bind(":balance","10000");
-        
-        if($this->conn->executeQuery()) {
+            $success = $this->auth->registerUser(['username' => $username, 'email' => $email, 'password' => $password, 'type' => 'merchant']);
             
-            $_SESSION['merchant_logged_in'] = TRUE;
-            $_SESSION['user']  = $username;
-            \header("location:merchant");
-        }else {
-            $_SESSION['error_register'] = 
-            "<div class='alert alert-danger'>
-                <strong>Error Occured!</strong>
-            </div>";
-            \header("location:register");
-        }   
+            if($success) {
+                $this->conn->prepareQuery("INSERT INTO merchant 
+                SET 
+                first_name = :first_name,
+                middle_name = :middle_name,
+                last_name = :last_name,
+                email = :email,
+                username = :username,
+                password = :password,
+                account_balance = :balance");
+            $this->conn->bind(":middle_name", $middle_name);
+            $this->conn->bind(":last_name", $last_name);
+            $this->conn->bind(":email",$email);
+            $this->conn->bind(":first_name", $first_name);
+            $this->conn->bind(":username", $username);
+            $this->conn->bind(":password", $password);
+            $this->conn->bind(":balance","10000");
+            
+                if($this->conn->executeQuery()) {   
+                    $_SESSION['merchant_logged_in'] = TRUE;
+                    $_SESSION['user']  = $username;
+                    \header("location:merchant");
+               }  else {
+                 \header('location:register');
+               }
+            } else {
+                $_SESSION['error_register_merchant'] = TRUE;
+                \header("location:register");
+            }   
+    
         }
     }
 
@@ -532,7 +533,7 @@ class Merchant_Model {
      * - Checks whether username exists
      */
     private function usernameExists(string $username) : bool {
-        $this->conn->prepareQuery("SELECT * FROM merchant WHERE username = :username"); 
+        $this->conn->prepareQuery("SELECT * FROM users WHERE username = :username"); 
         $this->conn->bind(":username",$username);
 
         $this->conn->executeQuery();
@@ -550,7 +551,7 @@ class Merchant_Model {
      * - Checks whether user email exists
      */
     private function emailExists(string $email) : bool {
-        $this->conn->prepareQuery("SELECT * FROM merchant WHERE email = :email"); 
+        $this->conn->prepareQuery("SELECT * FROM users WHERE email = :email"); 
         $this->conn->bind(":email",$email);
 
         $this->conn->executeQuery();
