@@ -19,22 +19,13 @@ if($helper_functions->isMerchantLoggedIn()) {
 
     $helper_functions = new Functions();
 
-    $template->profile_success = $helper_functions->successProfile();
-
-    $helper_functions->unsetSuccessProfile();
-
-    $template->profile_error = $helper_functions->errorProfile();
-
-    $helper_functions->unsetErrorProfile();
-
-    if($_SERVER['REQUEST_METHOD'] == "POST") {
+    if($helper_functions->isPost()) {
         $first_name = $_POST['first_name'];
         $middle_name = $_POST['middle_name'];
         $last_name = $_POST['last_name'];
         $email = $_POST['email'];
         $username = $_POST['username'];
         $password = $merchant->isPasswordChanged($_POST['password'])? \password_hash($_POST['password'],PASSWORD_ARGON2ID,['cost' => 10, 'memory_cost' => 2048, 'threads' => 4]) : "";
-        $dob = $_POST['dob'];
         $address = $_POST['address'];
         $business_name = $_POST['business_name'];
         $business_location = $_POST['business_location'];
@@ -48,7 +39,6 @@ if($helper_functions->isMerchantLoggedIn()) {
             "email" => $email,
             "username" => $username,
             "password" => $password,
-            "dob" => $dob,
             "address" => $address,
             "business_location" => $business_location,
             "business_name" => $business_name,
@@ -56,10 +46,14 @@ if($helper_functions->isMerchantLoggedIn()) {
             "business_phone" => $business_phone
         );
 
-        $merchant->updateProfileInformation($data, $_SESSION['user']);
+        $merchant->updateProfileInformation($data);
     }
 
     $template->profile_information = $merchant->getProfileInformation($_SESSION['user']);
+
+    $template->profile_success = $helper_functions->successProfile();
+
+    $template->profile_error = $helper_functions->errorProfile();
 
     echo $template;
 }else {

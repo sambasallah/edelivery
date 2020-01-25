@@ -16,7 +16,7 @@
 <!-- Tab panes -->
 <div class="tab-content">
   <div class="tab-pane active container" id="merchant">
-    <?php if(isset($_SESSION['invalid_credentials'])) { echo $_SESSION['invalid_credentials']; } ?>
+    <?= $invalid_credentials; ?>
     <?php if(isset($_SESSION['under_review'])) { echo $_SESSION['under_review']; } ?>
     <?php if(isset($_SESSION['TEST'])) { echo $_SESSION['TEST']; } ?>
   <h5>Merchant Login</h5>
@@ -39,10 +39,7 @@
         <p>Don't Have an Account? <a href="register-partner">Sign Up</a></p>
   </div>
 </div>
-        </div>
-
-
-        
+        </div>   
     </div>
 </div>
 

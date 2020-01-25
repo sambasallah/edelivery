@@ -28,13 +28,8 @@ class Auth_Model {
             $this->conn->bind(":email", $email);
             $this->conn->bind(":password", $password);
             $this->conn->bind(":type", $type);
-
-            if($this->conn->executeQuery()) {
-                return true;
-            }
-
-            return false;
             
+            return $this->conn->executeQuery();
         }
 
     /**
@@ -50,11 +45,7 @@ class Auth_Model {
             $_SESSION['user'] = $usernameOREmail;
             \header('location:'.$user_type);
         } else {
-            $_SESSION['invalid_credentials'] = 
-            "<div class='alert alert-danger alert-dismissible' style='margin-top: 30px; '>
-            <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
-                <strong>Error!</strong> Invalid Credentials
-            </div>";
+            $_SESSION['invalid_credentials'] =  TRUE;
         }
     }
 
@@ -85,49 +76,32 @@ class Auth_Model {
                 return false;
             }
         }   
-
-        if(\password_verify($password,$result->password)) {
-            return true;
-        }
-
-        return false;
-        
-    }
-
-        /**
-     * @param $username - string
-     * @return bool
-     * - Checks whether username exists
-     */
-    private function usernameExists(string $username) : bool {
-        $this->conn->prepareQuery("SELECT * FROM users WHERE username = :username"); 
-        $this->conn->bind(":username",$username);
-
-        $this->conn->executeQuery();
-
-        if($this->conn->rows() == 1) {
-            return true;
-        }
-        
-        return false;
+        return \password_verify($password,$result->password);
     }
 
     /**
-     * @param $email - string
+     * @param array $data
      * @return bool
-     * - Checks whether user email exists
      */
-    private function emailExists(string $email) : bool {
-        $this->conn->prepareQuery("SELECT * FROM users WHERE email = :email"); 
-        $this->conn->bind(":email",$email);
-
-        $this->conn->executeQuery();
-
-        if($this->conn->rows() == 1) {
-            return true;
+    public function updateUser(array $data) : bool {
+        \extract($data);
+        
+        if(!empty($password)) {
+            $this->conn->prepareQuery("UPDATE users SET
+            email = :email,
+            password = :password WHERE username = :username");
+            $this->conn->bind(":email", $email);
+            $this->conn->bind(":password", $password);
+            $this->conn->bind(":username", $username);
+        } else {
+            $this->conn->prepareQuery("UPDATE users SET
+            email = :email
+            WHERE username = :username");
+            $this->conn->bind(":email", $email);
+            $this->conn->bind(":username", $username);
         }
 
-        return false;
+        return $this->conn->executeQuery();
     }
 
 }

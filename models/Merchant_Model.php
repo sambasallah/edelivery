@@ -96,82 +96,79 @@ class Merchant_Model {
      * @param $data - array
      * - Updates merchant profile information
      */
-    public function updateProfileInformation(array $data, string $current_user) : void {
+    public function updateProfileInformation(array $data) : void {
         \extract($data);
 
         if(empty($password)) {
-            $this->conn->prepareQuery("UPDATE merchant 
-            SET
-                first_name = :first_name,
-                middle_name = :middle_name,
-                last_name = :last_name,
-                email = :email,
-                username = :username,
-                dob = :dob,
-                address = :address,
-                business_name = :business_name,
-                business_location = :business_location,
-                business_email = :business_email,
-                business_phone = :business_phone WHERE username = :current_user OR email = :user_email
-            ");
-            $this->conn->bind(":username",$username);
-            $this->conn->bind(":first_name", $first_name);
-            $this->conn->bind(":middle_name",$middle_name);
-            $this->conn->bind(":last_name",$last_name);
-            $this->conn->bind(":email",$email);
-            $this->conn->bind(":dob",$dob);
-            $this->conn->bind(":address",$address);
-            $this->conn->bind(":business_name",$business_name);
-            $this->conn->bind(":business_location",$business_location);
-            $this->conn->bind(":business_email",$business_email);
-            $this->conn->bind(":business_phone",$business_phone);
-            $this->conn->bind(":current_user",$current_user);
-            $this->conn->bind(":user_email",$current_user);
+           
+            $success = $this->auth->updateUser(['email' => $email, 'password' => '', 'username' => $username]);
+
+            if($success) {
+                $this->conn->prepareQuery("UPDATE merchant 
+                SET
+                    first_name = :first_name,
+                    middle_name = :middle_name,
+                    last_name = :last_name,
+                    email = :email,
+                    address = :address,
+                    business_name = :business_name,
+                    business_location = :business_location,
+                    business_email = :business_email,
+                    business_phone = :business_phone WHERE username = :current_user
+                ");
+                $this->conn->bind(":first_name", $first_name);
+                $this->conn->bind(":middle_name",$middle_name);
+                $this->conn->bind(":last_name",$last_name);
+                $this->conn->bind(":email",$email);
+                $this->conn->bind(":address",$address);
+                $this->conn->bind(":business_name",$business_name);
+                $this->conn->bind(":business_location",$business_location);
+                $this->conn->bind(":business_email",$business_email);
+                $this->conn->bind(":business_phone",$business_phone);
+                $this->conn->bind(":current_user",$username);
+            } else {
+                $_SESSION['error_updating'] = TRUE;
+                exit;
+            }
+            
         }else {
-            $this->conn->prepareQuery("UPDATE merchant 
-            SET
-                first_name = :first_name,
-                middle_name = :middle_name,
-                last_name = :last_name,
-                email = :email,
-                username = :username,
-                password = :password,
-                dob = :dob,
-                address = :address,
-                business_name = :business_name,
-                business_location = :business_location,
-                business_email = :business_email,
-                business_phone = :business_phone WHERE username = :current_user OR email = :user_email
-            ");
-            $this->conn->bind(":username",$username);
-            $this->conn->bind(":first_name", $first_name);
-            $this->conn->bind(":middle_name",$middle_name);
-            $this->conn->bind(":last_name",$last_name);
-            $this->conn->bind(":email",$email);
-            $this->conn->bind(":password",$password);
-            $this->conn->bind(":dob",$dob);
-            $this->conn->bind(":address",$address);
-            $this->conn->bind(":business_name",$business_name);
-            $this->conn->bind(":business_location",$business_location);
-            $this->conn->bind(":business_email",$business_email);
-            $this->conn->bind(":business_phone",$business_phone);
-            $this->conn->bind(":current_user",$current_user);
-            $this->conn->bind(":user_email",$current_user);
+            $success = $this->auth->updateUser(['email' => $email, 'password' => $password, 'username' => $username]);
+
+            if($success) {
+                $this->conn->prepareQuery("UPDATE merchant 
+                SET
+                    first_name = :first_name,
+                    middle_name = :middle_name,
+                    last_name = :last_name,
+                    email = :email,
+                    password = :password,
+                    address = :address,
+                    business_name = :business_name,
+                    business_location = :business_location,
+                    business_email = :business_email,
+                    business_phone = :business_phone WHERE username = :current_user
+                ");
+                $this->conn->bind(":first_name", $first_name);
+                $this->conn->bind(":middle_name",$middle_name);
+                $this->conn->bind(":last_name",$last_name);
+                $this->conn->bind(":email",$email);
+                $this->conn->bind(":password",$password);
+                $this->conn->bind(":address",$address);
+                $this->conn->bind(":business_name",$business_name);
+                $this->conn->bind(":business_location",$business_location);
+                $this->conn->bind(":business_email",$business_email);
+                $this->conn->bind(":business_phone",$business_phone);
+                $this->conn->bind(":current_user",$username);
+            } else {
+                $_SESSION['error_updating'] = TRUE;
+                exit;
+            }
         }
 
        if( $this->conn->executeQuery()) {
-        $_SESSION['profile_success'] = 
-        "<div class='alert alert-success alert-dismissible'>
-        <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
-        <strong>Success!</strong> Profile Updated.
-      </div>";
-           \header("location:profile");
+        $_SESSION['profile_success'] = TRUE;
        }else {
-        $_SESSION['profile_error'] = 
-        "<div class='alert alert-danger'>
-             <strong>Error Occured!</strong>
-         </div>";
-         \header("location:profile");
+        $_SESSION['profile_error'] = TRUE;
        }
 
        

@@ -21,16 +21,13 @@
                             <input type="text" placeholder="Last Name" name="last_name" value="<?= $profile_information->last_name; ?>" class="form-control">
                         </div>
                         <div class="form-group">
-                            <input type="text" placeholder="Username" name="username" value="<?= $profile_information->username; ?>" class="form-control">
+                            <input type="text" placeholder="Username" name="username" value="<?= $profile_information->username; ?>" class="form-control" readonly>
                         </div>
                         <div class="form-group">
                             <input type="text" placeholder="Email" name="email" value="<?= $profile_information->email; ?>" class="form-control">
                         </div>
                         <div class="form-group">
                             <input type="password" placeholder="Password" name="password" value="<?= $profile_information->password; ?>" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <input type="date" placeholder="Date Of Birth" name="dob" value="<?= $profile_information->dob; ?>" class="form-control">
                         </div>
                         <div class="form-group">
                             <input type="text" placeholder="Address" name="address" value="<?= $profile_information->address; ?>" class="form-control">

@@ -100,34 +100,34 @@ class Functions {
      */
     public function errorProfile() : string {
         if(isset($_SESSION['profile_error'])) {
-            return $_SESSION['profile_error'];
+            $msg =
+            "<div class='alert alert-danger alert-dismissible'>
+        <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
+        <strong>Error!</strong> An Error Occured.
+      </div>";
+            unset($_SESSION['profile_error']);
+
+            return $msg;
         }
         return "";
-    }
-
-    /**
-     * - Unset profile_error session variable
-     */
-    public function unsetErrorProfile() : void {
-        unset($_SESSION['profile_error']);
     }
 
      /**
+      * Returns success message when your profile has been updated successfully
      * @return string
-     * - Returns success message when your profile has been updated successfully
      */
     public function successProfile() : string {
         if(isset($_SESSION['profile_success'])) {
-            return $_SESSION['profile_success'];
+            $msg = 
+            "<div class='alert alert-success alert-dismissible'>
+        <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
+        <strong>Success!</strong> Profile Updated.
+      </div>";
+            unset($_SESSION['profile_success']);
+            return $msg;
         }
         return "";
     }
 
-    /**
-     * - Unset profile_success session variable
-     */
-    public function unsetSuccessProfile() : void {
-        unset($_SESSION['profile_success']);
-    }
 
 }

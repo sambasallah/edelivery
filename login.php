@@ -6,6 +6,7 @@ use edelivery\template\Template;
 use edelivery\models\Database_Model;
 use edelivery\models\Auth_Model;
 use edelivery\helpers\Functions;
+use edelivery\helpers\Error_Messages;
 
 $database = new Database_Model();
 
@@ -14,6 +15,8 @@ $template = new Template('views/login.php');
 $helper_functions = new Functions();
 
 $auth = new Auth_Model($database);
+
+$error_messages = new Error_Messages();
 
 
 if($helper_functions->isMerchantLoggedIn()) {
@@ -49,6 +52,8 @@ if($helper_functions->isPost() && isset($_POST['login_partner'])) {
         $partner->loginPartner($data,'partner');
     
 } 
+
+$template->invalid_credentials = $error_messages->invalidCredentialsError();
 
 
 echo $template;

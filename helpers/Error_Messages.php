@@ -48,5 +48,18 @@ class Error_Messages {
 
         return "";
     }
+
+    public function invalidCredentialsError() : string {
+        if(isset($_SESSION['invalid_credentials'])) {
+            $msg =  "<div class='alert alert-danger alert-dismissible' style='margin-top: 30px; '>
+            <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
+                <strong>Error!</strong> Invalid Credentials
+            </div>";
+            unset($_SESSION['invalid_credentials']);
+            return $msg;
+        }
+
+        return "";
+    }
     
 }
