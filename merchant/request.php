@@ -21,6 +21,7 @@ if($helper_functions->isMerchantLoggedIn()) {
     $merchant_id = $merchant->getMerchantID($_SESSION['user']);
 
     if($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['make_request'])) {
+        
         if(isset($_SESSION['token']) && $_SESSION['token'] == $_POST['_token']) {
     
         $to = $_POST['to'];
