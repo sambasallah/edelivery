@@ -17,19 +17,27 @@ class Auth_Model {
      */
     public function registerUser(array $data) : bool {
             \extract($data);
-       
-            $this->conn->prepareQuery("INSERT INTO users 
-                                            SET username = :username,
-                                            email = :email,
-                                            password = :password,
-                                            user_type = :type");
-
-            $this->conn->bind(":username", $username);
-            $this->conn->bind(":email", $email);
-            $this->conn->bind(":password", $password);
-            $this->conn->bind(":type", $type);
             
-            return $this->conn->executeQuery();
+            if($this->emailExists($email)) {
+                $_SESSION['email_exists'] = TRUE;
+                return false;
+            } else if ($this->usernameExists($username)) {
+                $_SESSION['username_exists'] = TRUE;
+                return false;
+            } else {
+                $this->conn->prepareQuery("INSERT INTO users 
+                SET username = :username,
+                email = :email,
+                password = :password,
+                user_type = :type");
+
+                $this->conn->bind(":username", $username);
+                $this->conn->bind(":email", $email);
+                $this->conn->bind(":password", $password);
+                $this->conn->bind(":type", $type);
+
+                return $this->conn->executeQuery();
+            }
         }
 
     /**
@@ -41,9 +49,15 @@ class Auth_Model {
         $valid = $this->checkLoginDetails($usernameOREmail, $password);
 
         if($valid) {
-            $_SESSION['user_logged_in'] = TRUE;
-            $_SESSION['user'] = $usernameOREmail;
-            \header('location:'.$user_type);
+            if($user_type == 'partner') {
+                $_SESSION['merchant_logged_in'] = TRUE;
+                $_SESSION['user'] = $usernameOREmail;
+                \header('location:'.$user_type);
+            } else {
+                $_SESSION['merchant_logged_in'] = TRUE;
+                $_SESSION['user'] = $usernameOREmail;
+                \header('location:'.$user_type);
+            }
         } else {
             $_SESSION['invalid_credentials'] =  TRUE;
         }
@@ -102,6 +116,42 @@ class Auth_Model {
         }
 
         return $this->conn->executeQuery();
+    }
+
+        /**
+     * @param string $email
+     * @return bool
+     * - Checks whether user email exists
+     */
+    private function emailExists(string $email) : bool {
+        $this->conn->prepareQuery("SELECT * FROM users WHERE email = :email"); 
+        $this->conn->bind(":email",$email);
+
+        $this->conn->executeQuery();
+
+        if($this->conn->rows() == 1) {
+            return true;
+        }
+
+        return false;
+    }
+
+        /**
+     * @param string $username
+     * @return bool
+     * - Checks whether user email exists
+     */
+    private function usernameExists(string $username) : bool {
+        $this->conn->prepareQuery("SELECT * FROM users WHERE username = :username"); 
+        $this->conn->bind(":username",$username);
+
+        $this->conn->executeQuery();
+
+        if($this->conn->rows() == 1) {
+            return true;
+        }
+
+        return false;
     }
 
 }

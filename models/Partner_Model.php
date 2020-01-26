@@ -2,48 +2,52 @@
 
 namespace edelivery\models;
 
+use edelivery\models\Auth_Model;
+
 class Partner_Model {
 
     private object $conn;
     private int $NUMBER_OF_RECORDS_PER_PAGE = 5;
     private int $total_pages = 0;
+    private object $auth;
 
     public function __construct($db_connection) 
     {
         $this->conn = $db_connection;
+        $this->auth = new Auth_Model($db_connection);
     }
 
-    /**
-     * @param $data - array
-     */
-    public function loginPartner(array $data) : void {
-        \extract($data);
+    // /**
+    //  * @param $data - array
+    //  */
+    // public function loginPartner(array $data) : void {
+    //     \extract($data);
 
-        $response = $this->checkLoginDetails($usernameOREmail,$password);
+    //     $response = $this->checkLoginDetails($usernameOREmail,$password);
 
-        if($response) {
-            $partner_id = $this->getPartnerID($usernameOREmail);
-            if($this->isAccountApproved($partner_id)) {
-                $_SESSION['partner_logged_in'] = TRUE;
-                $_SESSION['user'] = $usernameOREmail;
-                \header("location:partner");
-            } else {
-                $_SESSION['under_review'] = 
-                "<div class='alert alert-danger alert-dismissible' style='margin-top: 30px; '>
-                <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
-                    <strong>Under Review!</strong> 
-                </div>";
-                \header("location:login");
-            }
-        }else {
-            $_SESSION['invalid_credentials'] = 
-            "<div class='alert alert-danger alert-dismissible' style='margin-top: 30px; '>
-            <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
-                <strong>Error!</strong> Invalid Credentials
-            </div>";
-            \header("location:login");   
-        }
-    }
+    //     if($response) {
+    //         $partner_id = $this->getPartnerID($usernameOREmail);
+    //         if($this->isAccountApproved($partner_id)) {
+    //             $_SESSION['partner_logged_in'] = TRUE;
+    //             $_SESSION['user'] = $usernameOREmail;
+    //             \header("location:partner");
+    //         } else {
+    //             $_SESSION['under_review'] = 
+    //             "<div class='alert alert-danger alert-dismissible' style='margin-top: 30px; '>
+    //             <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
+    //                 <strong>Under Review!</strong> 
+    //             </div>";
+    //             \header("location:login");
+    //         }
+    //     }else {
+    //         $_SESSION['invalid_credentials'] = 
+    //         "<div class='alert alert-danger alert-dismissible' style='margin-top: 30px; '>
+    //         <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
+    //             <strong>Error!</strong> Invalid Credentials
+    //         </div>";
+    //         \header("location:login");   
+    //     }
+    // }
     
     /**
      * @param $usernameOREmail - string
@@ -66,39 +70,29 @@ class Partner_Model {
 
     public function registerPartner(array $data,array $national_document, array $valid_drivers_license) : void {
         \extract($data);
-        if($this->usernameExists($username)) {
-            $_SESSION['username_exists'] = 
-            "<div class='alert alert-danger'>
-                <strong>Username Exists!</strong>
-            </div>";
-            \header("location:register-partner");
-        }elseif($this->emailExists($email_address)) {
-            $_SESSION['email_exists'] = 
-            "<div class='alert alert-danger'>
-                <strong>Email Exists!</strong> 
-            </div>";
-
-            \header("location:register-partner"); 
-        }else {
+        
+        $success = $this->auth->registerUser(['username' => $username, 'email' => $email_address, 'password' => $password, 'type' => 'partner']);
+        
+        if($success) {
             $national_document = $this->uploadNationalDocument($national_document);
             $drivers_license = $this->uploadDriversLicense($valid_drivers_license);
             
             if(!empty($national_document) && !empty($drivers_license)) {
                 $this->conn->prepareQuery("INSERT INTO partner 
-            SET 
-            first_name = :first_name,
-            last_name = :last_name,
-            email = :email_address,
-            username = :username,
-            password = :password,
-            phone_number = :phone,
-            municipality = :municipality,
-            license = :license,
-            national_document = :national_document,
-            account_status = :status,
-            earnings = :balance,
-            withdrawals = :withdrawals,
-            vehicle_type = :vehicle_type ");
+                                                    SET 
+                                                    first_name = :first_name,
+                                                    last_name = :last_name,
+                                                    email = :email_address,
+                                                    username = :username,
+                                                    password = :password,
+                                                    phone_number = :phone,
+                                                    municipality = :municipality,
+                                                    license = :license,
+                                                    national_document = :national_document,
+                                                    account_status = :status,
+                                                    earnings = :balance,
+                                                    withdrawals = :withdrawals,
+                                                    vehicle_type = :vehicle_type ");
 
                 $this->conn->bind(":first_name", $first_name);
                 $this->conn->bind(":last_name", $last_name);
@@ -113,6 +107,10 @@ class Partner_Model {
                 $this->conn->bind(":balance","0");
                 $this->conn->bind(":withdrawals","0");
                 $this->conn->bind(":vehicle_type",$vehicle_type);
+        } else {
+            \header('location:register-partner');
+        }
+          
 
         if($this->conn->executeQuery()) {
             
@@ -120,13 +118,9 @@ class Partner_Model {
             $_SESSION['user']  = $username;
             \header("location:partner");
         }else {
-            $_SESSION['error_register'] = 
-            "<div class='alert alert-danger'>
-                <strong>Error Occured!</strong>
-            </div>";
-            \header("location:register-partner");
+            $_SESSION['error_register_partner'] = TRUE;
         }   
-            }
+            
         }
     }
 
@@ -645,14 +639,19 @@ class Partner_Model {
      * @return int
      */
     public function getPartnerID(string $user) : int {
-        $this->conn->prepareQuery("SELECT partner_id FROM partner WHERE username = :username OR email = :email");
+        if($this->usernameExists($user) || $this->emailExists($user)) {
+            $this->conn->prepareQuery("SELECT partner_id FROM partner WHERE username = :username OR email = :email");
         $this->conn->bind(":username",$user);
         $this->conn->bind(":email",$user);
         $this->conn->executeQuery();
 
         $result = $this->conn->getResult();
-
+        
         return intval($result->partner_id);
+
+        } else {
+            return 0;
+        }
     }
 
     /**
@@ -722,7 +721,7 @@ class Partner_Model {
      * @return bool
      * - Checks whether username exists
      */
-    private function usernameExists(string $username) : bool {
+    public function usernameExists(string $username) : bool {
         $this->conn->prepareQuery("SELECT * FROM partner WHERE username = :username"); 
         $this->conn->bind(":username",$username);
 
@@ -740,7 +739,7 @@ class Partner_Model {
      * @return bool
      * - Checks whether user email exists
      */
-    private function emailExists(string $email) : bool {
+    public function emailExists(string $email) : bool {
         $this->conn->prepareQuery("SELECT * FROM partner WHERE email = :email"); 
         $this->conn->bind(":email",$email);
 

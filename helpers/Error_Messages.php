@@ -48,7 +48,10 @@ class Error_Messages {
 
         return "";
     }
-
+    
+    /**
+     * @return string
+     */
     public function invalidCredentialsError() : string {
         if(isset($_SESSION['invalid_credentials'])) {
             $msg =  "<div class='alert alert-danger alert-dismissible' style='margin-top: 30px; '>
@@ -61,5 +64,38 @@ class Error_Messages {
 
         return "";
     }
+
+    /**
+     * @return string
+     */
+    public function partnerNotApproved() : string {
+        if(isset($_SESSION['partner_not_approved'])) {
+            $msg = "<div class='alert alert-danger alert-dismissible' style='margin-top: 30px; '>
+            <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
+                <strong>Under Review</strong> 
+            </div>";
+            unset($_SESSION['partner_not_approved']);
+            return $msg;
+        }
+
+        return "";
+    }
+
+    /**
+     * @return string
+     */
+    public function errorRegisterPartner() : string {
+        if(isset($_SESSION['error_register_partner'])) {
+            $msg = "<div class='alert alert-danger alert-dismissible' style='margin-top: 30px; '>
+            <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
+                <strong>Under Review</strong> 
+            </div>";
+            unset($_SESSION['error_register_partner']);
+            return $msg;
+        }
+
+        return "";
+    }
+
     
 }

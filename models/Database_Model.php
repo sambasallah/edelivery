@@ -98,7 +98,11 @@ class Database_Model {
             $this->executeQuery();
             $this->result = $this->query_stmt->fetch(\PDO::FETCH_OBJ);
 
-            return $this->result;
+            if($this->result == FALSE) {
+                return (object)[];
+            } else {
+                return $this->result;
+            }
         }
 
         /**

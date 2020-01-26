@@ -20,7 +20,9 @@ if($helper_functions->isMerchantLoggedIn()) {
 
     $merchant_id = $merchant->getMerchantID($_SESSION['user']);
 
-    if($_SERVER['REQUEST_METHOD'] == "POST") {
+    if($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['make_request'])) {
+        if(isset($_SESSION['token']) && $_SESSION['token'] == $_POST['_token']) {
+    
         $to = $_POST['to'];
         $from = $_POST['from'];
         $receipient_name = $_POST['receipient_name'];
@@ -60,7 +62,9 @@ if($helper_functions->isMerchantLoggedIn()) {
         $merchant_id = $merchant->getMerchantID($_SESSION['user']);
         $delivery_rate = $merchant->calculateDeliveryRate($to,$from);
         if($merchant->isAccountBalanceSufficient($merchant_id,$delivery_rate)) {
-            $merchant->makeDeliveryRequest($data,$merchant_id);
+           
+                $merchant->makeDeliveryRequest($data,$merchant_id);
+           
         }else {
             $_SESSION['insufficient_balance'] = 
             "<div class='alert alert-danger alert-dismissible'>
@@ -68,9 +72,22 @@ if($helper_functions->isMerchantLoggedIn()) {
             <strong>Failed!</strong> Insufficient Account Balance.
           </div>";
           header("location:dashboard");
+        }  
+        
+        } else {
+            session_destroy();
+            header('location:../login');
+        } 
+
         }
-        }
-        echo $template;
+$token =  md5(uniqid(mt_rand(),true));
+
+$_SESSION['token'] = $token;
+
+$template->token = $token;
+
+echo $template;
+
 }else {
     header("location:../register");
 }

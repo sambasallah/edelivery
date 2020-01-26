@@ -17,12 +17,12 @@
 <div class="tab-content">
   <div class="tab-pane active container" id="merchant">
     <?= $invalid_credentials; ?>
-    <?php if(isset($_SESSION['under_review'])) { echo $_SESSION['under_review']; } ?>
-    <?php if(isset($_SESSION['TEST'])) { echo $_SESSION['TEST']; } ?>
-  <h5>Merchant Login</h5>
-        <form action="" method="post">
+    <?= $not_approved; ?>
+   <h5>Merchant Login</h5>
+        <form action="login" method="post">
             <input type="text" class="form-control" name="username_or_email" placeholder="Username or Email" required>
             <input type="password" class="form-control" name="password" placeholder="Password" required>
+            <input type="hidden" name="_token" value="<?= $token; ?>" >
             <input type="submit" value="login" name="login_merchant" class="btn btn-success">
         </form>
         <p><a href="reset-password">Forgot Password?</a></p>
@@ -33,6 +33,7 @@
         <form action="" method="post">
             <input type="text" class="form-control" name="username_or_email" placeholder="Username or Email">
             <input type="password" class="form-control" name="password" placeholder="Password">
+            <input type="hidden" name="_token" value="<?= $token; ?>" >
             <input type="submit" value="login" name="login_partner" class="btn btn-success">
         </form>
         <p><a href="reset-password">Forgot Password?</a></p>

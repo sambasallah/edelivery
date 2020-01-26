@@ -7,9 +7,9 @@
             <form action="" method="post" id="partnerForm" enctype="multipart/form-data">
 
                 <h1>Become A Partner</h1>
-                <?php if(isset($_SESSION['email_exists'])) { echo $_SESSION['email_exists']; } ?>
-                <?php if(isset($_SESSION['username_exists'])) { echo $_SESSION['username_exists']; } ?>
-                <?php if(isset($_SESSION['error_register'])) { echo $_SESSION['error_register']; } ?>
+                <?= $partner_register_error; ?>
+                <?= $username_exists; ?>
+                <?= $email_exists; ?>
                 <!-- One "tab" for each step in the form: -->
                 <div class="tab">
                 <p><input placeholder="First name..." oninput="this.className = ''" name="first_name" required></p>
