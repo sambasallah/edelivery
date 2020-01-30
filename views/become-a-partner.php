@@ -11,7 +11,7 @@
                 <a href="register-partner" class="apply_now">APPLY NOW</a>
             </div>
             <div class="col-md-6 right_partner col-sm">
-                <img src="media/images/Partners.png" alt="Become A Partner" height="400px">
+                <img src="media/images/partners.png" alt="Become A Partner" height="400px">
             </div>
         </div>
     </div>
