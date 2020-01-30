@@ -15,8 +15,8 @@
                         <h5>Municipality : <?= $partner_info->municipality; ?></h5>
                         <h5>Vehicle Type : Pick Up</h5>
                         <h5>Account Status : <?= $partner_info->account_status; ?></h5>
-                        <h5>Licenses : <a href="<?= '../public/uploads/licenses/'. $partner_info->license; ?> ">View</a></h5>
-                        <h5>National Document : <a href="<?= '../public/uploads/documents/'. $partner_info->national_document; ?> ">View</a></h5>
+                        <h5>Licenses : <a href="<?= '../storage/public/uploads/licenses/'. $partner_info->license; ?> ">View</a></h5>
+                        <h5>National Document : <a href="<?= '../storage/public/uploads/documents/'. $partner_info->national_document; ?> ">View</a></h5>
                     </div>
                     <form action="" method="post">
                        <?php if($partner_info->account_status == "Under Review") : ?>

@@ -62,25 +62,26 @@ if($helper_functions->isMerchantLoggedIn()) {
 
         $merchant_id = $merchant->getMerchantID($_SESSION['user']);
         $delivery_rate = $merchant->calculateDeliveryRate($to,$from);
-        if($merchant->isAccountBalanceSufficient($merchant_id,$delivery_rate)) {
-           
-                $merchant->makeDeliveryRequest($data,$merchant_id);
-           
-        }else {
-            $_SESSION['insufficient_balance'] = 
-            "<div class='alert alert-danger alert-dismissible'>
-            <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
-            <strong>Failed!</strong> Insufficient Account Balance.
-          </div>";
-          header("location:dashboard");
-        }  
+            if($merchant->isAccountBalanceSufficient($merchant_id,$delivery_rate)) {
+            
+                    $merchant->makeDeliveryRequest($data,$merchant_id);
+            
+            }else {
+                $_SESSION['insufficient_balance'] = 
+                "<div class='alert alert-danger alert-dismissible'>
+                <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
+                <strong>Failed!</strong> Insufficient Account Balance.
+            </div>";
+            header("location:dashboard");
+            }  
         
         } else {
             session_destroy();
             header('location:../login');
         } 
 
-        }
+}
+
 $token =  md5(uniqid(mt_rand(),true));
 
 $_SESSION['token'] = $token;

@@ -58,5 +58,5 @@ if(isset($_GET['edit']) && is_numeric($_GET['edit'])) {
 } 
 echo $template;
 } else {
-    header("location:login");
+   header("location:login");
 }

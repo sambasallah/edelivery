@@ -16,38 +16,6 @@ class Partner_Model {
         $this->conn = $db_connection;
         $this->auth = new Auth_Model($db_connection);
     }
-
-    // /**
-    //  * @param $data - array
-    //  */
-    // public function loginPartner(array $data) : void {
-    //     \extract($data);
-
-    //     $response = $this->checkLoginDetails($usernameOREmail,$password);
-
-    //     if($response) {
-    //         $partner_id = $this->getPartnerID($usernameOREmail);
-    //         if($this->isAccountApproved($partner_id)) {
-    //             $_SESSION['partner_logged_in'] = TRUE;
-    //             $_SESSION['user'] = $usernameOREmail;
-    //             \header("location:partner");
-    //         } else {
-    //             $_SESSION['under_review'] = 
-    //             "<div class='alert alert-danger alert-dismissible' style='margin-top: 30px; '>
-    //             <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
-    //                 <strong>Under Review!</strong> 
-    //             </div>";
-    //             \header("location:login");
-    //         }
-    //     }else {
-    //         $_SESSION['invalid_credentials'] = 
-    //         "<div class='alert alert-danger alert-dismissible' style='margin-top: 30px; '>
-    //         <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
-    //             <strong>Error!</strong> Invalid Credentials
-    //         </div>";
-    //         \header("location:login");   
-    //     }
-    // }
     
     /**
      * @param $usernameOREmail - string
@@ -124,106 +92,235 @@ class Partner_Model {
         }
     }
 
-    public function updateProfileInformation(array $data, int $current_user, array $profile_picture) : void {
+    public function updateProfileInformation(array $data, array $profile_arr) : void {
         \extract($data);
         if(empty($password)) {
-            $profile_picture = $this->uploadPartnerProfilePicture($profile_picture);
+            $profile_picture = $this->uploadPartnerProfilePicture($profile_arr);
             
-            if($profile_picture == "File Exist") {
-                $_SESSION['file_exist'] = 
-                "<div class='alert alert-danger'>
-                <strong>File Exists!</strong>
+            if($profile_picture == "File Too Large") {
+                $_SESSION['large'] =  "<div class='alert alert-danger alert-dismissible'>
+                <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
+                <strong>Error!</strong> large file.
             </div>";
-            } else if($profile_picture == "File Too Large") {
-                $_SESSION['large_file'] = 
-                "<div class='alert alert-danger'>
-                <strong>File Too Large!</strong>
-            </div>";
-            } else if ($profile_picture == "An Error Occured") {
-                $_SESSION['upload_error'] = 
-                "<div class='alert alert-danger'>
-                <strong>An Error Occured!</strong>
-            </div>";
-
-            }else if($profile_picture == "Invalid Image Type") {
-                $_SESSION['upload_error'] = 
-                "<div class='alert alert-danger'>
-                <strong>Invalid Image Type! make sure your image is jpeg/jpg/png</strong>
-            </div>"; 
-            
-            } else {
-                    $this->conn->prepareQuery("UPDATE partner SET 
-                                first_name = :first_name,
-                                last_name = :last_name,
-                                username = :username,
-                                email = :email,
-                                phone_number = :phone_number,
-                                profile_picture = :picture WHERE partner_id = :id");
+            $this->conn->prepareQuery("UPDATE partner SET 
+                first_name = :first_name,
+                last_name = :last_name,
+                username = :username,
+                email = :email,
+                password = :password,
+                phone_number = :phone_number
+                 WHERE partner_id = :id");
                 $this->conn->bind(":first_name",$first_name);
                 $this->conn->bind(":last_name",$last_name);
                 $this->conn->bind(":username",$username);
                 $this->conn->bind(":email",$email);
+                $this->conn->bind(":password", $password);
                 $this->conn->bind(":phone_number",$phone_number);
-                $this->conn->bind(":id",$current_user);
+                $this->conn->bind(":id",$partner_id);
+            } else if($profile_picture == "An Error Occured") {
+                $_SESSION['error'] = 
+                "<div class='alert alert-danger alert-dismissible'>
+                <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
+                <strong>Error!</strong> occured.
+            </div>";
+            $this->conn->prepareQuery("UPDATE partner SET 
+                first_name = :first_name,
+                last_name = :last_name,
+                username = :username,
+                email = :email,
+                password = :password,
+                phone_number = :phone_number
+                 WHERE partner_id = :id");
+                $this->conn->bind(":first_name",$first_name);
+                $this->conn->bind(":last_name",$last_name);
+                $this->conn->bind(":username",$username);
+                $this->conn->bind(":email",$email);
+                $this->conn->bind(":password", $password);
+                $this->conn->bind(":phone_number",$phone_number);
+                $this->conn->bind(":id",$partner_id);
+            } else if($profile_picture == "File Exists") {
+                $_SESSION['exists'] = 
+                "<div class='alert alert-danger alert-dismissible'>
+                <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
+                <strong>Error!</strong> file exists.
+            </div>";
+            $this->conn->prepareQuery("UPDATE partner SET 
+                first_name = :first_name,
+                last_name = :last_name,
+                username = :username,
+                email = :email,
+                password = :password,
+                phone_number = :phone_number
+                 WHERE partner_id = :id");
+                $this->conn->bind(":first_name",$first_name);
+                $this->conn->bind(":last_name",$last_name);
+                $this->conn->bind(":username",$username);
+                $this->conn->bind(":email",$email);
+                $this->conn->bind(":password", $password);
+                $this->conn->bind(":phone_number",$phone_number);
+                $this->conn->bind(":id",$partner_id);
+            } else if($profile_picture == "Invalid Image Type") {
+                $_SESSION['invalid_type'] = 
+                "<div class='alert alert-danger alert-dismissible'>
+                <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
+                <strong>Error!</strong> invalid type.
+            </div>";
+            $this->conn->prepareQuery("UPDATE partner SET 
+                first_name = :first_name,
+                last_name = :last_name,
+                username = :username,
+                email = :email,
+                password = :password,
+                phone_number = :phone_number
+                 WHERE partner_id = :id");
+                $this->conn->bind(":first_name",$first_name);
+                $this->conn->bind(":last_name",$last_name);
+                $this->conn->bind(":username",$username);
+                $this->conn->bind(":email",$email);
+                $this->conn->bind(":password", $password);
+                $this->conn->bind(":phone_number",$phone_number);
+                $this->conn->bind(":id",$partner_id);
+            }
+             else {
+                $this->conn->prepareQuery("UPDATE partner SET 
+                first_name = :first_name,
+                last_name = :last_name,
+                username = :username,
+                email = :email,
+                password = :password,
+                phone_number = :phone_number,
+                profile_picture = :picture
+                 WHERE partner_id = :id");
+                $this->conn->bind(":first_name",$first_name);
+                $this->conn->bind(":last_name",$last_name);
+                $this->conn->bind(":username",$username);
+                $this->conn->bind(":email",$email);
+                $this->conn->bind(":password", $password);
+                $this->conn->bind(":phone_number",$phone_number);
+                $this->conn->bind(":id",$partner_id);
                 $this->conn->bind(":picture", $profile_picture);
             }
-         } else {
-            if($profile_picture == "File Exists") {
-                $_SESSION['file_exists'] = 
-                "<div class='alert alert-danger'>
-                <strong>File Exists!</strong>
-            </div>";
-            } else if($profile_picture == "File Too Large") {
-                $_SESSION['large_file'] = 
-                "<div class='alert alert-danger'>
-                <strong>Large File!</strong>
-            </div>";
-            } else if ($profile_picture == "An Error Occured") {
-                $_SESSION['upload_error'] = 
-                "<div class='alert alert-danger'>
-                <strong>An Error Occured!</strong>
-            </div>";
-            } else if($profile_picture == "Unknown Error") {
-                $_SESSION['upload_error'] = 
-                "<div class='alert alert-danger'>
-                <strong>Unknown Error Occured!</strong>
-            </div>";
-            } else {
-                    
-            $this->conn->prepareQuery("UPDATE partner SET 
-            first_name = :first_name,
-            last_name = :last_name,
-            username = :username,
-            password = :password,
-            email = :email,
-            phone_number = :phone_number,
-            profile_picture = :picture WHERE partner_id = :id");
-            $this->conn->bind(":first_name",$first_name);
-            $this->conn->bind(":last_name",$last_name);
-            $this->conn->bind(":username",$username);
-            $this->conn->bind("password",$password);
-            $this->conn->bind(":email",$email);
-            $this->conn->bind(":phone_number",$phone_number);
-            $this->conn->bind(":id",$current_user);
-            $this->conn->bind(":picture", $profile_picture);
+        
+        } else {
             
-            }
-         }
-
-         if($this->conn->executeQuery()) {
-            $_SESSION['profile_success'] = 
-                "<div class='alert alert-success alert-dismissible'>
+            if($profile_picture == "File Too Large") {
+                $_SESSION['large'] =  "<div class='alert alert-danger alert-dismissible'>
                 <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
-                <strong>Success!</strong> Profile Updated.
+                <strong>Error!</strong> large file.
             </div>";
-           \header("location:profile");
-         } else {
-            $_SESSION['profile_error'] = 
-            "<div class='alert alert-danger'>
-                 <strong>Error Occured!</strong>
-             </div>";
-             \header("location:profile");
-         }
+            $this->conn->prepareQuery("UPDATE partner SET 
+                first_name = :first_name,
+                last_name = :last_name,
+                username = :username,
+                email = :email,
+                password = :password,
+                phone_number = :phone_number
+                 WHERE partner_id = :id");
+                $this->conn->bind(":first_name",$first_name);
+                $this->conn->bind(":last_name",$last_name);
+                $this->conn->bind(":username",$username);
+                $this->conn->bind(":email",$email);
+                $this->conn->bind(":password", $password);
+                $this->conn->bind(":phone_number",$phone_number);
+                $this->conn->bind(":id",$partner_id);
+            } else if($profile_picture == "An Error Occured") {
+                $_SESSION['error'] = 
+                "<div class='alert alert-danger alert-dismissible'>
+                <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
+                <strong>Error!</strong> occured.
+            </div>";
+            $this->conn->prepareQuery("UPDATE partner SET 
+                first_name = :first_name,
+                last_name = :last_name,
+                username = :username,
+                email = :email,
+                password = :password,
+                phone_number = :phone_number
+                 WHERE partner_id = :id");
+                $this->conn->bind(":first_name",$first_name);
+                $this->conn->bind(":last_name",$last_name);
+                $this->conn->bind(":username",$username);
+                $this->conn->bind(":email",$email);
+                $this->conn->bind(":password", $password);
+                $this->conn->bind(":phone_number",$phone_number);
+                $this->conn->bind(":id",$partner_id);
+            } else if($profile_picture == "File Exists") {
+                $_SESSION['exists'] = 
+                "<div class='alert alert-danger alert-dismissible'>
+                <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
+                <strong>Error!</strong> file exists.
+            </div>";
+            $this->conn->prepareQuery("UPDATE partner SET 
+                first_name = :first_name,
+                last_name = :last_name,
+                username = :username,
+                email = :email,
+                password = :password,
+                phone_number = :phone_number
+                 WHERE partner_id = :id");
+                $this->conn->bind(":first_name",$first_name);
+                $this->conn->bind(":last_name",$last_name);
+                $this->conn->bind(":username",$username);
+                $this->conn->bind(":email",$email);
+                $this->conn->bind(":password", $password);
+                $this->conn->bind(":phone_number",$phone_number);
+                $this->conn->bind(":id",$partner_id);
+            } else if($profile_picture == "Invalid Image Type") {
+                $_SESSION['invalid_type'] = 
+                "<div class='alert alert-danger alert-dismissible'>
+                <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
+                <strong>Error!</strong> invalid type.
+            </div>";
+            $this->conn->prepareQuery("UPDATE partner SET 
+                first_name = :first_name,
+                last_name = :last_name,
+                username = :username,
+                email = :email,
+                password = :password,
+                phone_number = :phone_number
+                 WHERE partner_id = :id");
+                $this->conn->bind(":first_name",$first_name);
+                $this->conn->bind(":last_name",$last_name);
+                $this->conn->bind(":username",$username);
+                $this->conn->bind(":email",$email);
+                $this->conn->bind(":password", $password);
+                $this->conn->bind(":phone_number",$phone_number);
+                $this->conn->bind(":id",$partner_id);
+            } else {
+                $this->conn->prepareQuery("UPDATE partner SET 
+                first_name = :first_name,
+                last_name = :last_name,
+                username = :username,
+                email = :email,
+                password = :password,
+                phone_number = :phone_number,
+                profile_picture = :picture
+                 WHERE partner_id = :id");
+                $this->conn->bind(":first_name",$first_name);
+                $this->conn->bind(":last_name",$last_name);
+                $this->conn->bind(":username",$username);
+                $this->conn->bind(":email",$email);
+                $this->conn->bind(":password", $password);
+                $this->conn->bind(":phone_number",$phone_number);
+                $this->conn->bind(":id",$partner_id);
+                $this->conn->bind(":picture", $profile_picture);
+            }
+           
+        }
+
+        if($this->conn->executeQuery()) {
+            $_SESSION['updated'] = 
+            "<div class='alert alert-success alert-dismissible'>
+                <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
+                <strong>Success!</strong> updated.
+            </div>";
+        } else {
+            $_SESSION['error'] = 
+            "<div class='alert alert-danger alert-dismissible'>
+                <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
+                <strong>Error!</strong> occured.
+            </div>";
+        }
     }   
 
     /**

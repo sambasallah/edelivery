@@ -15,9 +15,6 @@ if($helpers->isPartnerLoggedIn()) {
 
     $template = new Template('views/dashboard.php');
 
-    unset($_SESSION['delete_success']);
-    unset($_SESSION['delete_error']);
-
     $partner_id = $partner->getPartnerID($_SESSION['user']);
 
     $template->earnings = $partner->getTotalEarnings($partner_id);

@@ -8,11 +8,8 @@
                 <div class="col-md-9">
                     <div class="right">
                     <h3>Profile Information</h3>
-                    <?php if(isset($_SESSION['profile_success'])) { echo $_SESSION['profile_success']; } ?>
-                    <?php if(isset($_SESSION['profile_error'])) { echo $_SESSION['profile_error']; } ?>
-                    <?php if(isset($_SESSION['file_exist'])) { echo $_SESSION['file_exist']; } ?>
-                    <?php if(isset($_SESSION['large_file'])) { echo $_SESSION['large_file']; } ?>
-                    <?php if(isset($_SESSION['upload_error'])) { echo $_SESSION['upload_error']; } ?>
+                    <?php if(isset($_SESSION['updated'])) { echo $_SESSION['updated']; } ?>
+                    <?php if(isset($_SESSION['error'])) { echo $_SESSION['error']; } ?>
                     <form action="" method="post" enctype="multipart/form-data">
                         <div class="form-group">
                             <input type="text" placeholder="First Name" value="<?= $profile_information->first_name; ?>" name="first_name" class="form-control">
@@ -21,13 +18,13 @@
                             <input type="text" placeholder="Last Name" value="<?= $profile_information->last_name; ?>" name="last_name" class="form-control">
                         </div>
                         <div class="form-group">
-                            <input type="text" placeholder="Username" value="<?= $profile_information->username; ?>" name="username" class="form-control">
+                            <input readonly type="text" placeholder="Username" value="<?= $profile_information->username; ?>" name="username" class="form-control">
                         </div>
                         <div class="form-group">
                             <input type="password" placeholder="Password" value="<?= $profile_information->password; ?>" name="password" class="form-control">
                         </div>
                         <div class="form-group">
-                            <input type="text" placeholder="Email Address" value="<?= $profile_information->email; ?>" name="email" class="form-control">
+                            <input readonly type="text" placeholder="Email Address" value="<?= $profile_information->email; ?>" name="email" class="form-control">
                         </div>
                         <div class="form-group">
                             <input type="text" placeholder="Phone Number" value="<?= $profile_information->phone_number; ?>" name="phone_number" class="form-control">

@@ -50,7 +50,7 @@ class Auth_Model {
 
         if($valid) {
             if($user_type == 'partner') {
-                $_SESSION['merchant_logged_in'] = TRUE;
+                $_SESSION['partner_logged_in'] = TRUE;
                 $_SESSION['user'] = $usernameOREmail;
                 \header('location:'.$user_type);
             } else {

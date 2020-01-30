@@ -45,13 +45,6 @@ if($helper_functions->isPost() && isset($_POST['login_merchant'])) {
 
 } 
 
-$token =  md5(uniqid(mt_rand(),true));
-
-$_SESSION['token'] = $token;
-
-$template->token = $token;
-
-
 
 if($helper_functions->isPartnerLoggedIn()) {
     header("location:partner");
@@ -72,8 +65,8 @@ if($helper_functions->isPost() && isset($_POST['login_partner'])) {
             if(isset($_SESSION['token']) && $_SESSION['token'] == $_POST['_token']) {
                 $auth->loginUser($data,'partner');
             } else {
-                header('location:login');
-            }
+               header('location:login');
+           }
         } else {
             if($partner->emailExists($usernameOREmail) || $partner->usernameExists($usernameOREmail)) {
                 $_SESSION['partner_not_approved'] = TRUE;
@@ -83,6 +76,13 @@ if($helper_functions->isPost() && isset($_POST['login_partner'])) {
         }
     
 } 
+
+
+$token =  md5(uniqid(mt_rand(),true));
+
+$_SESSION['token'] = $token;
+
+$template->token = $token;
 
 $template->invalid_credentials = $error_messages->invalidCredentialsError();
 $template->not_approved = $error_messages->partnerNotApproved();

@@ -34,10 +34,11 @@ if($helper_functions->isPartnerLoggedIn()) {
             "username" => $username,
             "password" => $password,
             "email" => $email,
-            "phone_number" => $phone_number
+            "phone_number" => $phone_number,
+            'partner_id' => $partner_id
         );
 
-        $partner->updateProfileInformation($data,$partner_id, $_FILES);
+        $partner->updateProfileInformation($data,$_FILES);
     }
 
     echo $template;

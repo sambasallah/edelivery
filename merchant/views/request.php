@@ -70,6 +70,7 @@
                             <div class="form-group">
                                 <input type="text" placeholder="Item Name" required name="item_name" class="form-control">
                             </div>
+                            <input type="hidden" value="<?= $token; ?>" name="_token">
                             <input type="submit" value="Make Request" class="btn btn-success" name="make_request">
                         </form>
                     </div>

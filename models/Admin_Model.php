@@ -44,7 +44,7 @@ class Admin_Model {
      */
     private function checkLoginDetails(string $emailORUsername, string $password) : bool {
         if(filter_var($emailORUsername, FILTER_VALIDATE_EMAIL)) {
-            $this->conn->prepareQuery("SELECT * FROM partner WHERE email = :email");
+            $this->conn->prepareQuery("SELECT * FROM admin WHERE email = :email");
              $this->conn->bind(":email",$emailORUsername);
              $this->conn->executeQuery();
              if($this->conn->rows() == 1) {
@@ -53,7 +53,7 @@ class Admin_Model {
                     return false;
                 }
         }else {
-            $this->conn->prepareQuery("SELECT * FROM partner WHERE username = :username");
+            $this->conn->prepareQuery("SELECT * FROM admin WHERE username = :username");
             $this->conn->bind(":username",$emailORUsername);
             $this->conn->executeQuery();
             if($this->conn->rows() == 1) {
