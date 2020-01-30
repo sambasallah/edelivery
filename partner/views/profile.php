@@ -31,10 +31,10 @@
                         </div>
                         <div class="form-group">
                           <?php if($profile_information->profile_picture == NULL) : ?>
-                            <img src="../media/images/partner_avatar.png" width="251px" height="201px" alt="Profile Picture">
+                            <img src="../media/images/partner_avatar.png" width="251px" height="201px" alt="Profile Picture"> <br>
                             <input type="file" name="profile_picture">
                           <?php else : ?>
-                            <img src="../storage/public/uploads/profile/<?= $profile_information->profile_picture; ?>" width="200px" height="200px" style="object-fit:cover; border-radius:50%" alt="Profile Picture">
+                            <img src="../storage/public/uploads/profile/<?= $profile_information->profile_picture; ?>" width="200px" height="200px" style="object-fit:cover; border-radius:50%; margin-bottom: 10px;" alt="Profile Picture"> <br>
                             <input type="file" name="profile_picture">
                           <?php endif; ?>
                         </div>

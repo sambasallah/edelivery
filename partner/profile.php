@@ -38,7 +38,13 @@ if($helper_functions->isPartnerLoggedIn()) {
             'partner_id' => $partner_id
         );
 
-        $partner->updateProfileInformation($data,$_FILES);
+        if(empty($_FILES['profile_picture'])) {
+            $partner->updateProfileInformation($data,['profile_picture' => array()]);
+        } else {
+            $partner->updateProfileInformation($data,$_FILES);
+        }
+
+        
     }
 
     echo $template;
