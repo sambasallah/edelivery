@@ -46,7 +46,11 @@ class Auth_Model {
     public function loginUser(array $data, string $user_type) : void {
         \extract($data);
 
-        $valid = $this->checkLoginDetails($usernameOREmail, $password);
+        if($this->emailExists($usernameOREmail) || $this->usernameExists($usernameOREmail)) {
+            $valid = $this->checkLoginDetails($usernameOREmail, $password);
+        } else {
+            $_SESSION['invalid_credentials'] = TRUE;
+        }
 
         if($valid) {
             if($user_type == 'partner') {

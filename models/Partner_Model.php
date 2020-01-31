@@ -36,6 +36,11 @@ class Partner_Model {
         return false;
     }
 
+    /**
+     * @param array $data
+     * @param array $national_document
+     * @param array $valid_drivers_license
+     */
     public function registerPartner(array $data,array $national_document, array $valid_drivers_license) : void {
         \extract($data);
         

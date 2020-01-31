@@ -17,9 +17,9 @@ if($helpers->isPartnerLoggedIn()) {
 
     $partner_id = $partner->getPartnerID($_SESSION['user']);
 
-    // $template->earnings = $partner->getTotalEarnings($partner_id);
-    // $template->withdrawals = $partner->getTotalWithdrawals($partner_id);
-    // $template->balance = $partner->getBalance($partner_id);
+    $template->earnings = $partner->getTotalEarnings($partner_id);
+    $template->withdrawals = $partner->getTotalWithdrawals($partner_id);
+    $template->balance = $partner->getBalance($partner_id);
 
     unset($_SESSION['upload_error']);
     unset($_SESSION['profile_success']);
