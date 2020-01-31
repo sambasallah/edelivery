@@ -93,7 +93,6 @@ class Partner_Model {
         }else {
             $_SESSION['error_register_partner'] = TRUE;
         }   
-            
         
     }
 
