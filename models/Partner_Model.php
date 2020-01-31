@@ -773,14 +773,14 @@ class Partner_Model {
         $targetDir = dirname(dirname(__FILE__))."/storage/public/uploads/licenses/". $file_name[0].rand(0,time()).'.'.$file_name[1];
 
         if($license['valid_drivers_license']['size'] > 1000000) {
-            return "";
+            return "File Too Large";
         }
 
         if(file_exists($targetDir)) {
-            return "";
+            return "File Exists";
         }
 
-        if($license['valid_drivers_license']['type'] == "image/jpeg" || $license['valid_drivers_license']['type'] == "application/pdf") {
+        if($license['valid_drivers_license']['type'] == "image/jpeg" || $license['valid_drivers_license']['type'] == "image/png" || $license['valid_drivers_license']['type'] == "application/pdf") {
             if(move_uploaded_file($license['valid_drivers_license']['tmp_name'],$targetDir)) {
                 return explode("/",$targetDir)[5];
             }else {
@@ -836,7 +836,7 @@ class Partner_Model {
             return "";
         }
 
-        if($national_document['national_document']['type'] == "jpg/jpeg/image" || $national_document['national_document']['type'] == "application/pdf") {
+        if($national_document['national_document']['type'] == "image/jpeg" || $national_document['national_document']['type'] == "image/png" || $national_document['national_document']['type'] == "application/pdf") {
             if(move_uploaded_file($national_document['national_document']['tmp_name'],$targetDir)) {
                 return explode("/",$targetDir)[5];
             }else {
