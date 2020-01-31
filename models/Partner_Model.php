@@ -82,12 +82,11 @@ class Partner_Model {
                 $this->conn->bind(":vehicle_type",$vehicle_type);
         } else {
             \header('location:register-partner');
+            }
+        } else {
+            $_SESSSION['error_register_partner'] = TRUE;
         }
-    }
-          
-
         if($this->conn->executeQuery()) {
-            
             $_SESSION['partner_logged_in'] = TRUE;
             $_SESSION['user']  = $username;
             \header("location:partner");
