@@ -6,6 +6,8 @@
 ![GitHub Logo](media/images/merchant.png)
 # Partner Dashboard
 ![GitHub Logo](media/images/partner.png)
+# Admin Dashboard
+![GitHub Logo](media/images/admin.png)
 # Tech Stack
 ### Frontend
   - HTML
