@@ -83,20 +83,17 @@ class Partner_Model {
              } else {
                 \header('location:register-partner');
             }
-        } else {
-            $_SESSSION['error_register_partner'] = TRUE;
-            \header('location:register-partner');
-        }
 
-        if($this->conn->executeQuery()) {
-            $_SESSION['partner_logged_in'] = TRUE;
-            $_SESSION['user']  = $username;
-            \header("location:partner");
-        }else {
-            $_SESSION['error_register_partner'] = TRUE;
-            \header('location:register-partner');
-        }   
-        
+            if($this->conn->executeQuery()) {
+                $_SESSION['partner_logged_in'] = TRUE;
+                $_SESSION['user']  = $username;
+                \header("location:partner");
+            }else {
+                $_SESSION['error_register_partner'] = TRUE;
+                \header('location:register-partner');
+            }   
+        } 
+
     }
 
     /**
