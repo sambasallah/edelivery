@@ -15,7 +15,7 @@
                         <div class="col-md-4">  
                             <div class="earnings">
                                 <h3>Total Earnings</h3>
-                                <p><i class="fa fa-money-bill-alt"></i> GMD <?= number_format($earnings,2); ?></p>
+                                <p><i class="fa fa-money-bill-alt"></i> GMD <?php // number_format($earnings,2); ?></p>
                             </div> 
                         </div>
                         <div class="col-md-4">
