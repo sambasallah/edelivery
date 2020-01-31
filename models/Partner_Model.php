@@ -83,6 +83,7 @@ class Partner_Model {
         } else {
             \header('location:register-partner');
         }
+    }
           
 
         if($this->conn->executeQuery()) {
@@ -94,7 +95,7 @@ class Partner_Model {
             $_SESSION['error_register_partner'] = TRUE;
         }   
             
-        }
+        
     }
 
     /**
