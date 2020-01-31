@@ -73,7 +73,7 @@ class Admin_Model {
      * @return string
      */
     public function getTotalRevenue() : string {
-        $this->conn->prepareQuery("SELECT *,SUM(delivery_rates.rate) as total_revenue FROM delivery_requests INNER JOIN delivery_rates ON delivery_rates.rate_id = delivery_requests.rate_id GROUP BY delivery_rate.rates");
+        $this->conn->prepareQuery("SELECT *,SUM(delivery_rates.rate) as total_revenue FROM delivery_requests INNER JOIN delivery_rates ON delivery_rates.rate_id = delivery_requests.rate_id GROUP BY rate_id");
         $this->conn->executeQuery();
         $result = $this->conn->getResult();
        if(!empty($result->total_revenue)) {
