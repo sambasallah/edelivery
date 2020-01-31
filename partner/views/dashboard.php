@@ -21,13 +21,13 @@
                         <div class="col-md-4">
                             <div class="withdrawn_earnings">
                                 <h3>Withdrawn</h3>
-                                <p><i class="fa fa-money-bill"></i> GMD <?= number_format($withdrawals,2); ?></p>
+                                <p><i class="fa fa-money-bill"></i> GMD <?php //number_format($withdrawals,2); ?></p>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="balance">
                                 <h3>Balance</h3>
-                                <p><i class="fa fa-money-bill"></i> GMD <?= number_format($balance,2); ?></p>
+                                <p><i class="fa fa-money-bill"></i> GMD <?php //number_format($balance,2); ?></p>
                             </div>
                         </div>
                     </div>
