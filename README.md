@@ -18,5 +18,8 @@
   - SQL
 ### Backend API
   - Slim Framework
+### Web Server Setup
+  - Nginx as a reverse proxy to apache
+  - Ubuntu 19.04 LTS
 ### Live Website
 [eDelivery](https://www.edelivery.xyz)
