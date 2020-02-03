@@ -7,7 +7,7 @@ use edelivery\models\Database_Model;
 use edelivery\models\Auth_Model;
 use edelivery\helpers\Functions;
 use edelivery\models\Partner_Model;
-use edelivery\helpers\Error_Messages;
+use edelivery\helpers\Alerts;
 
 $database = new Database_Model();
 
@@ -19,7 +19,7 @@ $auth = new Auth_Model($database);
 
 $partner = new Partner_Model($database);
 
-$error_messages = new Error_Messages();
+$alert = new Alerts();
 
 
 if($helper_functions->isMerchantLoggedIn()) {
@@ -84,8 +84,8 @@ $_SESSION['token'] = $token;
 
 $template->token = $token;
 
-$template->invalid_credentials = $error_messages->invalidCredentialsError();
-$template->not_approved = $error_messages->partnerNotApproved();
+$template->invalid_credentials = $alert->invalidCredentialsError();
+$template->not_approved = $alert->partnerNotApproved();
 
 
 

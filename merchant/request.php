@@ -6,9 +6,11 @@ use edelivery\template\Template;
 use edelivery\models\Database_Model;
 use edelivery\models\Merchant_Model;
 use edelivery\helpers\Functions;
+use edelivery\helpers\Alerts;
 
 $helper_functions = new Functions();
 
+$alert = new Alerts();
 
 if($helper_functions->isMerchantLoggedIn()) {
 
@@ -81,6 +83,9 @@ if($helper_functions->isMerchantLoggedIn()) {
         } 
 
 }
+
+$template->error = $alert->deliveryRequestError();
+$template->success = $alert->deliveryRequestSent();
 
 $token =  md5(uniqid(mt_rand(),true));
 

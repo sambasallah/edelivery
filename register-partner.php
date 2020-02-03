@@ -6,7 +6,7 @@ use edelivery\template\Template;
 use edelivery\helpers\Functions;
 use edelivery\models\Partner_Model;
 use edelivery\models\Database_Model;
-use edelivery\helpers\Error_Messages;
+use edelivery\helpers\Alerts;
 use edelivery\models\Auth_Model;
 
 $template = new Template('views/register-partner.php');
@@ -19,7 +19,7 @@ $auth = new Auth_Model($database);
 
 $helper_functions = new Functions();
 
-$error_messages = new Error_Messages();
+$alert = new Alerts();
 
 if($helper_functions->isPost()) {
 
@@ -48,8 +48,8 @@ if($helper_functions->isPost()) {
     $partner->registerPartner($data,$_FILES,$_FILES);
  }
 
- $template->partner_register_error = $error_messages->errorRegisterPartner();
- $template->email_exists = $error_messages->emailExists();
- $template->username_exists = $error_messages->usernameExists();
+ $template->partner_register_error = $alert->errorRegisterPartner();
+ $template->email_exists = $alert->emailExists();
+ $template->username_exists = $alert->usernameExists();
  
 echo $template;

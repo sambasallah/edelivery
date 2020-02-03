@@ -8,8 +8,8 @@
                 </div>
                 <div class="col-md-9">
                     <div class="right_request">
-                        <?php if(isset($_SESSION['delivery_request_success'])) { echo $_SESSION['delivery_request_success']; } ?>
-                        <?php if(isset($_SESSION['delivery_request_error'])) { echo $_SESSION['delivery_request_error']; } ?>
+                        <?= $success; ?>
+                        <?= $error; ?>
                         <h2>Make Delivery Request</h2>
                         <form action="" method="post">
                             <div class="form-group">

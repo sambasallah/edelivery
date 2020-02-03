@@ -241,19 +241,9 @@ class Merchant_Model {
             $delivery_rate = $this->calculateDeliveryRate($to,$from);
             $this->updateBalance($delivery_rate, $merchant_id);
             $this->updateTotalSpentAmount(strval($delivery_rate),$merchant_id);
-            $_SESSION['delivery_request_success'] = 
-            "<div class='alert alert-success alert-dismissible'>
-            <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
-            <strong>Success!</strong> Delivery Request Sent.
-          </div>";
-          \header("location:request");
+            $_SESSION['delivery_request_success'] = TRUE;
         }else {
-            $_SESSION['delivery_request_error'] = 
-            "<div class='alert alert-danger alert-dismissible'>
-            <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
-            <strong>Error!</strong> There was an error sending your request.
-          </div>";
-          \header("location:request");
+            $_SESSION['delivery_request_error'] = TRUE;
         }
 
 

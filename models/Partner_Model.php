@@ -412,6 +412,9 @@ class Partner_Model {
         }
     }
 
+    /**
+     * @param int $request_id
+     */
     public function deleteWithdrawalRequest(int $request_id) : void {
         $this->conn->prepareQuery('DELETE FROM withdrawal_requests WHERE id = :id'); 
         $this->conn->bind(":id",$request_id);
@@ -449,7 +452,7 @@ class Partner_Model {
     }
 
     /**
-     * @param $partner_id - int
+     * @param int $partner_id
      * @return bool
      */
     public function idExists(int $partner_id) : bool {
@@ -466,7 +469,7 @@ class Partner_Model {
     }
 
     /**
-     * @param $current_user - int
+     * @param int $current_user
      * @return bool
      */
     private function isBalanceSufficient(string $amount, int $current_user) : bool {
@@ -481,7 +484,7 @@ class Partner_Model {
     }
 
     /**
-     * @param $partner_id - int
+     * @param int $partner_id
      * @return array
      */
     public function getWithdrawals(int $partner_id) : array {

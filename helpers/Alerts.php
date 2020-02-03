@@ -2,7 +2,7 @@
 
 namespace edelivery\helpers;
 
-class Error_Messages {
+class Alerts {
 
     /**
      * @return string
@@ -92,6 +92,38 @@ class Error_Messages {
             </div>";
             unset($_SESSION['error_register_partner']);
             return $msg;
+        }
+
+        return "";
+    }
+
+    /**
+     * @return string
+     */
+    public function deliveryRequestSent() : string {
+        if(isset($_SESSION['delivery_request_success'])) {
+            $msg = $msg = "<div class='alert alert-success alert-dismissible'>
+            <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
+            <strong>Success!</strong> Delivery Request Sent.
+          </div>";
+          unset($_SESSION['delivery_request_success']);
+          return $msg;
+        }
+
+        return "";
+    }
+
+    /**
+     * @return string
+     */
+    public function deliveryRequestError() : string {
+        if(isset($_SESSION['delivery_request_error'])) {
+            $msg = "<div class='alert alert-danger alert-dismissible'>
+            <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
+            <strong>Error!</strong> There was an error sending your request.
+          </div>";
+          unset($_SESSION['delivery_request_error']);
+          return $msg;
         }
 
         return "";

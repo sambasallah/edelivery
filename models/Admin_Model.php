@@ -73,10 +73,12 @@ class Admin_Model {
      * @return string
      */
     public function getTotalRevenue() : string {
+
         $this->conn->prepareQuery("SELECT *,SUM(delivery_rates.rate) as total_revenue FROM delivery_requests INNER JOIN delivery_rates ON delivery_rates.rate_id = delivery_requests.rate_id GROUP BY id");
         $this->conn->executeQuery();
-        $result = $this->conn->getResult();
-       if(!empty($result->total_revenue)) {
+       
+       if($this->conn->rows() >= 1) {
+             $result = $this->conn->getResult();
             return strval($result->total_revenue);
        }
 
@@ -649,7 +651,7 @@ class Admin_Model {
     }
 
     /**
-     * @param $data - array
+     * @param array $data
      */
     public function updateDeliveryRequest(array $data) : void {
         \extract($data);

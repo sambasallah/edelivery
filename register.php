@@ -6,7 +6,7 @@ use edelivery\template\Template;
 use edelivery\models\Database_Model;
 use edelivery\models\Merchant_Model;
 use edelivery\helpers\Functions;
-use edelivery\helpers\Error_Messages;
+use edelivery\helpers\Alerts;
 
 $template = new Template('views/register.php');
 
@@ -16,7 +16,7 @@ $merchant = new Merchant_Model($database);
 
 $helper_functions = new Functions();
 
-$error_messages = new Error_Messages();
+$alert = new Alerts();
 
 // Register merchant
 if($helper_functions->isPost()) {
@@ -41,9 +41,9 @@ if($helper_functions->isPost()) {
 }
 
 // Error Messages
-$template->email_exists = $error_messages->emailExists();
-$template->username_exists = $error_messages->usernameExists();
-$template->error_merchant = $error_messages->errorMerchant();
+$template->email_exists = $alert->emailExists();
+$template->username_exists = $alert->usernameExists();
+$template->error_merchant = $alert->errorMerchant();
 
 echo $template;
 
