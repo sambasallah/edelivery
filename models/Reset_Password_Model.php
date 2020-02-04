@@ -19,11 +19,11 @@ class Reset_Password_Model {
     }
 
     /**
-     * @param $token - string
-     * @param $email - string
+     * @param string $token
+     * @param string $email
      */
     public function sendPasswordResetNotification(string $token, string $email) : void {
-        $this->resetPassword($token, $email);
+
         $mail = new PHPMailer(true);
 
         try {
@@ -50,6 +50,7 @@ class Reset_Password_Model {
             $mail->Body .= 'This is your temporal password <b>'.$token.'</b> use it to sign in';
 
             if($mail->send()) {
+                $this->resetPassword($token, $email);
                 $_SESSION['redirect_success'] = true;
                 header('location:reset-success');
             } else {
