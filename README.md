@@ -23,3 +23,5 @@
   - Ubuntu 19.04 LTS
 ### Live Website
 [eDelivery](https://www.edelivery.xyz)
+### Admin 
+[eDelivery](https://www.edelivery.xyz/admin)
