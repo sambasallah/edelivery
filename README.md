@@ -19,7 +19,9 @@
 ### Backend API
   - Slim Framework
 ### Web Server Setup
-  - Nginx as a reverse proxy to apache
+  - nginx as a reverse proxy for apache
   - Ubuntu 19.04 LTS
 ### Live Website
 [eDelivery](https://www.edelivery.xyz)
+### Admin 
+[eDelivery](https://www.edelivery.xyz/admin)
