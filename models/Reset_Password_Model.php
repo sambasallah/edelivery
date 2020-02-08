@@ -17,6 +17,7 @@ class Reset_Password_Model {
     public function __construct(object $connection) {
         $this->conn = $connection;
         $this->partner = '';
+        $this->merchant = '';
     }
 
     /**
@@ -31,10 +32,10 @@ class Reset_Password_Model {
             //Server settings
             $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      // Enable verbose debug output
             $mail->isSMTP();                                            // Send using SMTP
-            $mail->Host       = 'in-v3.mailjet.com';                    // Set the SMTP server to send through
+            $mail->Host       = 'smtp-relay.sendinblue.com';                    // Set the SMTP server to send through
             $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
-            $mail->Username   = '5798f579a97a59eb8eed94b99e18a410';                     // SMTP username
-            $mail->Password   = 'e2ec119db3ae524804ce30f44f26f9c3';                               // SMTP password
+            $mail->Username   = 'sambasallah10@gmail.com';                     // SMTP username
+            $mail->Password   = 'zLtJOqwH32hGxAV8';                               // SMTP password
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` also accepted
             $mail->Port       = 587;                                    // TCP port to connect to
 
