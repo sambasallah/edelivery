@@ -18,6 +18,7 @@
   <div class="tab-pane active container" id="merchant">
     <?= $invalid_credentials; ?>
     <?= $not_approved; ?>
+    <?= $password_changed; ?>
    <h5>Merchant Login</h5>
         <form action="login" method="post">
             <input type="text" class="form-control" name="username_or_email" placeholder="Username or Email" required>

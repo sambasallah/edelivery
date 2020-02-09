@@ -129,5 +129,21 @@ class Alerts {
         return "";
     }
 
+    /**
+     * @return string
+     */
+    public function passwordChanged() : string {
+        if(isset($_SESSION['password_successfully_changed'])) {
+            $msg = "<div class='alert alert-success alert-dismissible' style='margin-top:30px'>
+            <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
+            <strong>Success!</strong> Password Changed.
+          </div>";
+          unset($_SESSION['password_successfully_changed']);
+          return $msg;
+        }
+
+        return "";
+    }
+
     
 }

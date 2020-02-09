@@ -116,15 +116,19 @@ class Reset_Password_Model {
             $password = \password_hash($password1, PASSWORD_ARGON2ID,['cost' => 10, 'memory_cost' => 2048, 'threads'=> 4]);
 
             if(strlen($this->partner) > 0) {
-                $success = $this->changePartnerPassword($password, $email);
-                if($success) {
+                $success1 = $this->changePartnerPassword($password, $email);
+                $success2 = $this->changeUserPassword($password, $email);
+                if($success1 && $success2) {
+                    $_SESSION['password_successfully_changed'] = TRUE;
                     \header('location:login');
                 } else {
                     \header('location:reset-password');
                 }
             } else if(strlen($this->merchant) > 0) {
-                $success = $this->changeMerchantPassword($password, $email);
-                if($success) {
+                $success1 = $this->changeMerchantPassword($password, $email);
+                $success2 = $this->changeUserPassword($password, $email);
+                if($success1 && $success2) {
+                    $_SESSION['password_successfully_changed'] = TRUE;
                     \header('location:login');
                 } else {
                     \header('location:reset-password');
@@ -136,6 +140,22 @@ class Reset_Password_Model {
             
         }
     
+    }
+
+    /**
+     * @param string $email
+     * @param string $password
+     * @return bool
+     */
+    public function changeUserPassword(string $password, string $email) : bool {
+        $this->conn->prepareQuery("UPDATE users SET password = :password WHERE email = :email");
+        $this->conn->bind(":password", $password);
+        $this->conn->bind(":email", $email);
+
+        if($this->conn->executeQuery()) {
+            return true;
+        }
+
     }
 
     /**

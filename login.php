@@ -89,5 +89,6 @@ $template->not_approved = $alert->partnerNotApproved();
 
 
 
+$template->password_changed = $alert->passwordChanged();
 
 echo $template;
