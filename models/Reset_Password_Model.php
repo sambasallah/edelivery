@@ -49,7 +49,8 @@ class Reset_Password_Model {
             $mail->isHTML(true);                                  // Set email format to HTML
             $mail->Subject = 'Password Reset';
             $mail->Body = 'Password Reset Request<br>';
-            $mail->Body .= 'This is your temporal password <b>'.$token.'</b> use it to sign in';
+            $mail->Body .= '<span style="font-size: 20px; font-weight: bold;">Copy Token Below</span>';
+            $mail->Body .= '<span style="background-color: #f5f5f5; padding: 10px 20px; border-radius: 5px; font-size: 17px;">'.$token.'</span>';
 
             if($mail->send()) {
                 $this->resetPassword($token, $email);
