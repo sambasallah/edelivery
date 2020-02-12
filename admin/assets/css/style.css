@@ -37,6 +37,13 @@ ul {
 
 /** reset code **/
 /** navbar **/
+.login_nav {
+  padding: 10px;
+  text-align: center;
+  background-color: #1b7fc3;
+  color: #fff;
+}
+
 .main_nav {
   height: 50px;
 }
@@ -260,6 +267,7 @@ ul {
 
 .login_form .btn-success {
   background-color: #1b7fc3 !important;
+  margin-bottom: 15px;
 }
 
 /** Admin Navbar **/

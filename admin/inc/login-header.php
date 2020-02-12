@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Admin Dashboard</title>
+    <title>Admin Login</title>
     
     	<!-- scripts -->
 		<script type="text/javascript" src="../assets/js/jquery-3.4.1.min.js"></script>
@@ -18,8 +18,6 @@
     </head>
 <body>
     
-<div class="main_nav">
-   		<div class="nav_title">
-               <h2>Admin</h2>
-           </div>
-	</div>
+<div class="login_nav">
+   <h3>Admin</h3>   		
+</div>

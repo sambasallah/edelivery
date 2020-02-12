@@ -13,6 +13,13 @@ $grey : grey;
 
 /** navbar **/
 
+.login_nav {
+    padding: 10px;
+    text-align: center;
+    background-color: $primary_color;
+    color: #fff;
+}
+
 .main_nav {
     height: 50px;
 }
@@ -254,8 +261,10 @@ $grey : grey;
 }
 
 .login_form .btn-success {
-	background-color: $primary_color !important;
+    background-color: $primary_color !important;
+    margin-bottom: 15px;
 }
+
 
 /** Admin Navbar **/
 

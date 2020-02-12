@@ -1,9 +1,8 @@
-<?php require_once('../inc/admin-header.php'); ?>
+<?php require_once('../inc/login-header.php'); ?>
 
 <div class="login">
     <div class="login_container">
         <div class="login_form">
-            
          <h5>Admin Login</h5>
         <form action="" method="post">
             <input type="text" class="form-control" name="username_email" placeholder="Username or Email">
