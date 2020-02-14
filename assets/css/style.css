@@ -4,7 +4,7 @@
 *@project eDelivery
 *
 **/
-.page_setup_container, .frequently_asked .frequently_asked_container, .testimonial .testimonial_container, .potential_earnings .potential_earnings_container, .earnings .earnings_container, .about_edelivery .about_edelivery_container, .header_become_a_partner .header_become_a_partner_container, .automate_deliveries .automate_deliveries_container, .ready_to_use .ready_to_use_container, .ecommerce_grow_business .ecommerce_grow_business_container, .header_ecommerce .header_ecommerce_container, .how_it_works .how_it_works_container, .features .features_container, .grow_business .grow_business_container {
+.page_setup_container, .grow_business .grow_business_container, .features .features_container, .how_it_works .how_it_works_container, .header_ecommerce .header_ecommerce_container, .ecommerce_grow_business .ecommerce_grow_business_container, .ready_to_use .ready_to_use_container, .automate_deliveries .automate_deliveries_container, .header_become_a_partner .header_become_a_partner_container, .about_edelivery .about_edelivery_container, .earnings .earnings_container, .potential_earnings .potential_earnings_container, .testimonial .testimonial_container, .frequently_asked .frequently_asked_container {
   width: 90%;
   margin: auto;
 }
@@ -19,7 +19,8 @@
 }
 
 * {
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 html, body {
@@ -34,7 +35,6 @@ body a {
 
 body a:hover {
   -webkit-transition: 0.3s all;
-  -moz-transition: 0.3s all;
   transition: 0.3s all;
   text-decoration: none;
 }
@@ -60,7 +60,8 @@ ul {
 }
 
 .navbar {
-  box-shadow: -1px 2px 3px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: -1px 2px 3px rgba(0, 0, 0, 0.5);
+          box-shadow: -1px 2px 3px rgba(0, 0, 0, 0.5);
 }
 
 .navbar .nav-item {
@@ -89,8 +90,10 @@ ul {
   color: #fff;
   left: 35%;
   top: 50%;
-  transform: translate(-50%, -50%);
-  box-sizing: border-box;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 .text-content h1 {
@@ -136,7 +139,8 @@ ul {
 }
 
 .carousel-control-next, .carousel-control-prev {
-  filter: invert(100%);
+  -webkit-filter: invert(100%);
+          filter: invert(100%);
 }
 
 /** become a partner **/
@@ -186,7 +190,8 @@ ul {
   margin: 15px auto;
   border: 1px solid #1b7fc3;
   border-radius: 5px !important;
-  box-shadow: -1px 3px -1px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: -1px 3px -1px rgba(0, 0, 0, 0.5);
+          box-shadow: -1px 3px -1px rgba(0, 0, 0, 0.5);
 }
 
 .grow_business .card:hover {
@@ -324,7 +329,8 @@ footer {
   padding: 10px;
   background-color: #f57f20;
   color: #fff;
-  box-shadow: -1px 2px 5px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: -1px 2px 5px rgba(0, 0, 0, 0.5);
+          box-shadow: -1px 2px 5px rgba(0, 0, 0, 0.5);
 }
 
 /** Ecommerce Solution Page **/
@@ -351,7 +357,8 @@ footer {
 .separate {
   height: 5px;
   background-color: #f57f20;
-  box-shadow: -1px 2px 5px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: -1px 2px 5px rgba(0, 0, 0, 0.5);
+          box-shadow: -1px 2px 5px rgba(0, 0, 0, 0.5);
 }
 
 .ecommerce_grow_business .ecommerce_grow_business_container {
@@ -377,9 +384,11 @@ footer {
   height: 135px;
   width: 225px;
   padding-top: 38px;
-  box-shadow: -1px 2px 5px #1b7fc3;
+  -webkit-box-shadow: -1px 2px 5px #1b7fc3;
+          box-shadow: -1px 2px 5px #1b7fc3;
   border-radius: 5px;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 .fixed_delivery_fee i.fa.fa-money-bill-alt {
@@ -602,10 +611,12 @@ footer {
   position: absolute;
   width: 400px;
   height: auto;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
   border: 1px solid #f5f5f5;
   border-radius: 5px;
   padding: 20px;
@@ -634,7 +645,8 @@ footer {
   height: 900px;
   position: relative;
   padding: 30px 0px;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 .register .register_form {
@@ -642,10 +654,12 @@ footer {
   width: 400px;
   height: auto;
   padding: 50px;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
   border: 1px solid #f5f5f5;
   border-radius: 5px;
 }
@@ -857,7 +871,8 @@ footer {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
   padding: 50px;
   background-color: #fff;
 }
@@ -883,7 +898,8 @@ footer {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
   background-color: #fff;
   padding: 30px;
 }
@@ -899,7 +915,8 @@ footer {
 .inner_reset .send_btn {
   padding: 10px 40px;
   background-color: #1b7fc3;
-  box-shadow: -1px 3px 5px rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: -1px 3px 5px rgba(0, 0, 0, 0.2);
+          box-shadow: -1px 3px 5px rgba(0, 0, 0, 0.2);
   border: none;
   color: #fff;
   font-size: 18px;
@@ -923,7 +940,8 @@ footer {
   width: 500px;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
   background-color: #fff;
   padding: 20px;
   text-align: center;
@@ -937,7 +955,8 @@ footer {
 
 .reset_success_container input[type=submit] {
   background-color: #1b7fc3;
-  box-shadow: -1px 2px 5px rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: -1px 2px 5px rgba(0, 0, 0, 0.2);
+          box-shadow: -1px 2px 5px rgba(0, 0, 0, 0.2);
   border: none;
   font-size: 18px;
   padding: 6px 15px;
@@ -962,7 +981,8 @@ footer {
   width: 500px;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
   background-color: #fff;
   padding: 20px;
   text-align: center;
@@ -982,7 +1002,8 @@ footer {
 
 .change_password_container input[type=submit] {
   background-color: #1b7fc3;
-  box-shadow: -1px 2px 5px rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: -1px 2px 5px rgba(0, 0, 0, 0.2);
+          box-shadow: -1px 2px 5px rgba(0, 0, 0, 0.2);
   border: none;
   font-size: 18px;
   padding: 10px 15px;
@@ -997,307 +1018,262 @@ footer {
     position: relative;
     left: 15px;
   }
-
   .text-content .btn_custom {
     padding: 10px;
     position: relative;
   }
-
   .become_a_partner {
     height: auto;
   }
-
   .become_a_partner h2.partner_title {
     font-size: 20px;
   }
-
   .grow_business h2.grow_business_title {
     font-size: 30px;
     padding: 20px 0px 5px 0px;
   }
-
   .grow_business .card {
     width: 100%;
     height: auto;
   }
-
   .grow_business .left_grow_business {
     margin-bottom: 20px;
   }
-
   .calc_price {
     width: 100%;
     height: auto;
   }
-
   .calc_price .calc_price_container {
     width: 100%;
     margin-left: 8px;
   }
-
   .calc_price select {
     width: 100%;
     margin-bottom: 8px;
     margin-left: 8px;
   }
-
   .register_partner {
     width: 100%;
   }
-
   .register_partner .register_partner_container {
     width: 95%;
     margin: auto;
   }
-
   .footer_section .footer_section_container {
     width: 95%;
     margin: auto;
     padding: 10px 0px;
   }
-
   .footer_section ul {
     padding-bottom: 10px;
   }
 }
+
 @media screen and (min-width: 320px) and (max-width: 568px) {
   .text-content h1 {
     font-size: 18px;
     position: relative;
     left: -25px;
   }
-
   .text-content .btn_custom {
     padding: 10px;
   }
-
   .become_a_partner {
     height: auto;
   }
-
   .grow_business h2.grow_business_title {
     font-size: 30px;
     padding: 20px 0px 5px 0px;
   }
-
   .grow_business .card {
     width: 100%;
     height: auto;
   }
-
   .grow_business .card img {
     height: auto !important;
   }
-
   .grow_business .left_grow_business {
     margin-bottom: 20px;
   }
-
   .calc_price {
     height: auto;
   }
-
   .calc_price .calc_price_container {
     width: 100%;
     margin-left: 8px;
   }
-
   .calc_price select {
     width: 100%;
     margin-bottom: 8px;
     margin-left: 8px;
   }
-
   .register_partner {
     width: 100%;
   }
-
   .register_partner .register_partner_container {
     width: 95%;
     margin: auto;
   }
-
   .calc_price .calc_price_container {
     width: 85%;
     margin: auto;
   }
-
   .calc_price input[type=submit], select {
     margin-bottom: 8px;
   }
-
   .footer_section .footer_section_container {
     width: 95%;
     margin: auto;
     padding: 10px 0px;
   }
-
   .footer_section ul {
     padding-bottom: 10px;
   }
 }
+
 @media screen and (min-width: 360px) and (max-width: 640px) {
   .calc_price .calc_price_container {
     width: 100%;
     margin: auto;
-    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
     padding: 10px 0px;
     overflow: contain;
   }
-
   .calc_price input[type=submit], select {
     margin-bottom: 8px;
   }
-
   .footer_section .footer_section_container {
     width: 95%;
     margin: auto;
     padding: 10px 0px;
   }
-
   .footer_section ul {
     padding-bottom: 10px;
   }
 }
+
 @media screen and (min-width: 411px) and (max-width: 731px) {
   .calc_price .calc_price_container {
     width: 85%;
     margin: auto;
   }
-
   .calc_price input[type=submit], select {
     margin-bottom: 8px;
   }
-
   .footer_section .footer_section_container {
     width: 95%;
     margin: auto;
     padding: 10px 0px;
   }
-
   .footer_section ul {
     padding-bottom: 10px;
   }
 }
+
 @media screen and (min-width: 411px) and (max-width: 823px) {
   .calc_price .calc_price_container {
     width: 100%;
     margin: auto;
-    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
     padding: 10px 0px;
   }
-
   .calc_price input[type=submit], select {
     margin-bottom: 8px;
   }
-
   .footer_section .footer_section_container {
     width: 95%;
     margin: auto;
     padding: 10px 0px;
   }
-
   .footer_section ul {
     padding-bottom: 10px;
   }
 }
+
 @media screen and (min-width: 600px) and (max-width: 960px) {
   .text-content h1 {
     font-size: 25px;
     position: relative;
     left: -25px;
   }
-
   .text-content .btn_custom {
     padding: 10px;
   }
-
   .become_a_partner {
     height: auto;
   }
-
   .grow_business h2.grow_business_title {
     font-size: 30px;
     padding: 20px 0px 5px 0px;
   }
-
   .grow_business .card {
     width: 258px;
   }
-
   .grow_business .left_grow_business {
     margin-bottom: 20px;
   }
-
   .calc_price .calc_price_container {
     width: 95%;
     margin: auto;
-    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
   }
-
   .calc_price select {
     width: 200px;
   }
-
   .calc_price input[type=submit], select {
     margin-bottom: 8px;
   }
-
   .footer_section .footer_section_container {
     width: 95%;
     margin: auto;
     padding: 10px 0px;
   }
-
   .footer_section ul {
     padding-bottom: 10px;
   }
 }
+
 @media screen and (min-width: 768px) and (max-width: 1024px) {
   .calc_price .calc_price_container {
     width: 90%;
     margin: auto;
   }
-
   .calc_price select {
     width: auto;
     margin: auto;
     margin-bottom: 8px;
   }
-
   .grow_business .card {
     width: 45%;
     font-size: 12px;
   }
-
   .grow_business .card h2 {
     font-size: 18px;
   }
 }
+
 @media screen and (min-width: 1024px) and (max-width: 1366px) {
   .calc_price .calc_price_container {
     width: 85%;
     margin: auto;
   }
-
   .card {
     width: 120px;
   }
-
   .calc_price select {
     width: 403px;
     margin: auto;
     margin-bottom: 8px;
   }
-
   .grow_business .card {
     width: 47%;
     font-size: 14px;
   }
-
   .grow_business .card h2 {
     font-size: 20px;
   }
 }
-
 /*# sourceMappingURL=style.css.map */

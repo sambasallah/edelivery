@@ -1,5 +1,6 @@
 * {
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 html, body {
@@ -15,7 +16,6 @@ body a {
 
 body a:hover {
   -webkit-transition: 0.3s all;
-  -moz-transition: 0.3s all;
   transition: 0.3s all;
   text-decoration: none;
   color: #f57f20;
@@ -108,7 +108,8 @@ ul {
   border-radius: 5px;
   margin: auto;
   margin-bottom: 10px;
-  box-shadow: -1px 2px 3px rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: -1px 2px 3px rgba(0, 0, 0, 0.2);
+          box-shadow: -1px 2px 3px rgba(0, 0, 0, 0.2);
 }
 
 .earnings h3 {
@@ -132,7 +133,8 @@ ul {
   border-radius: 5px;
   margin: auto;
   margin-bottom: 10px;
-  box-shadow: -1px 2px 3px rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: -1px 2px 3px rgba(0, 0, 0, 0.2);
+          box-shadow: -1px 2px 3px rgba(0, 0, 0, 0.2);
 }
 
 .analytics .balance {
@@ -142,7 +144,8 @@ ul {
   border-radius: 5px;
   margin: auto;
   margin-bottom: 10px;
-  box-shadow: -1px 2px 3px rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: -1px 2px 3px rgba(0, 0, 0, 0.2);
+          box-shadow: -1px 2px 3px rgba(0, 0, 0, 0.2);
 }
 
 .withdrawn_earnings h3 {
@@ -336,5 +339,4 @@ ul {
 .withdrawals_container h3 {
   padding: 20px 0px;
 }
-
 /*# sourceMappingURL=style.css.map */

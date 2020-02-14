@@ -1,5 +1,6 @@
 * {
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 html, body {
@@ -15,7 +16,6 @@ body a {
 
 body a:hover {
   -webkit-transition: 0.3s all;
-  -moz-transition: 0.3s all;
   transition: 0.3s all;
   text-decoration: none;
   color: #f57f20;
@@ -110,21 +110,25 @@ ul {
 
 .dashboard_summary .deliveries {
   background-color: #1b7fc3;
-  box-shadow: -1px 2px 3px rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: -1px 2px 3px rgba(0, 0, 0, 0.2);
+          box-shadow: -1px 2px 3px rgba(0, 0, 0, 0.2);
 }
 
 .dashboard_summary .spendings {
   background-color: #33b27b;
-  box-shadow: -1px 2px 3px rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: -1px 2px 3px rgba(0, 0, 0, 0.2);
+          box-shadow: -1px 2px 3px rgba(0, 0, 0, 0.2);
 }
 
 .dashboard_summary .balance {
   background-color: #f57f20;
-  box-shadow: -1px 2px 3px rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: -1px 2px 3px rgba(0, 0, 0, 0.2);
+          box-shadow: -1px 2px 3px rgba(0, 0, 0, 0.2);
 }
 
 .deliveries, .spendings, .balance {
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   cursor: pointer;
 }
 
@@ -262,7 +266,8 @@ ul {
 .track_container .tracking_data {
   background-color: #fff;
   height: 100px;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   border-radius: 5px;
 }
 
@@ -330,106 +335,99 @@ ul {
   .track_container .tracking_data {
     background-color: #fff;
     height: 100px;
-    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
     border-radius: 5px;
   }
-
   .tracking_data ul {
     list-style: none;
   }
-
   .tracking_data ul li {
     display: inline-block;
     padding: 30px 30px;
   }
-
   .tracking_data ul li i.fa.fa-gift, i.fa.fa-truck, i.fa.fa-box-open {
     font-size: 30px;
   }
 }
+
 @media screen and (min-width: 501px) and (max-width: 799px) {
   .track_container .tracking_data {
     background-color: #fff;
     height: 100px;
-    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
     border-radius: 5px;
   }
-
   .tracking_data ul {
     list-style: none;
   }
-
   .tracking_data ul li {
     display: inline-block;
     padding: 30px 50px;
   }
-
   .tracking_data ul li i.fa.fa-gift, i.fa.fa-truck, i.fa.fa-box-open {
     font-size: 30px;
   }
 }
+
 @media screen and (min-width: 800px) and (max-width: 999px) {
   .track_container .tracking_data {
     background-color: #fff;
     height: 100px;
-    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
     border-radius: 5px;
   }
-
   .tracking_data ul {
     list-style: none;
   }
-
   .tracking_data ul li {
     display: inline-block;
     padding: 30px 50px;
   }
-
   .tracking_data ul li i.fa.fa-gift, i.fa.fa-truck, i.fa.fa-box-open {
     font-size: 30px;
   }
 }
+
 @media screen and (min-width: 1000px) and (max-width: 1199px) {
   .track_container .tracking_data {
     background-color: #fff;
     height: 100px;
-    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
     border-radius: 5px;
   }
-
   .tracking_data ul {
     list-style: none;
   }
-
   .tracking_data ul li {
     display: inline-block;
     padding: 30px 75px;
   }
-
   .tracking_data ul li i.fa.fa-gift, i.fa.fa-truck, i.fa.fa-box-open {
     font-size: 30px;
   }
 }
+
 @media screen and (min-width: 1200px) and (max-width: 1400px) {
   .track_container .tracking_data {
     background-color: #fff;
     height: 100px;
-    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
     border-radius: 5px;
   }
-
   .tracking_data ul {
     list-style: none;
   }
-
   .tracking_data ul li {
     display: inline-block;
     padding: 30px 100px;
   }
-
   .tracking_data ul li i.fa.fa-gift, i.fa.fa-truck, i.fa.fa-box-open {
     font-size: 30px;
   }
 }
-
 /*# sourceMappingURL=style.css.map */

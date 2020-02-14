@@ -1,5 +1,6 @@
 * {
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 html, body {
@@ -15,7 +16,6 @@ body a {
 
 body a:hover {
   -webkit-transition: 0.3s all;
-  -moz-transition: 0.3s all;
   transition: 0.3s all;
   text-decoration: none;
   color: #f57f20;
@@ -120,17 +120,20 @@ ul {
 
 .summary .total_revenue {
   background-color: #1b7fc3;
-  box-shadow: -1px 2px 3px rgba(0, 0, 0, 0.4);
+  -webkit-box-shadow: -1px 2px 3px rgba(0, 0, 0, 0.4);
+          box-shadow: -1px 2px 3px rgba(0, 0, 0, 0.4);
 }
 
 .summary .partners {
   background-color: #33b27b;
-  box-shadow: -1px 2px 3px rgba(0, 0, 0, 0.4);
+  -webkit-box-shadow: -1px 2px 3px rgba(0, 0, 0, 0.4);
+          box-shadow: -1px 2px 3px rgba(0, 0, 0, 0.4);
 }
 
 .summary .merchants {
   background-color: #f57f20;
-  box-shadow: -1px 2px 3px rgba(0, 0, 0, 0.4);
+  -webkit-box-shadow: -1px 2px 3px rgba(0, 0, 0, 0.4);
+          box-shadow: -1px 2px 3px rgba(0, 0, 0, 0.4);
 }
 
 .summary .total_revenue i.fa.fa-users {
@@ -223,8 +226,12 @@ ul {
 }
 
 .users_right .users_header {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: space-between;
+  -webkit-box-align: space-between;
+      -ms-flex-align: space-between;
+          align-items: space-between;
 }
 
 .users_header a {
@@ -243,10 +250,12 @@ ul {
   position: absolute;
   width: 400px;
   height: auto;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
   border: 1px solid #f5f5f5;
   border-radius: 5px;
   padding: 20px;
@@ -390,5 +399,4 @@ ul {
 .complaints_container h2 {
   padding: 20px 0px;
 }
-
 /*# sourceMappingURL=style.css.map */
