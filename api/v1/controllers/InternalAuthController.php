@@ -4,8 +4,6 @@ namespace edelivery\api\v1\controllers;
 
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
-use edelivery\api\v1\models\Merchant_Model;
-use edelivery\api\v1\database\Database;
 use ReallySimpleJWT\Token;
 
 
