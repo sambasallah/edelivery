@@ -262,7 +262,10 @@ class Merchant_Model {
         $total_rows = $this->getTotalRows($merchant_id);
         $offset = ($page_no-1) * $this->NUMBER_OF_RECORDS_PER_PAGE;
         $this->total_pages = (int) ceil($total_rows / $this->NUMBER_OF_RECORDS_PER_PAGE);
-        $this->conn->prepareQuery("SELECT *,delivery_rates.rate FROM delivery_requests INNER JOIN delivery_rates ON delivery_requests.rate_id = delivery_rates.rate_id WHERE merchant_id = :merchant_id ORDER BY request_time DESC LIMIT :offset,:total_records_per_page ");
+        $this->conn->prepareQuery("SELECT *,delivery_rates.rate FROM delivery_requests
+         INNER JOIN delivery_rates ON delivery_requests.rate_id = delivery_rates.rate_id 
+         WHERE merchant_id = :merchant_id ORDER BY request_time 
+         DESC LIMIT :offset,:total_records_per_page ");
         $this->conn->bind(":merchant_id",$merchant_id);
         $this->conn->bind(":offset",$offset);
         $this->conn->bind(":total_records_per_page", $this->NUMBER_OF_RECORDS_PER_PAGE);
@@ -301,7 +304,8 @@ class Merchant_Model {
      * - Returns the number of ongoing deliveries
      */
     public function getOngoingDeliveries(int $merchant_id) : int {
-        $this->conn->prepareQuery("SELECT * FROM delivery_requests WHERE request_status = 'On Route' AND merchant_id = :id ");
+        $this->conn->prepareQuery("SELECT * FROM delivery_requests 
+        WHERE request_status = 'On Route' AND merchant_id = :id ");
         $this->conn->bind(":id", $merchant_id);
         $this->conn->executeQuery();
 
@@ -313,7 +317,9 @@ class Merchant_Model {
      * @return object
      */
     public function getDeliveryRequest(int $merchant_id) : object {
-        $this->conn->prepareQuery("SELECT *,partner.* FROM delivery_requests INNER JOIN partner ON partner.partner_id = delivery_requests.partner_id WHERE delivery_requests.id = :merchant_id");
+        $this->conn->prepareQuery("SELECT *,partner.* FROM delivery_requests 
+        INNER JOIN partner ON partner.partner_id = delivery_requests.partner_id 
+        WHERE delivery_requests.id = :merchant_id");
         $this->conn->bind(":merchant_id",$merchant_id);
         $this->conn->executeQuery();
 
@@ -334,7 +340,8 @@ class Merchant_Model {
                                                         partner_email = :email,
                                                         merchant_name = :merchant_name,
                                                         merchant_email = :merchant_email,
-                                                        merchant_number = :merchant_number WHERE partner_id = :id");
+                                                        merchant_number = :merchant_number 
+                                                        WHERE partner_id = :id");
         $this->conn->bind(":name", $partner_info->first_name . " " . $partner_info->last_name);
         $this->conn->bind(":number",$partner_info->phone_number);
         $this->conn->bind(":text", $complaint_text);
@@ -436,19 +443,9 @@ class Merchant_Model {
         $this->conn->bind(":request_id", $request_id);
         if($this->conn->executeQuery()) {
             $this->refund($refund_amount,$merchant_id);
-            $_SESSION['canceled_request'] = 
-            "<div class='alert alert-success alert-dismissible'>
-            <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
-            <strong>Success!</strong> Delivery Request Canceled.
-          </div>";
-          header("location:summary");
+            $_SESSION['canceled_request'] = TRUE;
         }else {
-            $_SESSION['request_cancel_error'] = 
-            "<div class='alert alert-danger alert-dismissible'>
-            <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
-            <strong>Error!</strong> Failed To Cancel Request.
-          </div>";
-          header("location:summary");
+            $_SESSION['request_cancel_error'] = FALSE;
         }
     }
 

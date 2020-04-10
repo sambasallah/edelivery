@@ -7,6 +7,7 @@ use edelivery\template\Template;
 use edelivery\models\Database_Model;
 use edelivery\models\Merchant_Model;
 use edelivery\helpers\Functions;
+use edelivery\helpers\Alerts;
 
 $helper_functions = new Functions();
 
@@ -17,6 +18,7 @@ if($helper_functions->isMerchantLoggedIn()) {
     $merchant = new Merchant_Model($database);
 
     $helper_functions = new Functions();
+    $helper_alerts = new Alerts();
 
     if(isset($_POST['track']) && $helper_functions->isPost()) {
         $template->delivery_id = $_POST['delivery_id'];
@@ -27,20 +29,9 @@ if($helper_functions->isMerchantLoggedIn()) {
     if(isset($_POST['received']) && $helper_functions->isPost()) {
         $success = $merchant->acknowledgeDelivery($_POST['request_id']);
         if($success) {
-            
-            $_SESSION['acknowledged'] = 
-            "<div class='alert alert-success'>
-                <strong>Delivery Completed</strong>
-            </div>";
-            \header("location:summary");
-            exit;
+            $_SESSION['acknowledged'] =  TRUE;
         } 
-        $_SESSION['error_acknowledged'] = 
-        "<div class='alert alert-danger'>
-            <strong>Error! Acknowledging delivery request</strong>
-        </div>";
-        \header('location:summary');
-        exit;
+        $_SESSION['error_acknowledged'] =   FALSE;
     }
 
 

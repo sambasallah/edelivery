@@ -5,6 +5,7 @@ require_once('../config/init_.php');
 use edelivery\template\Template;
 use edelivery\models\Database_Model;
 use edelivery\models\Merchant_Model;
+use edelivery\helpers\Alerts;
 use edelivery\helpers\Functions;
 
 $helper_functions = new Functions();
@@ -18,6 +19,8 @@ if($helper_functions->isMerchantLoggedIn()) {
     $template = new Template('views/summary.php');
 
     $merchant_id = $merchant->getMerchantID($_SESSION['user']);
+
+    $helper_alerts = new Alerts();
 
     if(isset($_POST['cancel_request'])) {
         $merchant->cancelDeliveryRequest($_POST['request_id'],$merchant_id);
@@ -34,6 +37,11 @@ if($helper_functions->isMerchantLoggedIn()) {
 
     $template->total_pages = $merchant->getTotalPages();
 
+    // Alerts
+    $template->success = $helper_alerts->cancelDeliveryRequestSuccess();
+    $template->error = $helper_alerts->cancelDeliveryRequestError();
+    $template->delivery_completed = $helper_alerts->deliveryAcknowledged();
+    $template->delivery_not_completed = $helper_alerts->notDelivered();
 
     echo $template;
 }else {

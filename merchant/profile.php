@@ -6,6 +6,7 @@ use edelivery\template\Template;
 use edelivery\models\Database_Model;
 use edelivery\models\Merchant_Model;
 use edelivery\helpers\Functions;
+use edelivery\helpers\Alerts;
 
 $helper_functions = new Functions();
 
@@ -17,7 +18,7 @@ if($helper_functions->isMerchantLoggedIn()) {
 
     $template = new Template('views/profile.php');
 
-    $helper_functions = new Functions();
+    $helper_alerts = new Alerts();
 
     if($helper_functions->isPost()) {
         $first_name = $_POST['first_name'];
@@ -51,9 +52,9 @@ if($helper_functions->isMerchantLoggedIn()) {
 
     $template->profile_information = $merchant->getProfileInformation($_SESSION['user']);
 
-    $template->profile_success = $helper_functions->successProfile();
+    $template->profile_success = $helper_alerts->success();
 
-    $template->profile_error = $helper_functions->errorProfile();
+    $template->profile_error = $helper_alerts->error();
 
     echo $template;
 }else {

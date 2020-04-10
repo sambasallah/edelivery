@@ -8,10 +8,10 @@
                 <div class="col-md-9">
                    <div class="right_summary">
                    <h2>Delivery Requests</h2>
-                   <?php if(isset($_SESSION['canceled_request'])) { echo $_SESSION['canceled_request']; }?>
-                   <?php if(isset($_SESSION['request_cancel_error'])) { echo $_SESSION['request_cancel_error']; }?>
-                   <?php if(isset($_SESSION['acknowledged'])) { echo $_SESSION['acknowledged'];  unset($_SESSION['acknowledged']); }?>
-                   <?php if(isset($_SESSION['error_acknowledged'])) { echo $_SESSION['error_acknowledged']; unset($_SESSION['error_acknowledged']); }?>
+                    <?= $success; ?>
+                    <?= $error; ?>
+                    <?= $delivery_completed; ?>
+                    <?= $delivery_not_completed; ?>
                    <?php if(isset($_SESSION['complaint_sent'])) { echo $_SESSION['complaint_sent']; unset($_SESSION['complaint_sent']); }?>
                    <?php if(isset($_SESSION['complaint_not_sent'])) { echo $_SESSION['complaint_not_sent']; unset($_SESSION['complaint_not_sent']); }?>
                     <?php if(empty($delivery_summary)) : ?>
