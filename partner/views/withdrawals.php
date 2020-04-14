@@ -34,7 +34,11 @@
                                     <td><?= $withdrawal->account_number; ?></td>
                                     <td><?= $withdrawal->bban_number; ?></td>
                                     <td><?= $withdrawal->request_status; ?></td>
-                                    <td><a href="withdrawal-request/<?= $withdrawal->id; ?>"><i class="fa fa-edit"></i></a></td>
+                                    <?php if($withdrawal->request_status !== "Approved") : ?>
+                                        <td><a href="withdrawal-request/<?= $withdrawal->id; ?>"><i class="fa fa-edit"></i></a></td>
+                                    <?php else : ?>
+                                        <td><a href="withdrawals"><i class="fa fa-edit"></i></a></td>
+                                    <?php endif; ?>
                                     <td>
                                         <form action="" method="post">
                                             <button type="submit" name="delete"><i class="fa fa-trash"></i></button> 
